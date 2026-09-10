@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AapV — Track Grievances & Community Impact</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+  (function() {
+    var savedTheme = localStorage.getItem('aapv_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">AapV<span>•</span></div>
+  <nav>
+    <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+    <a class="active" href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+    <a href="admin.html" data-i18n="nav_admin">Admin</a>
+    <a href="university.html" data-i18n="nav_university">University</a>
+    <a href="industry.html" data-i18n="nav_industry">Industry</a>
+  </nav>
+  <div class="topbar-actions">
+    <button class="theme-toggle-btn" id="themeToggleBtn" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+      <span class="theme-label" id="themeLabel" data-i18n="theme_dark">Dark</span>
+    </button>
+    <div class="lang-dropdown">
+      <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
+        <span>🌐</span>
+        <span id="currentLangLabel">English</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button type="button" class="lang-option active" data-lang="en" role="menuitem">
+          <span>English</span> <small>EN</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="hi" role="menuitem">
+          <span>हिन्दी</span> <small>HI</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="sat" role="menuitem">
+          <span>संताली (Santali)</span> <small>SAT</small>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Accessibility Audio Reader & Narration Bar -->
+<aside class="audio-guide-bar" id="audioGuideBar" aria-label="Audio Reader">
+  <div class="audio-guide-content">
+    <div class="audio-guide-info">
+      <div class="audio-guide-badge">
+        <span class="audio-pulse-dot"></span>
+        <span class="audio-speaker-icon">🔊</span>
+        <strong data-i18n="audio_guide_bar_title">Voice Narration & Audio Guide</strong>
+      </div>
+      <p class="audio-guide-hint" data-i18n="audio_guide_bar_desc">Tap any speaker icon 🔊 or click 'Read Page Aloud' to listen to this page in your language.</p>
+    </div>
+    <div class="audio-guide-controls">
+      <button type="button" class="audio-guide-btn read-all-btn" id="readPageBtn" onclick="toggleReadEntirePage()">
+        <span class="audio-play-icon">▶</span>
+        <span id="readPageBtnLabel" data-i18n="btn_read_page">Read Page Aloud</span>
+      </button>
+      <button type="button" class="audio-guide-btn stop-audio-btn" id="stopAudioBtn" onclick="stopSpeaking(true)" style="display:none;" title="Stop Audio">
+        <span>⏹</span>
+        <span data-i18n="btn_stop_audio">Stop</span>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- Main Content Area -->
+<main>
+  <!-- Hero Section -->
+  <section class="impact-hero" id="impactHeroBlock" data-narrate-item>
+    <div class="hero-title-row" style="margin-bottom: 8px;">
+      <div class="impact-hero-badge">
+        <span>🏛️</span>
+        <span data-i18n="impact_eyebrow">JHARKHAND TRANSPARENCY & TRACKING</span>
+      </div>
+      <button class="narrate-btn narrate-hero-btn" type="button" onclick="narrateElement(this, '#impactHeroBlock')" aria-label="Listen to heading">
+        <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+      </button>
+    </div>
+    <h1 data-i18n="impact_hero_title">Unified Grievance Tracking & Impact Observatory</h1>
+    <p class="lead" data-i18n="impact_hero_lead">
+      From citizen voices to university engineering labs and field solutions. Track live ongoing prototypes, deployed community solutions, and open challenges across Jharkhand.
+    </p>
+
+    <!-- Statewide Impact Metrics Grid -->
+    <div class="impact-metrics-grid" id="impactMetricsRow">
+      <div class="impact-metric-box">
+        <small data-i18n="metric_problems_title">Problems Submitted</small>
+        <strong>2,481+</strong>
+        <span class="metric-sub">
+          <span style="color:#16a34a;">↑ 14.8%</span>
+          <span data-i18n="metric_problems_sub">Across all 24 districts</span>
+        </span>
+      </div>
+      <div class="impact-metric-box">
+        <small data-i18n="metric_active_title">Active University Projects</small>
+        <strong>428</strong>
+        <span class="metric-sub">
+          <span style="color:#16a34a;">↑ 21.4%</span>
+          <span data-i18n="metric_active_sub">Engineering prototypes & trials</span>
+        </span>
+      </div>
+      <div class="impact-metric-box">
+        <small data-i18n="metric_completed_title">Completed & Deployed</small>
+        <strong>126</strong>
+        <span class="metric-sub">
+          <span style="color:#16a34a;">✓ 100% verified</span>
+          <span data-i18n="metric_completed_sub">Verified community solutions</span>
+        </span>
+      </div>
+      <div class="impact-metric-box">
+        <small data-i18n="metric_impacted_title">Citizens Benefited</small>
+        <strong>1.4M+</strong>
+        <span class="metric-sub">
+          <span style="color:#16a34a;">↑ 32.1%</span>
+          <span data-i18n="metric_impacted_sub">Directly improved lives</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Spotlight Case Study Banner -->
+    <div class="spotlight-banner" id="spotlightStoryCard">
+      <div class="spotlight-copy">
+        <span class="spotlight-tag" data-i18n="spotlight_tag">FEATURED REAL-WORLD SOLUTION</span>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+          <h3 data-i18n="spotlight_title">Dumka Solar Arsenic & Iron Water Filtration Unit</h3>
+          <button type="button" class="narrate-btn" onclick="narrateElement('spotlightStoryCard', this)" title="Listen" style="background: rgba(255,255,255,0.25); color:#fff; border-color:rgba(255,255,255,0.4);" data-i18n="voice_narrate_btn">🔊 Listen</button>
+        </div>
+        <p data-i18n="spotlight_desc">
+          Citizens reported contaminated handpumps in Shikaripara. BIT Mesra engineers designed a low-cost graphene-sand solar filtration system. Now providing clean drinking water to 4,200 villagers daily.
+        </p>
+      </div>
+      <div class="spotlight-stats">
+        <div class="spotlight-stat-item" data-i18n="spotlight_stat_dist">
+          <span>District:</span> <b>Dumka, Jharkhand</b>
+        </div>
+        <div class="spotlight-stat-item" data-i18n="spotlight_stat_team">
+          <span>Team:</span> <b>BIT Mesra Environmental Lab</b>
+        </div>
+        <div class="spotlight-stat-item" data-i18n="spotlight_stat_status">
+          <span>Outcome:</span> <b>100% Functional & Verified ✓</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grievance & Project Progress Tracker Section -->
+  <section class="tracking-wrapper" id="trackingSection">
+    <div class="tracking-header">
+      <div class="tracking-header-left" id="trackingHeaderLeft">
+        <h2 data-i18n="tracking_title">Grievance & Project Progress Tracker</h2>
+        <p data-i18n="tracking_subtitle">Track live progress across ongoing prototypes, completed interventions, and available community challenges.</p>
+      </div>
+
+      <!-- Segmented Section Filter Tabs: Ongoing | Completed | Available -->
+      <div class="tracking-tabs" role="tablist" aria-label="Project Status Tabs">
+        <button type="button" class="tab-btn active" data-tab="all" onclick="setTrackingTab('all')">
+          <span data-i18n="tab_all">All</span>
+          <span class="tab-count" id="countAll">8</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="ongoing" onclick="setTrackingTab('ongoing')">
+          <span data-i18n="tab_ongoing">Ongoing Projects</span>
+          <span class="tab-count" id="countOngoing">3</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="completed" onclick="setTrackingTab('completed')">
+          <span data-i18n="tab_completed">Completed Projects</span>
+          <span class="tab-count" id="countCompleted">3</span>
+        </button>
+        <button type="button" class="tab-btn" data-tab="available" onclick="setTrackingTab('available')">
+          <span data-i18n="tab_available">Available for Adoption</span>
+          <span class="tab-count" id="countAvailable">2</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="tracking-filters">
+      <div class="tracking-search-wrap">
+        <span class="tracking-search-icon">🔍</span>
+        <input type="text" id="trackingSearchInput" placeholder="Search by Grievance ID (e.g. AAPV-2026-0842) or problem keyword…" data-i18n-placeholder="search_placeholder">
+      </div>
+      <select class="tracking-select" id="trackingDistrictFilter">
+        <option value="all" data-i18n="filter_all_districts">All Districts</option>
+        <option value="Dumka">Dumka</option>
+        <option value="Hazaribagh">Hazaribagh</option>
+        <option value="Giridih">Giridih</option>
+        <option value="Dhanbad">Dhanbad</option>
+        <option value="Ranchi">Ranchi</option>
+        <option value="East Singhbhum">East Singhbhum</option>
+        <option value="Simdega">Simdega</option>
+        <option value="Khunti">Khunti</option>
+      </select>
+      <select class="tracking-select" id="trackingDomainFilter">
+        <option value="all" data-i18n="filter_all_domains">All Domains</option>
+        <option value="water" data-i18n="filter_domain_water">Water & Sanitation</option>
+        <option value="agri" data-i18n="filter_domain_agri">Agriculture & Irrigation</option>
+        <option value="env" data-i18n="filter_domain_env">Environment & Energy</option>
+        <option value="edu" data-i18n="filter_domain_edu">Education & Digital</option>
+        <option value="health" data-i18n="filter_domain_health">Healthcare & Connectivity</option>
+      </select>
+    </div>
+
+    <!-- Dynamic Projects Grid (rendered by app.js) -->
+    <div class="projects-grid" id="projectsGrid"></div>
+  </section>
+
+  <!-- 24/7 AI-Powered Multilingual Chatbot Section -->
+  <section class="chatbot-section" id="chatbotSection">
+    <div class="chatbot-card">
+      <div class="chatbot-header">
+        <div class="chatbot-header-left">
+          <div class="chatbot-avatar">🤖</div>
+          <div class="chatbot-title-box">
+            <h3 data-i18n="chatbot_header_title">AapV AI Sahayak • 24/7 Progress Insights</h3>
+            <div class="chatbot-status">
+              <span class="chatbot-status-dot"></span>
+              <span data-i18n="chatbot_status">Active 24/7 • Multilingual</span>
+            </div>
+          </div>
+        </div>
+        <div class="chatbot-lang-badge">
+          <span>EN • HI • SAT</span>
+        </div>
+      </div>
+
+      <div class="chatbot-body">
+        <!-- Message list -->
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-msg bot">
+            <div class="chatbot-avatar" style="width:32px; height:32px; font-size:14px; background:#4338ca; color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤖</div>
+            <div class="msg-bubble">
+              <p data-i18n="chatbot_welcome">
+                Namaste! I am your 24/7 AI Progress Assistant. Ask me anything about the progress of your grievance, ongoing university projects, or completed solutions in your area.
+              </p>
+              <div>
+                <button type="button" class="msg-listen-btn" onclick="narrateText(this.parentElement.previousElementSibling.innerText, this.parentElement.parentElement)" data-i18n="voice_narrate_btn">
+                  🔊 Listen
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Prompt Chips -->
+        <div class="chat-chips-row">
+          <button type="button" class="chat-chip" onclick="sendChatMessage('What is the status of water projects in Dumka?')" data-i18n="chatbot_chip_water">
+            💧 Water projects in Dumka
+          </button>
+          <button type="button" class="chat-chip" onclick="sendChatMessage('Show all completed projects in Jharkhand')" data-i18n="chatbot_chip_completed">
+            ✅ Show completed projects
+          </button>
+          <button type="button" class="chat-chip" onclick="sendChatMessage('What are ongoing university projects?')" data-i18n="chatbot_chip_ongoing">
+            ⚙️ What are ongoing projects?
+          </button>
+          <button type="button" class="chat-chip" onclick="sendChatMessage('Which grievances are available for universities to adopt?')" data-i18n="chatbot_chip_available">
+            📋 Challenges available for adoption
+          </button>
+          <button type="button" class="chat-chip" onclick="sendChatMessage('Check status of AAPV-2026-0842')" data-i18n="chatbot_chip_id">
+            🔍 Status of AAPV-2026-0842
+          </button>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="chat-input-bar">
+          <input type="text" id="chatInput" placeholder="Ask about progress, grievances, or district updates… (or use mic)" data-i18n-placeholder="chatbot_placeholder">
+          <button type="button" class="chat-mic-btn" id="chatMicBtn" onclick="handleChatbotSpeechInput()" title="Speak your question">
+            🎙
+          </button>
+          <button type="button" class="chat-send-btn" onclick="sendChatMessage()">
+            <span>Send</span>
+            <span>➤</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section: Calling, Email, WhatsApp -->
+  <section class="contact-section" id="contactSection" data-narrate-item>
+    <div class="contact-head">
+      <div class="contact-head-info">
+        <p class="eyebrow" data-i18n="contact_eyebrow">HELP & SUPPORT • CITIZEN ASSISTANCE</p>
+        <h2 data-i18n="contact_title">Need Help? Contact AapV Citizen Support</h2>
+        <p class="contact-subtitle" data-i18n="contact_desc">Connect with our dedicated grievance assistance desk via phone helpline, official email, or instant WhatsApp chat.</p>
+      </div>
+      <button class="narrate-btn" type="button" onclick="narrateElement(this, '#contactSection')" aria-label="Listen to Contact information">
+        <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+      </button>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Channel 1: Calling Helpline -->
+      <div class="contact-card call-card" data-narrate-item>
+        <div class="contact-card-header">
+          <div class="contact-icon call-icon">📞</div>
+          <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Calling options" title="Listen"><span class="speaker-icon">🔊</span></button>
+        </div>
+        <h3 data-i18n="contact_call_title">Toll-Free Helpline</h3>
+        <p data-i18n="contact_call_desc">Speak directly with our citizen grievance officers. Available 24×7 for all Jharkhand districts.</p>
+        <div class="contact-details">
+          <div class="contact-num-highlight">1800-345-6789</div>
+          <small class="contact-subtext" data-i18n="contact_call_sub">Toll-Free: 1800-345-6789 | Ranchi HQ: +91 651 2400000</small>
+        </div>
+        <a href="tel:18003456789" class="contact-action-btn phone-btn" data-i18n="contact_call_btn">
+          📞 Call Helpline (1800-345-6789)
+        </a>
+      </div>
+
+      <!-- Channel 2: Email Support -->
+      <div class="contact-card email-card" data-narrate-item>
+        <div class="contact-card-header">
+          <div class="contact-icon email-icon">✉️</div>
+          <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Email options" title="Listen"><span class="speaker-icon">🔊</span></button>
+        </div>
+        <h3 data-i18n="contact_email_title">Email Support Desk</h3>
+        <p data-i18n="contact_email_desc">Send your questions, documents, or photos. Every query receives an official tracking reference.</p>
+        <div class="contact-details">
+          <div class="contact-num-highlight contact-email-text">support-aapv@jharkhand.gov.in</div>
+          <small class="contact-subtext" data-i18n="contact_email_sub">support-aapv@jharkhand.gov.in (Avg reply: 24-48h)</small>
+        </div>
+        <a href="mailto:support-aapv@jharkhand.gov.in?subject=Citizen%20Grievance%20Support%20-%20AapV" class="contact-action-btn email-btn" data-i18n="contact_email_btn">
+          ✉️ Send Official Email
+        </a>
+      </div>
+
+      <!-- Channel 3: WhatsApp Chat -->
+      <div class="contact-card whatsapp-card" data-narrate-item>
+        <div class="contact-card-header">
+          <div class="contact-icon whatsapp-icon">💬</div>
+          <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to WhatsApp options" title="Listen"><span class="speaker-icon">🔊</span></button>
+        </div>
+        <h3 data-i18n="contact_whatsapp_title">Chat on WhatsApp</h3>
+        <p data-i18n="contact_whatsapp_desc">Send voice notes, photo evidence of problems, or check real-time grievance status on WhatsApp.</p>
+        <div class="contact-details">
+          <div class="contact-num-highlight">+91 98765 43210</div>
+          <small class="contact-subtext" data-i18n="contact_whatsapp_sub">+91 98765 43210 (Automated & Officer Support)</small>
+        </div>
+        <a href="https://wa.me/919876543210?text=Namaste%20AapV%20Helpdesk,%20I%20want%20to%20track%20my%20grievance" target="_blank" rel="noopener noreferrer" class="contact-action-btn whatsapp-btn" data-i18n="contact_whatsapp_btn">
+          💬 Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="portal-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <strong>AapV<span>•</span></strong> Jharkhand Community Innovation Portal
+    </div>
+    <div class="footer-info" data-i18n="footer_desc">
+      An open digital initiative connecting citizen voices with university research & rapid solutions across Jharkhand.
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+      <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+      <a href="admin.html" data-i18n="nav_admin">Admin</a>
+      <a href="university.html" data-i18n="nav_university">University</a>
+      <a href="industry.html" data-i18n="nav_industry">Industry</a>
+    </div>
+    <div class="footer-copy" data-i18n="footer_copy">
+      © 2026 Government of Jharkhand & Partner Universities. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
+

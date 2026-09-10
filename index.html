@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AapV — Citizen Portal</title><link rel="stylesheet" href="styles.css">
+<script>
+  (function() {
+    var savedTheme = localStorage.getItem('aapv_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">AapV<span>•</span></div>
+  <nav>
+    <a class="active" href="index.html" data-i18n="nav_citizen">Citizen</a>
+    <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+    <a href="admin.html" data-i18n="nav_admin">Admin</a>
+    <a href="university.html" data-i18n="nav_university">University</a>
+    <a href="industry.html" data-i18n="nav_industry">Industry</a>
+  </nav>
+  <div class="topbar-actions">
+    <button class="theme-toggle-btn" id="themeToggleBtn" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+      <span class="theme-label" id="themeLabel" data-i18n="theme_dark">Dark</span>
+    </button>
+    <div class="lang-dropdown">
+      <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
+        <span>🌐</span>
+        <span id="currentLangLabel">English</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button type="button" class="lang-option active" data-lang="en" role="menuitem">
+          <span>English</span> <small>EN</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="hi" role="menuitem">
+          <span>हिन्दी</span> <small>HI</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="sat" role="menuitem">
+          <span>संताली (Santali)</span> <small>SAT</small>
+        </button>
+      </div>
+    </div>
+    <div id="authNavContainer" class="auth-nav">
+      <button class="login-nav-btn" id="loginNavBtn" type="button" onclick="openLoginModal()">
+        <span class="user-ico">👤</span>
+        <span data-i18n="btn_login">Log In</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Accessibility Audio Reader & Narration Bar -->
+<aside class="audio-guide-bar" id="audioGuideBar" aria-label="Audio Reader">
+  <div class="audio-guide-content">
+    <div class="audio-guide-info">
+      <div class="audio-guide-badge">
+        <span class="audio-pulse-dot"></span>
+        <span class="audio-speaker-icon">🔊</span>
+        <strong data-i18n="audio_guide_bar_title">Voice Narration & Audio Guide</strong>
+      </div>
+      <p class="audio-guide-hint" data-i18n="audio_guide_bar_desc">Tap any speaker icon 🔊 or click 'Read Page Aloud' to listen to this page in your language.</p>
+    </div>
+    <div class="audio-guide-controls">
+      <button type="button" class="audio-guide-btn read-all-btn" id="readPageBtn" onclick="toggleReadEntirePage()">
+        <span class="audio-play-icon">▶</span>
+        <span id="readPageBtnLabel" data-i18n="btn_read_page">Read Page Aloud</span>
+      </button>
+      <button type="button" class="audio-guide-btn stop-audio-btn" id="stopAudioBtn" onclick="stopSpeaking(true)" style="display:none;" title="Stop Audio">
+        <span>⏹</span>
+        <span data-i18n="btn_stop_audio">Stop</span>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<main class="hero citizen-hero">
+  <section class="hero-copy" id="heroCopyBlock" data-narrate-item>
+    <div class="hero-title-row">
+      <p class="eyebrow" data-i18n="hero_eyebrow">JHARKHAND • YOUR VOICE, YOUR COMMUNITY</p>
+      <button class="narrate-btn narrate-hero-btn" type="button" onclick="narrateElement(this, '.hero-copy')" aria-label="Listen to heading">
+        <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+      </button>
+    </div>
+    <h1 data-i18n="hero_title">A centralised platform for your grievances.</h1>
+    <p class="lead" data-i18n="hero_lead">A simple place to report problems, ideas and local needs — in your language, with your voice.</p>
+    <div class="trust" data-narrate-item>
+      <span class="trust-identity-text" data-i18n="trust_identity">🔒 Your identity is safe and secured <span class="green-tick">✓</span></span>
+      <div class="trust-audio-row">
+        <button class="narrate-btn narrate-trust-btn" type="button" onclick="narrateElement(this, '.trust')" aria-label="Listen to security guarantee">
+          <span class="speaker-icon">🔊</span>
+          <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="card submission" id="citizenPortalCard">
+    <!-- View 1: Citizen Login Gate (shown before the submit grievance page) -->
+    <div id="citizenLoginGate" class="login-gate-view" data-narrate-item>
+      <div class="login-gate-badge">
+        <span class="badge-icon">🏛️</span>
+        <span>AapV • Citizen Portal</span>
+      </div>
+      <div class="card-title-row">
+        <h2 class="login-gate-title" data-i18n="login_to_submit_title">Log-in to submit your grievances</h2>
+        <button class="narrate-btn narrate-mini-btn" type="button" onclick="narrateElement(this, '#citizenLoginGate')" aria-label="Listen to login instructions">
+          <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+        </button>
+      </div>
+      <p class="login-gate-desc" data-i18n="login_to_submit_desc">Enter your phone number to receive an OTP and proceed to submit your grievance.</p>
+
+      <form id="inlineLoginForm" onsubmit="handleInlineLogin(event)">
+        <label for="inlinePhone" data-i18n="label_phone">Phone Number</label>
+        <div class="phone-input-group">
+          <span class="country-code">+91</span>
+          <input type="tel" id="inlinePhone" maxlength="10" placeholder="98765 43210" pattern="[0-9]{10}" data-i18n-placeholder="placeholder_phone" value="9876543210" required>
+        </div>
+
+        <div class="inline-otp-section">
+          <div class="otp-label-row">
+            <label for="inlineOtp" data-i18n="label_otp">Enter 4-Digit OTP</label>
+            <button type="button" class="resend-otp-link" onclick="sendInlineOtp()" id="inlineOtpStatusBtn" data-i18n="btn_resend_otp">Resend OTP</button>
+          </div>
+          <div class="otp-inline-group">
+            <input type="text" id="inlineOtp" class="otp-input inline-otp-field" maxlength="4" placeholder="• • • •" value="1234" required>
+          </div>
+          <small class="login-hint" data-i18n="otp_demo_hint">Demo OTP 1234 is pre-filled for testing.</small>
+        </div>
+
+        <button type="submit" class="primary full login-gate-submit-btn" data-i18n="btn_login_and_proceed">
+          Log In & Proceed to Submit Grievance →
+        </button>
+      </form>
+
+      <div class="login-divider">
+        <span data-i18n="login_or">OR</span>
+      </div>
+
+      <div class="login-gate-alt" style="display:flex; flex-direction:column; gap:8px;">
+        <button type="button" class="demo-quick-btn" onclick="loginDemoCitizen('Ramesh Murmu', '98765 43210', 'Citizen')" data-i18n="demo_login_quick">
+          ⚡ Quick 1-Click Demo Login (Ramesh Murmu • Citizen)
+        </button>
+        <button type="button" class="demo-quick-btn" onclick="loginDemoCitizen('Sunita Devi', '98234 56789', 'Community Lead')" style="background:#f0f7ff; border-color:#93c5fd;">
+          ⚡ Quick 1-Click Demo Login (Sunita Devi • Community Lead)
+        </button>
+      </div>
+    </div>
+
+    <!-- View 2: Grievance Submission Form (revealed when logged in or continuing as guest) -->
+    <div id="citizenGrievanceForm" class="grievance-form-view" style="display:none;">
+      <!-- Active Session Status Bar -->
+      <div id="citizenSessionBar" class="citizen-session-bar">
+        <div class="session-left">
+          <span class="session-avatar" id="sessionAvatar">RM</span>
+          <div class="session-meta">
+            <strong id="sessionName">Ramesh Murmu</strong>
+            <span id="sessionSubtitle">+91 98765 43210 • <span data-i18n="session_verified_badge">Verified Citizen</span></span>
+          </div>
+        </div>
+        <button type="button" class="session-action-btn" onclick="handleSessionSwitch()" id="sessionActionBtn">
+          <span class="logout-ico">⎋</span>
+          <span class="logout-text" data-i18n="btn_logout">Log out</span>
+        </button>
+      </div>
+
+      <div class="step">
+        <span class="step-num">01</span>
+        <div class="step-title-wrap">
+          <h2 class="step-heading" data-i18n="step_title">Submit your grievance</h2>
+          <button type="button" class="narrate-btn narrate-mini-btn" onclick="narrateElement(this, '#citizenGrievanceForm')" aria-label="Listen to submission form" title="Listen">
+            <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Submitter Type Selection -->
+      <label data-i18n="label_submitter_type">I am submitting as</label>
+      <div class="submitter-selector" role="radiogroup" aria-label="Submitter type">
+        <label class="submitter-opt">
+          <input type="radio" name="submitterType" value="citizen" checked onchange="toggleCommunityInput()">
+          <span class="opt-btn" data-i18n="opt_citizen">👤 Citizen</span>
+        </label>
+        <label class="submitter-opt">
+          <input type="radio" name="submitterType" value="community" onchange="toggleCommunityInput()">
+          <span class="opt-btn" data-i18n="opt_community">👥 Community / Group</span>
+        </label>
+        <label class="submitter-opt">
+          <input type="radio" name="submitterType" value="pri" onchange="toggleCommunityInput()">
+          <span class="opt-btn" data-i18n="opt_pri">🏛️ Panchayati Raj (PRI)</span>
+        </label>
+      </div>
+
+      <!-- Conditionally revealed when Community/Group is selected -->
+      <div id="communityNameGroup" class="community-input-wrap" style="display:none;">
+        <label data-i18n="label_community_name">Community / Group Name</label>
+        <input id="communityName" data-i18n-placeholder="placeholder_community_name" placeholder="e.g. Mahila Samiti, Farmers Union, Youth Club…">
+      </div>
+
+      <label data-i18n="label_problem">Submit your grievance below</label>
+      <textarea id="problem" data-i18n-placeholder="placeholder_problem" placeholder="Speak or type in your own words…&#10;e.g. Our village handpump has stopped working."></textarea>
+      <div class="actions">
+        <button class="voice" id="voiceBtn" type="button" data-i18n="btn_voice">🎙 AI Voice-to-Text</button>
+        <span id="voiceStatus" data-i18n="voice_status_ready">Speak (Hindi, Santhali, English)</span>
+      </div>
+      <label data-i18n="label_location">Add location here</label>
+      <div class="location">
+        <input id="location" data-i18n-placeholder="placeholder_location" placeholder="Village / town / district">
+        <button type="button" onclick="detectLocation()" data-i18n="btn_detect_location">⌖ Use my location</button>
+      </div>
+      <label><span data-i18n="label_media">Add evidence</span> <span class="muted" data-i18n="optional">(optional)</span></label>
+      <input type="file" id="media" accept="image/*,video/*" multiple>
+      <button class="primary full" type="button" onclick="submitProblem()" data-i18n="btn_submit">Submit problem →</button>
+    </div>
+  </section>
+</main>
+<section class="how" id="howSection" data-narrate-item>
+  <div class="how-head">
+    <div class="how-title-row">
+      <p class="eyebrow" data-i18n="how_eyebrow">UNDER THE HOOD • HOW IT WORKS</p>
+      <button class="narrate-btn narrate-mini-btn" type="button" onclick="narrateElement(this, '#howSection')" aria-label="Listen to How It Works">
+        <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+      </button>
+    </div>
+    <h2 data-i18n="how_title">What happens after you submit?</h2>
+    <p class="how-subtitle" data-i18n="how_desc">A transparent 4-step pipeline that turns citizen challenges into university research and field action.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step" data-narrate-item>
+      <div class="step-num-row">
+        <span class="step-num">01</span>
+        <button class="narrate-btn narrate-icon-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to step 1" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <b data-i18n="how_step1_title">1. Submit your problems</b>
+      <p data-i18n="how_step1_desc">Speak or type in your language. Tell us what is wrong without worrying about technical terms.</p>
+    </div>
+    <div class="how-step" data-narrate-item>
+      <div class="step-num-row">
+        <span class="step-num">02</span>
+        <button class="narrate-btn narrate-icon-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to step 2" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <b data-i18n="how_step2_title">2. AI analyses & categorizes it</b>
+      <p data-i18n="how_step2_desc">Our AI identifies urgency, domain (Water, Agri, Education, etc.), and location across Jharkhand.</p>
+    </div>
+    <div class="how-step" data-narrate-item>
+      <div class="step-num-row">
+        <span class="step-num">03</span>
+        <button class="narrate-btn narrate-icon-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to step 3" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <b data-i18n="how_step3_title">3. Sent to relevant universities feed</b>
+      <p data-i18n="how_step3_desc">Problems are routed to specialized engineering faculties, student labs, and research teams.</p>
+    </div>
+    <div class="how-step" data-narrate-item>
+      <div class="step-num-row">
+        <span class="step-num">04</span>
+        <button class="narrate-btn narrate-icon-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to step 4" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <b data-i18n="how_step4_title">4. They pick up & work on it</b>
+      <p data-i18n="how_step4_desc">Innovators take on the challenge, build prototypes, and deploy real solutions on the ground.</p>
+    </div>
+  </div>
+  <div class="how-progress-card" data-narrate-item>
+    <div class="progress-info">
+      <span class="progress-icon">📍</span>
+      <div>
+        <h3 data-i18n="how_progress_title">Track live solutions & progress</h3>
+        <p data-i18n="how_progress_desc">Wondering what happened to your report? See active projects, live prototypes, and verified outcomes in your area.</p>
+      </div>
+    </div>
+    <div class="progress-actions">
+      <button class="narrate-btn narrate-mini-btn" type="button" onclick="narrateElement(this, '.how-progress-card')" aria-label="Listen to tracking information">
+        <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+      </button>
+      <a href="impact.html" class="primary how-progress-btn" id="trackProgressBtn" data-i18n="how_progress_btn">View Community Progress & Impact →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Us Section: Calling, Email, WhatsApp -->
+<section class="contact-section" id="contactSection" data-narrate-item>
+  <div class="contact-head">
+    <div class="contact-head-info">
+      <p class="eyebrow" data-i18n="contact_eyebrow">HELP & SUPPORT • CITIZEN ASSISTANCE</p>
+      <h2 data-i18n="contact_title">Need Help? Contact AapV Citizen Support</h2>
+      <p class="contact-subtitle" data-i18n="contact_desc">Connect with our dedicated grievance assistance desk via phone helpline, official email, or instant WhatsApp chat.</p>
+    </div>
+    <button class="narrate-btn" type="button" onclick="narrateElement(this, '#contactSection')" aria-label="Listen to Contact information">
+      <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+    </button>
+  </div>
+
+  <div class="contact-grid">
+    <!-- Channel 1: Calling Helpline -->
+    <div class="contact-card call-card" data-narrate-item>
+      <div class="contact-card-header">
+        <div class="contact-icon call-icon">📞</div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Calling options" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <h3 data-i18n="contact_call_title">Toll-Free Helpline</h3>
+      <p data-i18n="contact_call_desc">Speak directly with our citizen grievance officers. Available 24×7 for all Jharkhand districts.</p>
+      <div class="contact-details">
+        <div class="contact-num-highlight">1800-345-6789</div>
+        <small class="contact-subtext" data-i18n="contact_call_sub">Toll-Free: 1800-345-6789 | Ranchi HQ: +91 651 2400000</small>
+      </div>
+      <a href="tel:18003456789" class="contact-action-btn phone-btn" data-i18n="contact_call_btn">
+        📞 Call Helpline (1800-345-6789)
+      </a>
+    </div>
+
+    <!-- Channel 2: Email Support -->
+    <div class="contact-card email-card" data-narrate-item>
+      <div class="contact-card-header">
+        <div class="contact-icon email-icon">✉️</div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Email options" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <h3 data-i18n="contact_email_title">Email Support Desk</h3>
+      <p data-i18n="contact_email_desc">Send your questions, documents, or photos. Every query receives an official tracking reference.</p>
+      <div class="contact-details">
+        <div class="contact-num-highlight contact-email-text">support-aapv@jharkhand.gov.in</div>
+        <small class="contact-subtext" data-i18n="contact_email_sub">support-aapv@jharkhand.gov.in (Avg reply: 24-48h)</small>
+      </div>
+      <a href="mailto:support-aapv@jharkhand.gov.in?subject=Citizen%20Grievance%20Support%20-%20AapV" class="contact-action-btn email-btn" data-i18n="contact_email_btn">
+        ✉️ Send Official Email
+      </a>
+    </div>
+
+    <!-- Channel 3: WhatsApp Chat -->
+    <div class="contact-card whatsapp-card" data-narrate-item>
+      <div class="contact-card-header">
+        <div class="contact-icon whatsapp-icon">💬</div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to WhatsApp options" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <h3 data-i18n="contact_whatsapp_title">Chat on WhatsApp</h3>
+      <p data-i18n="contact_whatsapp_desc">Send voice notes, photo evidence of problems, or check real-time grievance status on WhatsApp.</p>
+      <div class="contact-details">
+        <div class="contact-num-highlight">+91 98765 43210</div>
+        <small class="contact-subtext" data-i18n="contact_whatsapp_sub">+91 98765 43210 (Automated & Officer Support)</small>
+      </div>
+      <a href="https://wa.me/919876543210?text=Namaste%20AapV%20Helpdesk,%20I%20need%20assistance%20with%20my%20grievance" target="_blank" rel="noopener noreferrer" class="contact-action-btn whatsapp-btn" data-i18n="contact_whatsapp_btn">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="portal-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <strong>AapV<span>•</span></strong> Jharkhand Community Innovation Portal
+    </div>
+    <div class="footer-info" data-i18n="footer_desc">
+      An open digital initiative connecting citizen voices with university research & rapid solutions across Jharkhand.
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+      <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+      <a href="admin.html" data-i18n="nav_admin">Admin</a>
+      <a href="university.html" data-i18n="nav_university">University</a>
+      <a href="industry.html" data-i18n="nav_industry">Industry</a>
+    </div>
+    <div class="footer-copy" data-i18n="footer_copy">
+      © 2026 Government of Jharkhand & Partner Universities. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- Citizen Login Modal -->
+<div id="loginModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle" onclick="handleModalBackdropClick(event)">
+  <div class="login-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closeLoginModal()" aria-label="Close modal">✕</button>
+    
+    <div class="login-modal-header">
+      <div class="login-gov-badge">
+        <span class="badge-emblem">🏛️</span>
+        <span>AapV • Citizen Portal</span>
+      </div>
+      <h2 id="loginModalTitle" data-i18n="login_modal_title">Citizen Login</h2>
+      <p id="loginModalSub" class="login-modal-sub" data-i18n="login_modal_sub">
+        Sign in to track your grievances, view university responses, and receive real-time SMS updates.
+      </p>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+      <!-- Step 1: Phone input -->
+      <div id="loginPhoneStep">
+        <label for="citizenPhone" class="login-label" data-i18n="label_phone">Mobile Number</label>
+        <div class="phone-input-group">
+          <span class="country-code">+91</span>
+          <input type="tel" id="citizenPhone" maxlength="10" placeholder="98765 43210" pattern="[0-9]{10}" data-i18n-placeholder="placeholder_phone" value="9876543210">
+        </div>
+        <p class="login-hint" data-i18n="phone_hint">An OTP will be sent to this number for quick verification.</p>
+        <button type="button" class="primary full login-primary-btn" onclick="sendOtp()" data-i18n="btn_send_otp">
+          Get Verification OTP →
+        </button>
+      </div>
+
+      <!-- Step 2: OTP input -->
+      <div id="loginOtpStep" style="display:none;">
+        <div class="otp-notice">
+          <span><span data-i18n="otp_sent_msg">OTP sent to</span> <strong id="otpTargetPhone">+91 98765 43210</strong></span>
+          <button type="button" class="change-phone-btn" onclick="resetPhoneStep()" data-i18n="btn_change_number">Change</button>
+        </div>
+        <label for="citizenOtp" class="login-label" data-i18n="label_otp">Enter 4-Digit OTP</label>
+        <input type="text" id="citizenOtp" class="otp-input" maxlength="4" placeholder="• • • •" value="1234">
+        <p class="login-hint" data-i18n="otp_demo_hint">Demo OTP 1234 is pre-filled for testing.</p>
+        <button type="submit" class="primary full login-primary-btn" data-i18n="btn_verify_login">
+          Verify & Sign In →
+        </button>
+      </div>
+    </form>
+
+    <div class="login-divider">
+      <span data-i18n="login_or">OR</span>
+    </div>
+
+    <!-- Quick 1-Click Demo Login for Instant Testing -->
+    <div class="demo-login-box">
+      <p class="demo-login-label" data-i18n="demo_login_title">Quick Review / Evaluator Access:</p>
+      <button type="button" class="demo-login-btn" onclick="loginDemoCitizen('Ramesh Murmu', '98765 43210', 'Citizen')">
+        <span class="demo-avatar">RM</span>
+        <div class="demo-info">
+          <strong>Ramesh Murmu</strong>
+          <small>Citizen • Ranchi, Jharkhand</small>
+        </div>
+        <span class="demo-arrow">⚡ One-Click Login</span>
+      </button>
+      <button type="button" class="demo-login-btn" onclick="loginDemoCitizen('Sunita Devi', '98234 56789', 'Community Lead')">
+        <span class="demo-avatar" style="background:#e0f2fe; color:#0369a1;">SD</span>
+        <div class="demo-info">
+          <strong>Sunita Devi</strong>
+          <small>Community Lead • Dumka, Jharkhand</small>
+        </div>
+        <span class="demo-arrow">⚡ One-Click Login</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- First-time Language Selection Modal -->
+<div id="langPromptModal" class="lang-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="langModalTitle">
+  <div class="lang-modal-card">
+    <div class="lang-modal-header">
+      <div class="lang-modal-badge">AapV<span>•</span> Jharkhand Innovation</div>
+      <h2 id="langModalTitle">Choose your language<br><span class="hi-text">अपनी भाषा चुनें</span><br><span class="sat-text">ᱟᱢᱟᱜ ᱯᱟᱹᱨᱥᱤ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</span></h2>
+      <p class="lang-modal-sub">Select a language to get started. You can change this anytime from the top bar.</p>
+    </div>
+    <div class="lang-modal-options">
+      <button type="button" class="lang-choice-btn" data-choose-lang="hi">
+        <div class="choice-left">
+          <span class="choice-title">हिन्दी</span>
+          <span class="choice-sub">Hindi • हिंदी में आगे बढ़ें</span>
+        </div>
+        <span class="choice-arrow">→</span>
+      </button>
+      <button type="button" class="lang-choice-btn" data-choose-lang="en">
+        <div class="choice-left">
+          <span class="choice-title">English</span>
+          <span class="choice-sub">English • Continue in English</span>
+        </div>
+        <span class="choice-arrow">→</span>
+      </button>
+      <button type="button" class="lang-choice-btn" data-choose-lang="sat">
+        <div class="choice-left">
+          <span class="choice-title">ᱥᱟᱱᱛᱟᱲᱤ (Santali)</span>
+          <span class="choice-sub">Santali • ᱥᱟᱱᱛᱟᱲᱤ ᱛᱮ ᱞᱟᱦᱟᱜ ᱢᱮ</span>
+        </div>
+        <span class="choice-arrow">→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

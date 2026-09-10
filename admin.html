@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AapV — Admin Command Centre</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+  (function() {
+    var savedTheme = localStorage.getItem('aapv_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">AapV<span>•</span></div>
+  <nav>
+    <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+    <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+    <a class="active" href="admin.html" data-i18n="nav_admin">Admin</a>
+    <a href="university.html" data-i18n="nav_university">University</a>
+    <a href="industry.html" data-i18n="nav_industry">Industry</a>
+  </nav>
+  <div class="topbar-actions">
+    <button class="theme-toggle-btn" id="themeToggleBtn" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+      <span class="theme-label" id="themeLabel" data-i18n="theme_dark">Dark</span>
+    </button>
+    <div class="lang-dropdown">
+      <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
+        <span>🌐</span>
+        <span id="currentLangLabel">English</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button type="button" class="lang-option active" data-lang="en" role="menuitem">
+          <span>English</span> <small>EN</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="hi" role="menuitem">
+          <span>हिन्दी</span> <small>HI</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="sat" role="menuitem">
+          <span>संताली (Santali)</span> <small>SAT</small>
+        </button>
+      </div>
+    </div>
+    <div id="adminAuthNavContainer" class="auth-nav">
+      <button class="login-nav-btn admin-login-nav-btn" id="adminLoginNavBtn" type="button" onclick="openAdminLoginModal()">
+        <span class="user-ico">🛡️</span>
+        <span data-i18n="admin_login_btn">Admin Officer Login</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard">
+  <div class="dashhead">
+    <div>
+      <p class="eyebrow" data-i18n="admin_eyebrow">STATE ADMINISTRATION</p>
+      <h1 data-i18n="admin_title">Innovation command centre</h1>
+      <p data-i18n="admin_subtitle">From community voice to measurable action.</p>
+    </div>
+    <button class="outline" data-i18n="btn_download_report">Download report</button>
+  </div>
+
+  <div class="metrics">
+    <div>
+      <small data-i18n="metric_admin_submitted">Problems submitted</small>
+      <strong>2,481</strong>
+      <span class="up">↑ 14.8%</span>
+    </div>
+    <div>
+      <small data-i18n="metric_admin_validated">Validated</small>
+      <strong>1,734</strong>
+      <span class="up">↑ 9.2%</span>
+    </div>
+    <div>
+      <small data-i18n="metric_admin_active">Active projects</small>
+      <strong>428</strong>
+      <span class="up">↑ 21.4%</span>
+    </div>
+    <div>
+      <small data-i18n="metric_admin_completed">Completed</small>
+      <strong>126</strong>
+      <span class="up">↑ 31.6%</span>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <section class="panel">
+      <div class="panelhead">
+        <h2 data-i18n="admin_problems_domain">Problems by domain</h2>
+        <span data-i18n="admin_last_90">Last 90 days ▾</span>
+      </div>
+      <div class="bars">
+        <p><span data-i18n="domain_healthcare">Healthcare</span> <b>31%</b></p>
+        <div class="bar-track"><i style="width:86%"></i></div>
+        <p><span data-i18n="domain_education">Education</span> <b>25%</b></p>
+        <div class="bar-track"><i style="width:70%"></i></div>
+        <p><span data-i18n="domain_agriculture">Agriculture</span> <b>18%</b></p>
+        <div class="bar-track"><i style="width:51%"></i></div>
+        <p><span data-i18n="domain_environment">Environment</span> <b>14%</b></p>
+        <div class="bar-track"><i style="width:40%"></i></div>
+        <p><span data-i18n="domain_water">Water</span> <b>8%</b></p>
+        <div class="bar-track"><i style="width:23%"></i></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panelhead">
+        <h2 data-i18n="admin_triage_queue">AI triage queue</h2>
+        <span class="pill" data-i18n="admin_pending_pill">38 pending</span>
+      </div>
+      <div class="queue">
+        <article>
+          <span class="dot high"></span>
+          <div>
+            <b data-i18n="admin_q1_title">Handpump contamination</b>
+            <small data-i18n="admin_q1_meta">Giridih • Water • High</small>
+          </div>
+          <button data-i18n="btn_review">Review</button>
+        </article>
+        <article>
+          <span class="dot med"></span>
+          <div>
+            <b data-i18n="admin_q2_title">Broken school toilets</b>
+            <small data-i18n="admin_q2_meta">Dumka • Education • Medium</small>
+          </div>
+          <button data-i18n="btn_review">Review</button>
+        </article>
+        <article>
+          <span class="dot low"></span>
+          <div>
+            <b data-i18n="admin_q3_title">Crop irrigation timing</b>
+            <small data-i18n="admin_q3_meta">Hazaribagh • Agriculture • Low</small>
+          </div>
+          <button data-i18n="btn_review">Review</button>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel map-panel">
+    <div class="panelhead">
+      <h2 data-i18n="admin_district_activity">District activity</h2>
+      <span data-i18n="admin_submissions_count">2,481 submissions</span>
+    </div>
+    <div class="mapmock">
+      <div>JHARKHAND</div>
+      <small data-i18n="admin_map_placeholder">Interactive district map placeholder</small>
+      <span class="pin p1">428</span>
+      <span class="pin p2">217</span>
+      <span class="pin p3">154</span>
+      <span class="pin p4">96</span>
+    </div>
+  </section>
+</main>
+
+<!-- Contact Us Section: Calling, Email, WhatsApp -->
+<section class="contact-section" id="contactSection" data-narrate-item>
+  <div class="contact-head">
+    <div class="contact-head-info">
+      <p class="eyebrow" data-i18n="contact_eyebrow">HELP & SUPPORT • CITIZEN ASSISTANCE</p>
+      <h2 data-i18n="contact_title">Need Help? Contact AapV Citizen Support</h2>
+      <p class="contact-subtitle" data-i18n="contact_desc">Connect with our dedicated grievance assistance desk via phone helpline, official email, or instant WhatsApp chat.</p>
+    </div>
+    <button class="narrate-btn" type="button" onclick="narrateElement(this, '#contactSection')" aria-label="Listen to Contact information">
+      <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+    </button>
+  </div>
+
+  <div class="contact-grid">
+    <!-- Channel 1: Calling Helpline -->
+    <div class="contact-card call-card" data-narrate-item>
+      <div class="contact-card-header">
+        <div class="contact-icon call-icon">📞</div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Calling options" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <h3 data-i18n="contact_call_title">Toll-Free Helpline</h3>
+      <p data-i18n="contact_call_desc">Speak directly with our citizen grievance officers. Available 24×7 for all Jharkhand districts.</p>
+      <div class="contact-details">
+        <div class="contact-num-highlight">1800-345-6789</div>
+        <small class="contact-subtext" data-i18n="contact_call_sub">Toll-Free: 1800-345-6789 | Ranchi HQ: +91 651 2400000</small>
+      </div>
+      <a href="tel:18003456789" class="contact-action-btn phone-btn" data-i18n="contact_call_btn">
+        📞 Call Helpline (1800-345-6789)
+      </a>
+    </div>
+
+    <!-- Channel 2: Email Support -->
+    <div class="contact-card email-card" data-narrate-item>
+      <div class="contact-card-header">
+        <div class="contact-icon email-icon">✉️</div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Email options" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <h3 data-i18n="contact_email_title">Email Support Desk</h3>
+      <p data-i18n="contact_email_desc">Send your questions, documents, or photos. Every query receives an official tracking reference.</p>
+      <div class="contact-details">
+        <div class="contact-num-highlight contact-email-text">support-aapv@jharkhand.gov.in</div>
+        <small class="contact-subtext" data-i18n="contact_email_sub">support-aapv@jharkhand.gov.in (Avg reply: 24-48h)</small>
+      </div>
+      <a href="mailto:support-aapv@jharkhand.gov.in?subject=Citizen%20Grievance%20Support%20-%20AapV" class="contact-action-btn email-btn" data-i18n="contact_email_btn">
+        ✉️ Send Official Email
+      </a>
+    </div>
+
+    <!-- Channel 3: WhatsApp Chat -->
+    <div class="contact-card whatsapp-card" data-narrate-item>
+      <div class="contact-card-header">
+        <div class="contact-icon whatsapp-icon">💬</div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to WhatsApp options" title="Listen"><span class="speaker-icon">🔊</span></button>
+      </div>
+      <h3 data-i18n="contact_whatsapp_title">Chat on WhatsApp</h3>
+      <p data-i18n="contact_whatsapp_desc">Send voice notes, photo evidence of problems, or check real-time grievance status on WhatsApp.</p>
+      <div class="contact-details">
+        <div class="contact-num-highlight">+91 98765 43210</div>
+        <small class="contact-subtext" data-i18n="contact_whatsapp_sub">+91 98765 43210 (Automated & Officer Support)</small>
+      </div>
+      <a href="https://wa.me/919876543210?text=Namaste%20AapV%20Helpdesk,%20I%20need%20assistance%20with%20my%20grievance" target="_blank" rel="noopener noreferrer" class="contact-action-btn whatsapp-btn" data-i18n="contact_whatsapp_btn">
+        💬 Chat on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="portal-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <strong>AapV<span>•</span></strong> Jharkhand Community Innovation Portal
+    </div>
+    <div class="footer-info" data-i18n="footer_desc">
+      An open digital initiative connecting citizen voices with university research & rapid solutions across Jharkhand.
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+      <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+      <a href="admin.html" data-i18n="nav_admin">Admin</a>
+      <a href="university.html" data-i18n="nav_university">University</a>
+      <a href="industry.html" data-i18n="nav_industry">Industry</a>
+    </div>
+    <div class="footer-copy" data-i18n="footer_copy">
+      © 2026 Government of Jharkhand & Partner Universities. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- State Admin Command Centre Login Modal -->
+<div id="adminLoginModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="adminLoginModalTitle" onclick="handleAdminModalBackdropClick(event)">
+  <div class="login-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closeAdminLoginModal()" aria-label="Close modal">✕</button>
+    
+    <div class="login-modal-header">
+      <div class="login-gov-badge login-admin-badge">
+        <span class="badge-emblem">🏛️</span>
+        <span>Government of Jharkhand • State Administration</span>
+      </div>
+      <h2 id="adminLoginModalTitle" data-i18n="admin_login_title">State Administration Login</h2>
+      <p id="adminLoginModalSub" class="login-modal-sub" data-i18n="admin_login_sub">
+        Restricted command centre access for Jharkhand State Administration, departmental secretaries, and innovation taskforce officers.
+      </p>
+    </div>
+
+    <form id="adminLoginForm" onsubmit="handleAdminLoginSubmit(event)">
+      <label for="adminEmail" class="login-label" data-i18n="admin_label_email">Official Gov Email / Officer ID</label>
+      <input type="email" id="adminEmail" class="auth-text-field" placeholder="officer.it@jharkhand.gov.in" value="rajesh.soren@jharkhand.gov.in" required>
+
+      <label for="adminDeptSelect" class="login-label" data-i18n="admin_label_dept">Department / Agency</label>
+      <select id="adminDeptSelect" class="auth-select-field">
+        <option value="Dept of Higher & Technical Education">Dept of Higher & Technical Education, GoJ</option>
+        <option value="Dept of Planning & Development">Dept of Planning & Development, GoJ</option>
+        <option value="Jharkhand Innovation Taskforce">Jharkhand State Innovation Taskforce</option>
+        <option value="State Grievance Redressal Cell">State Grievance Redressal Cell (CMO)</option>
+      </select>
+
+      <label for="adminPassword" class="login-label" data-i18n="admin_label_password">Administrative Security PIN</label>
+      <input type="password" id="adminPassword" class="auth-text-field" placeholder="••••••••" value="GovAdminSec2026!" required>
+
+      <button type="submit" class="primary full login-primary-btn" data-i18n="btn_admin_signin">
+        Access Command Centre →
+      </button>
+    </form>
+
+    <div class="login-divider">
+      <span data-i18n="login_or">OR</span>
+    </div>
+
+    <div class="demo-login-box">
+      <p class="demo-login-label" data-i18n="demo_login_title">Quick Review / Evaluator Access:</p>
+      <button type="button" class="demo-login-btn" onclick="loginDemoAdmin('Sri Rajesh Soren, IAS', 'Dept of Higher & Technical Education', 'Joint Secretary • Innovation Command', 'RS')">
+        <span class="demo-avatar" style="background:#fee2e2; color:#dc2626;">RS</span>
+        <div class="demo-info">
+          <strong>Sri Rajesh Soren, IAS</strong>
+          <small>Joint Secretary • Dept of Higher & Technical Education</small>
+        </div>
+        <span class="demo-arrow">⚡ One-Click Login</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body></html>
