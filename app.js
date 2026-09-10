@@ -293,7 +293,12 @@ const translations = {
     // Theme Mode
     theme_dark: "Dark",
     theme_light: "Light",
-    theme_toggle_title: "Switch to Dark/Light mode"
+    theme_toggle_title: "Switch to Dark/Light mode",
+
+    // 404 Error Page
+    page_not_found_title: "404 • Page Not Found",
+    page_not_found_desc: "The page you are looking for does not exist, has been removed, or has moved.",
+    btn_back_home: "Back to Citizen Home"
   },
   hi: {
     label: "हिन्दी",
@@ -589,7 +594,12 @@ const translations = {
     // Theme Mode
     theme_dark: "डार्क",
     theme_light: "लाइट",
-    theme_toggle_title: "डार्क/लाइट मोड बदलें"
+    theme_toggle_title: "डार्क/लाइट मोड बदलें",
+
+    // 404 Error Page
+    page_not_found_title: "404 • पृष्ठ नहीं मिला",
+    page_not_found_desc: "जिस पृष्ठ को आप खोज रहे हैं वह मौजूद नहीं है, हटा दिया गया है या स्थानांतरित कर दिया गया है।",
+    btn_back_home: "नागरिक होम पर वापस जाएं"
   },
   sat: {
     label: "संताली",
@@ -885,7 +895,12 @@ const translations = {
     // Theme Mode
     theme_dark: "ᱫᱟᱨᱠ",
     theme_light: "ᱞᱟᱭᱤᱴ",
-    theme_toggle_title: "ᱫᱟᱨᱠ/ᱞᱟᱭᱤᱴ ᱢᱚᱰ ᱵᱚᱫᱚᱞ"
+    theme_toggle_title: "ᱫᱟᱨᱠ/ᱞᱟᱭᱤᱴ ᱢᱚᱰ ᱵᱚᱫᱚᱞ",
+
+    // 404 Error Page
+    page_not_found_title: "404 • ᱥᱟᱦᱴᱟ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ",
+    page_not_found_desc: "ᱡᱟᱦᱟᱸ ᱥᱟᱦᱴᱟ ᱟᱢ ᱯᱟᱱᱛᱮ ᱮᱫᱟ ᱚᱱᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ, ᱚᱪᱚᱜ ᱟᱠᱟᱱᱟ ᱥᱮ ᱩᱪᱟᱹᱲ ᱟᱠᱟᱱᱟ᱾",
+    btn_back_home: "ᱱᱟᱹᱜᱟᱹᱨᱤᱭᱟᱹ ᱚᱲᱟᱜ ᱛᱮ ᱨᱩᱣᱟᱹᱲ"
   }
 };
 

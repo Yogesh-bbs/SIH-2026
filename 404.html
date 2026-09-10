@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>404 — Page Not Found • AapV</title>
+<link rel="stylesheet" href="styles.css">
+<script>
+  (function() {
+    var savedTheme = localStorage.getItem('aapv_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    // Smart redirect for clean URLs on GitHub Pages (e.g., /impact -> /impact.html)
+    try {
+      var path = window.location.pathname;
+      var validPages = ['index', 'impact', 'admin', 'university', 'industry'];
+      for (var i = 0; i < validPages.length; i++) {
+        var page = validPages[i];
+        if (path.endsWith('/' + page) || path.endsWith('/' + page + '/')) {
+          var target = path.replace(new RegExp('/' + page + '/?$'), '/' + page + '.html') + window.location.search + window.location.hash;
+          window.location.replace(target);
+          return;
+        }
+      }
+    } catch(e) {}
+  })();
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">AapV<span>•</span></div>
+  <nav>
+    <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+    <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+    <a href="admin.html" data-i18n="nav_admin">Admin</a>
+    <a href="university.html" data-i18n="nav_university">University</a>
+    <a href="industry.html" data-i18n="nav_industry">Industry</a>
+  </nav>
+  <div class="topbar-actions">
+    <button class="theme-toggle-btn" id="themeToggleBtn" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark/light mode">
+      <span class="theme-icon" id="themeIcon">🌙</span>
+      <span class="theme-label" id="themeLabel" data-i18n="theme_dark">Dark</span>
+    </button>
+    <div class="lang-dropdown">
+      <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
+        <span>🌐</span>
+        <span id="currentLangLabel">English</span>
+        <span class="lang-arrow">▾</span>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button type="button" class="lang-option active" data-lang="en" role="menuitem">
+          <span>English</span> <small>EN</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="hi" role="menuitem">
+          <span>हिन्दी</span> <small>HI</small>
+        </button>
+        <button type="button" class="lang-option" data-lang="sat" role="menuitem">
+          <span>संताली (Santali)</span> <small>SAT</small>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard" style="display: flex; align-items: center; justify-content: center; min-height: 65vh; padding: 40px 5vw;">
+  <div class="card" style="max-width: 580px; width: 100%; text-align: center; padding: 48px 32px; border-radius: 20px;">
+    <div style="font-size: 64px; margin-bottom: 16px; line-height: 1;">🧭</div>
+    <span class="badge" style="margin-bottom: 12px; display: inline-block;">ERROR 404</span>
+    <h1 style="font-size: 26px; color: var(--ink); margin: 0 0 10px;" data-i18n="page_not_found_title">404 • Page Not Found</h1>
+    <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0 0 28px;" data-i18n="page_not_found_desc">
+      The page you are looking for does not exist, has been removed, or has moved.
+    </p>
+
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+      <a href="index.html" class="primary" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none; padding: 12px 20px; font-weight: 700;" data-i18n="btn_back_home">
+        Back to Citizen Home →
+      </a>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px;">
+        <a href="impact.html" class="outline" style="text-decoration: none; font-size: 12px;" data-i18n="nav_impact">Track & Impact</a>
+        <a href="university.html" class="outline" style="text-decoration: none; font-size: 12px;" data-i18n="nav_university">University</a>
+        <a href="industry.html" class="outline" style="text-decoration: none; font-size: 12px;" data-i18n="nav_industry">Industry</a>
+        <a href="admin.html" class="outline" style="text-decoration: none; font-size: 12px;" data-i18n="nav_admin">Admin</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="portal-footer">
+  <div class="footer-content">
+    <div class="footer-brand">
+      <strong>AapV<span>•</span></strong> Jharkhand Community Innovation Portal
+    </div>
+    <div class="footer-info" data-i18n="footer_desc">
+      An open digital initiative connecting citizen voices with university research & rapid solutions across Jharkhand.
+    </div>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="nav_citizen">Citizen</a>
+      <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
+      <a href="admin.html" data-i18n="nav_admin">Admin</a>
+      <a href="university.html" data-i18n="nav_university">University</a>
+      <a href="industry.html" data-i18n="nav_industry">Industry</a>
+    </div>
+    <div class="footer-copy" data-i18n="footer_copy">
+      © 2026 Government of Jharkhand & Partner Universities. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
+
