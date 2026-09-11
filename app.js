@@ -156,6 +156,9 @@ const translations = {
     chatbot_chip_ongoing: "⚙️ What are ongoing projects?",
     chatbot_chip_available: "📋 Challenges available for adoption",
     chatbot_chip_id: "🔍 Status of AAPV-2026-0842",
+    floating_ask_ai: "Ask AI Assistant",
+    floating_jump_section: "Jump to full chatbot section",
+    floating_close_btn: "Close AI Assistant",
 
     // Voice Narration & Audio Reader Showcase
     audio_guide_bar_title: "Voice Narration & Audio Guide",
@@ -465,6 +468,9 @@ const translations = {
     chatbot_chip_ongoing: "⚙️ चल रही विश्वविद्यालय परियोजनाएं क्या हैं?",
     chatbot_chip_available: "📋 विश्वविद्यालयों के लिए उपलब्ध समस्याएं",
     chatbot_chip_id: "🔍 AAPV-2026-0842 की स्थिति जांचें",
+    floating_ask_ai: "एआई सहायक से पूछें",
+    floating_jump_section: "पूर्ण चैटबॉट अनुभाग पर जाएं",
+    floating_close_btn: "एआई सहायक बंद करें",
 
     // Voice Narration & Audio Reader Showcase
     audio_guide_bar_title: "वॉइस नैरेशन और ऑडियो गाइड",
@@ -774,6 +780,9 @@ const translations = {
     chatbot_chip_ongoing: "⚙️ ᱪᱟᱹᱞᱩ ᱠᱟᱹᱢᱤ ᱠᱚ ᱪᱮᱫ ᱠᱟᱱᱟ?",
     chatbot_chip_available: "📋 ᱦᱟᱛᱟᱣ ᱞᱟᱹᱜᱤᱫ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱠᱚ",
     chatbot_chip_id: "🔍 AAPV-2026-0842 ᱨᱮᱭᱟᱜ ᱦᱟᱞᱚᱛ",
+    floating_ask_ai: "AI ᱜᱚᱲᱚᱭᱤᱡ ᱠᱩᱞᱤᱭᱮᱢ",
+    floating_jump_section: "ᱯᱩᱨᱟᱹ ᱪᱮᱴᱵᱚᱴ ᱦᱟᱹᱴᱤᱧ ᱛᱮ ᱪᱟᱞᱟᱜ ᱢᱮ",
+    floating_close_btn: "AI ᱜᱚᱲᱚᱭᱤᱡ ᱵᱚᱸᱫᱽ ᱢᱮ",
 
     // Voice Narration & Audio Reader Showcase
     audio_guide_bar_title: "ᱟᱲᱟᱝ ᱱᱮᱨᱮᱥᱚᱱ ᱟᱨ ᱟᱰᱤᱭᱳ ᱜᱟᱭᱤᱰ",
@@ -963,6 +972,17 @@ function setLanguage(lang) {
     const key = el.getAttribute('data-i18n-placeholder');
     if (dict[key] !== undefined) {
       el.placeholder = dict[key];
+    }
+  });
+
+  // Update titles & tooltips
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.getAttribute('data-i18n-title');
+    if (dict[key] !== undefined) {
+      el.title = dict[key];
+      if (el.getAttribute('aria-label')) {
+        el.setAttribute('aria-label', dict[key]);
+      }
     }
   });
 
@@ -2842,6 +2862,188 @@ function handleChatbotSpeechInput() {
 }
 
 // ==========================================================================
+// FLOATING "ASK AI ASSISTANT" (Track & Impact Site)
+// ==========================================================================
+function toggleFloatingAiAssistant() {
+  const widget = document.getElementById('floatingAiWidget');
+  if (!widget) return;
+  if (widget.style.display === 'none' || !widget.classList.contains('active')) {
+    openFloatingAiAssistant();
+  } else {
+    closeFloatingAiAssistant();
+  }
+}
+
+function openFloatingAiAssistant() {
+  const widget = document.getElementById('floatingAiWidget');
+  const btn = document.getElementById('floatingAiBtn');
+  if (!widget) return;
+
+  widget.style.display = 'flex';
+  setTimeout(() => {
+    widget.classList.add('active');
+  }, 10);
+
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'true');
+    btn.classList.add('widget-open');
+  }
+
+  const inputEl = document.getElementById('floatingChatInput');
+  if (inputEl) {
+    setTimeout(() => inputEl.focus(), 150);
+  }
+
+  const messagesContainer = document.getElementById('floatingChatMessages');
+  if (messagesContainer) {
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+}
+
+function closeFloatingAiAssistant() {
+  const widget = document.getElementById('floatingAiWidget');
+  const btn = document.getElementById('floatingAiBtn');
+  if (!widget) return;
+
+  widget.classList.remove('active');
+  setTimeout(() => {
+    if (!widget.classList.contains('active')) {
+      widget.style.display = 'none';
+    }
+  }, 220);
+
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    btn.classList.remove('widget-open');
+  }
+}
+
+function jumpToFullChatbot() {
+  closeFloatingAiAssistant();
+  const section = document.getElementById('chatbotSection');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+    const card = section.querySelector('.chatbot-card');
+    if (card) {
+      card.style.transition = 'box-shadow 0.3s ease, transform 0.3s ease';
+      card.style.boxShadow = '0 0 0 4px #3b82f6, 0 20px 40px rgba(59,130,246,0.3)';
+      card.style.transform = 'scale(1.01)';
+      setTimeout(() => {
+        card.style.boxShadow = '';
+        card.style.transform = '';
+      }, 1400);
+    }
+    const input = document.getElementById('chatInput');
+    if (input) setTimeout(() => input.focus(), 600);
+  }
+}
+
+function sendFloatingChatMessage(textOverride = null) {
+  const inputEl = document.getElementById('floatingChatInput');
+  const query = (textOverride !== null ? textOverride : (inputEl ? inputEl.value : '')).trim();
+  if (!query) return;
+
+  if (inputEl) inputEl.value = '';
+
+  appendFloatingChatMessage('user', query);
+
+  const messagesContainer = document.getElementById('floatingChatMessages');
+  if (messagesContainer) {
+    const typingId = 'floating-typing-' + Date.now();
+    const typingEl = document.createElement('div');
+    typingEl.className = 'chat-msg bot';
+    typingEl.id = typingId;
+    typingEl.innerHTML = `
+      <div class="chatbot-msg-avatar">🤖</div>
+      <div class="msg-bubble" style="color:var(--muted); font-style:italic;">
+        ${currentLang === 'hi' ? 'विश्लेषण कर रहे हैं…' : (currentLang === 'sat' ? 'ᱵᱤᱪᱟᱹᱨᱮᱫᱟ…' : 'Analyzing progress data…')}
+      </div>
+    `;
+    messagesContainer.appendChild(typingEl);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    setTimeout(() => {
+      const el = document.getElementById(typingId);
+      if (el) el.remove();
+      const response = generateAIResponse(query);
+      appendFloatingChatMessage('bot', response.text, response.speechText);
+    }, 600);
+  }
+}
+
+function appendFloatingChatMessage(sender, htmlContent, speechText = null) {
+  const container = document.getElementById('floatingChatMessages');
+  if (!container) return;
+
+  const msgEl = document.createElement('div');
+  msgEl.className = `chat-msg ${sender}`;
+
+  const dict = translations[currentLang] || translations.en;
+  const listenLabel = dict.voice_narrate_btn || '🔊 Listen';
+  const cleanSpeech = (speechText || htmlContent).replace(/<[^>]*>?/gm, ' ');
+
+  if (sender === 'bot') {
+    msgEl.innerHTML = `
+      <div class="chatbot-msg-avatar">🤖</div>
+      <div class="msg-bubble">
+        ${htmlContent}
+        <div>
+          <button type="button" class="msg-listen-btn" onclick="narrateText('${cleanSpeech.replace(/'/g, "\\'")}', this.parentElement.parentElement)">
+            ${listenLabel}
+          </button>
+        </div>
+      </div>
+    `;
+  } else {
+    msgEl.innerHTML = `
+      <div class="msg-bubble">${htmlContent}</div>
+    `;
+  }
+
+  container.appendChild(msgEl);
+  container.scrollTop = container.scrollHeight;
+}
+
+function handleFloatingChatbotSpeechInput() {
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    toast('Voice input is not supported in this browser.');
+    return;
+  }
+
+  const micBtn = document.getElementById('floatingMicBtn');
+  const dict = translations[currentLang] || translations.en;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = dict.speechLang || 'en-IN';
+  recognition.interimResults = false;
+
+  recognition.onstart = () => {
+    if (micBtn) micBtn.classList.add('listening');
+    toast(dict.voice_status_listening || 'Listening… speak naturally');
+  };
+
+  recognition.onresult = (e) => {
+    const transcript = e.results[0][0].transcript;
+    const inputEl = document.getElementById('floatingChatInput');
+    if (inputEl) inputEl.value = transcript;
+    if (micBtn) micBtn.classList.remove('listening');
+    sendFloatingChatMessage(transcript);
+  };
+
+  recognition.onerror = () => {
+    if (micBtn) micBtn.classList.remove('listening');
+    toast(dict.voice_status_error || 'Could not capture voice');
+  };
+
+  recognition.onend = () => {
+    if (micBtn) micBtn.classList.remove('listening');
+  };
+
+  recognition.start();
+}
+
+// ==========================================================================
 // INITIALIZATION
 // ==========================================================================
 function initApp() {
@@ -2881,6 +3083,23 @@ function initApp() {
         }
       });
     }
+
+    // Floating AI Assistant document listeners
+    document.addEventListener('click', (e) => {
+      const container = document.getElementById('floatingAiContainer');
+      const widget = document.getElementById('floatingAiWidget');
+      if (widget && widget.classList.contains('active')) {
+        if (container && !container.contains(e.target)) {
+          closeFloatingAiAssistant();
+        }
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeFloatingAiAssistant();
+      }
+    });
   }
 }
 

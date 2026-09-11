@@ -547,6 +547,85 @@
   </div>
 </div>
 
+<!-- Floating "Ask AI Assistant" Widget & Trigger Button -->
+<div class="floating-ai-container" id="floatingAiContainer">
+  <!-- Floating Chat Window / Widget -->
+  <div class="floating-ai-widget" id="floatingAiWidget" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="floatingAiTitle">
+    <div class="floating-ai-header">
+      <div class="floating-ai-header-left">
+        <div class="floating-ai-avatar">🤖</div>
+        <div class="floating-ai-titles">
+          <h4 id="floatingAiTitle" data-i18n="chatbot_header_title">AapV AI Sahayak • 24/7 Progress Insights</h4>
+          <span class="floating-ai-status">
+            <span class="floating-status-dot"></span>
+            <span data-i18n="chatbot_status">Active 24/7 • Multilingual</span>
+          </span>
+        </div>
+      </div>
+      <div class="floating-ai-header-actions">
+        <button type="button" class="floating-ai-action-btn" onclick="jumpToFullChatbot()" title="Jump to full section" aria-label="Jump to full section" data-i18n-title="floating_jump_section">
+          ⤢
+        </button>
+        <button type="button" class="floating-ai-close-btn" onclick="closeFloatingAiAssistant()" title="Close assistant" aria-label="Close assistant" data-i18n-title="floating_close_btn">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <div class="floating-ai-body">
+      <div class="floating-chat-messages" id="floatingChatMessages">
+        <div class="chat-msg bot">
+          <div class="chatbot-msg-avatar">🤖</div>
+          <div class="msg-bubble">
+            <p data-i18n="chatbot_welcome">
+              Namaste! I am your 24/7 AI Progress Assistant. Ask me anything about the progress of your grievance, ongoing university projects, or completed solutions in your area.
+            </p>
+            <div>
+              <button type="button" class="msg-listen-btn" onclick="narrateText(this.parentElement.previousElementSibling.innerText, this.parentElement.parentElement)" data-i18n="voice_narrate_btn">
+                🔊 Listen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="floating-chips-row">
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('What is the status of water projects in Dumka?')" data-i18n="chatbot_chip_water">
+          💧 Water in Dumka
+        </button>
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('Show all completed projects in Jharkhand')" data-i18n="chatbot_chip_completed">
+          ✅ Completed projects
+        </button>
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('What are ongoing university projects?')" data-i18n="chatbot_chip_ongoing">
+          ⚙️ Ongoing projects
+        </button>
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('Check status of AAPV-2026-0842')" data-i18n="chatbot_chip_id">
+          🔍 Status #0842
+        </button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="floating-input-bar">
+        <input type="text" id="floatingChatInput" placeholder="Ask about progress, grievances… (or mic)" data-i18n-placeholder="chatbot_placeholder" onkeydown="if(event.key==='Enter') sendFloatingChatMessage()">
+        <button type="button" class="floating-mic-btn" id="floatingMicBtn" onclick="handleFloatingChatbotSpeechInput()" title="Speak your question">
+          🎙
+        </button>
+        <button type="button" class="floating-send-btn" onclick="sendFloatingChatMessage()" aria-label="Send question">
+          <span>➤</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Trigger Button -->
+  <button type="button" class="floating-ai-trigger-btn" id="floatingAiBtn" onclick="toggleFloatingAiAssistant()" aria-label="Ask AI Assistant" aria-expanded="false">
+    <span class="floating-ai-sparkle">✨</span>
+    <span class="floating-ai-btn-text" data-i18n="floating_ask_ai">Ask AI Assistant</span>
+    <span class="floating-ai-online-dot"></span>
+  </button>
+</div>
+
 <div id="toast" class="toast"></div>
 <script src="app.js"></script>
 </body>
