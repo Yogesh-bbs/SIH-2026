@@ -1078,8 +1078,32 @@ document.addEventListener('keydown', (e) => {
     if (typeof closeUnivLoginModal === 'function') closeUnivLoginModal();
     if (typeof closeIndLoginModal === 'function') closeIndLoginModal();
     if (typeof closeAdminLoginModal === 'function') closeAdminLoginModal();
+    if (typeof closeTeamModal === 'function') closeTeamModal();
   }
 });
+
+// Super Simple Team Unova Modal Functions
+function openTeamModal() {
+  const modal = document.getElementById('teamModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeTeamModal() {
+  const modal = document.getElementById('teamModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+function handleTeamModalBackdropClick(e) {
+  if (e.target && e.target.id === 'teamModal') {
+    closeTeamModal();
+  }
+}
 
 // Submitter Type Toggle
 function toggleCommunityInput() {
