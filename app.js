@@ -22,8 +22,9 @@ const translations = {
     placeholder_problem: "Speak or type in your own words…\ne.g. Our village handpump has stopped working.",
     btn_voice: "🎙 AI Voice-to-Text",
     voice_status_ready: "Speak (Hindi, Santhali, English)",
-    voice_status_listening: "Listening… speak naturally",
+    voice_status_listening: "Listening… Speak now (click again to transcribe)",
     voice_status_captured: "Voice captured ✓",
+    voice_status_processing: "Transcribing audio with Sarvam AI…",
     voice_status_error: "Could not capture voice",
     voice_not_supported: "Voice input is not supported in this browser.",
     label_location: "Add location here",
@@ -335,8 +336,9 @@ const translations = {
     placeholder_problem: "अपने शब्दों में बोलें या लिखें…\nजैसे: हमारे गांव का चापाकल (हैंडपंप) खराब हो गया है।",
     btn_voice: "🎙 AI वॉइस-टू-टेक्स्ट",
     voice_status_ready: "बोलें (हिन्दी, संताली, English)",
-    voice_status_listening: "सुन रहे हैं… स्वाभाविक रूप से बोलें",
+    voice_status_listening: "सुन रहे हैं… बोलें (अनुवाद के लिए पुनः दबाएं)",
     voice_status_captured: "आवाज़ दर्ज हो गई ✓",
+    voice_status_processing: "Sarvam AI द्वारा आवाज़ का अनुवाद किया जा रहा है…",
     voice_status_error: "आवाज़ दर्ज नहीं हो सकी",
     voice_not_supported: "इस ब्राउज़र में आवाज़ इनपुट समर्थित नहीं है।",
     label_location: "स्थान यहाँ जोड़ें",
@@ -647,8 +649,9 @@ const translations = {
     placeholder_problem: "ᱟᱢᱟᱜ ᱟᱹᱲᱟᱹ ᱛᱮ ᱨᱚᱲ ᱢᱮ ᱥᱮ ᱚᱞ ᱢᱮ…\nᱡᱮᱞᱮᱠᱟ: ᱟᱞᱮ ᱟᱹᱛᱩ ᱨᱮ ᱪᱟᱯᱟᱠᱚᱞ ᱵᱟᱝ ᱠᱟᱹᱢᱤ ᱠᱟᱱᱟ᱾",
     btn_voice: "🎙 AI ᱟᱲᱟᱝ-ᱠᱷᱚᱱ-ᱚᱞ",
     voice_status_ready: "ᱨᱚᱲ ᱢᱮ (ᱥᱟᱱᱛᱟᱲᱤ, हिन्दी, English)",
-    voice_status_listening: "ᱟᱸᱡᱚᱢᱮᱫᱟ… ᱥᱟᱦᱟᱡᱽ ᱛᱮ ᱨᱚᱲ ᱢᱮ",
+    voice_status_listening: "ᱟᱸᱡᱚᱢᱮᱫᱟ… ᱨᱚᱲ ᱢᱮ (ᱛᱷᱟᱢᱟᱣ ᱞᱟᱹᱜᱤᱫ ᱟᱨᱦᱚᱸ ᱚᱛᱟᱭ ᱢᱮ)",
     voice_status_captured: "ᱟᱲᱟᱝ ᱨᱮᱠᱳᱨᱰ ᱮᱱᱟ ✓",
+    voice_status_processing: "Sarvam AI ᱛᱮ ᱟᱲᱟᱝ ᱵᱤᱪᱟᱹᱨᱚᱜ ᱠᱟᱱᱟ…",
     voice_status_error: "ᱟᱲᱟᱝ ᱵᱟᱝ ᱥᱟᱵ ᱞᱮᱱᱟ",
     voice_not_supported: "ᱱᱚᱶᱟ ᱵᱨᱟᱣᱡᱟᱨ ᱨᱮ ᱟᱲᱟᱝ ᱵᱮᱵᱷᱟᱨ ᱵᱟᱝ ᱜᱟᱱᱚᱜ-ᱟ᱾",
     label_location: "ᱴᱷᱟᱶ ᱱᱚᱸᱰᱮ ᱚᱞ ᱢᱮ",
@@ -1166,47 +1169,10 @@ function detectLocation() {
   }
 }
 
-// Voice input via Web Speech API (with AI voice-to-text indicator)
+// Voice input (powered exclusively by Sarvam AI API)
 const voiceBtn = document.getElementById('voiceBtn');
 if (voiceBtn) {
-  voiceBtn.onclick = () => {
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
-      toast('voice_not_supported');
-      return;
-    }
-    const dict = translations[currentLang] || translations.en;
-    const r = new SpeechRecognition();
-    r.lang = dict.speechLang || 'en-IN';
-    r.interimResults = false;
-    const statusEl = document.getElementById('voiceStatus');
-
-    r.onstart = () => {
-      if (statusEl) statusEl.textContent = dict.voice_status_listening;
-      voiceBtn.classList.add('recording');
-    };
-
-    r.onresult = (e) => {
-      const probInput = document.getElementById('problem');
-      if (probInput) {
-        const transcript = e.results[0][0].transcript;
-        probInput.value = probInput.value ? probInput.value + ' ' + transcript : transcript;
-      }
-      if (statusEl) statusEl.textContent = dict.voice_status_captured;
-      voiceBtn.classList.remove('recording');
-    };
-
-    r.onerror = () => {
-      if (statusEl) statusEl.textContent = dict.voice_status_error;
-      voiceBtn.classList.remove('recording');
-    };
-
-    r.onend = () => {
-      voiceBtn.classList.remove('recording');
-    };
-
-    r.start();
-  };
+  voiceBtn.onclick = handleGrievanceVoiceInput;
 }
 
 // Problem submission
@@ -2822,43 +2788,351 @@ function generateAIResponse(query) {
   }
 }
 
-function handleChatbotSpeechInput() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) {
-    toast('Voice input is not supported in this browser.');
+// ==========================================================================
+// AUDIO RECORDING & SPEECH-TO-TEXT ENGINE (100% SARVAM AI API)
+// Exclusively uses Sarvam AI (saaras:v3) for Santhali, Hindi, and English
+// ==========================================================================
+
+let activeAudioRecorder = null;
+window._activeSarvamProcessor = null;
+
+function writeWavString(view, offset, string) {
+  for (let i = 0; i < string.length; i++) {
+    view.setUint8(offset + i, string.charCodeAt(i));
+  }
+}
+
+function encodeWavPcm16(samples, sampleRate = 16000) {
+  const buffer = new ArrayBuffer(44 + samples.length * 2);
+  const view = new DataView(buffer);
+
+  // RIFF identifier
+  writeWavString(view, 0, 'RIFF');
+  // file length
+  view.setUint32(4, 36 + samples.length * 2, true);
+  // RIFF type & format
+  writeWavString(view, 8, 'WAVE');
+  writeWavString(view, 12, 'fmt ');
+  // format chunk length
+  view.setUint32(16, 16, true);
+  // sample format (raw PCM = 1)
+  view.setUint16(20, 1, true);
+  // channel count (mono = 1)
+  view.setUint16(22, 1, true);
+  // sample rate
+  view.setUint32(24, sampleRate, true);
+  // byte rate (sample rate * block align)
+  view.setUint32(28, sampleRate * 2, true);
+  // block align (channel count * bytes per sample)
+  view.setUint16(32, 2, true);
+  // bits per sample
+  view.setUint16(34, 16, true);
+  // data chunk identifier
+  writeWavString(view, 36, 'data');
+  // data chunk length
+  view.setUint32(40, samples.length * 2, true);
+
+  // Write 16-bit PCM samples with clipping
+  let offset = 44;
+  for (let i = 0; i < samples.length; i++, offset += 2) {
+    let s = Math.max(-1, Math.min(1, samples[i]));
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+  }
+
+  return new Blob([view], { type: 'audio/wav' });
+}
+
+function downsampleBuffer(buffer, inputSampleRate, outputSampleRate = 16000) {
+  if (inputSampleRate === outputSampleRate) return buffer;
+  const ratio = inputSampleRate / outputSampleRate;
+  const newLength = Math.round(buffer.length / ratio);
+  const result = new Float32Array(newLength);
+  let offsetResult = 0;
+  let offsetBuffer = 0;
+  while (offsetResult < result.length) {
+    const nextOffsetBuffer = Math.round((offsetResult + 1) * ratio);
+    let accum = 0, count = 0;
+    for (let i = offsetBuffer; i < nextOffsetBuffer && i < buffer.length; i++) {
+      accum += buffer[i];
+      count++;
+    }
+    result[offsetResult] = count > 0 ? accum / count : 0;
+    offsetResult++;
+    offsetBuffer = nextOffsetBuffer;
+  }
+  return result;
+}
+
+async function transcribeWithSarvamAI(wavBlob, languageCode = 'en-IN') {
+  const config = window.AAPV_CONFIG || {};
+  const apiKey = config.SARVAM_API_KEY || 'sk_7pgza6vm_Ip4rPX93iJhmopcbtrkEi3xi';
+  const endpoint = config.SARVAM_ENDPOINT || 'https://api.sarvam.ai/speech-to-text';
+  const model = config.SARVAM_MODEL || 'saaras:v3';
+  const mode = config.SARVAM_MODE || 'transcribe';
+
+  const formData = new FormData();
+  formData.append('file', wavBlob, 'recording.wav');
+  formData.append('model', model);
+  formData.append('mode', mode);
+  if (languageCode) {
+    formData.append('language_code', languageCode);
+  }
+
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'api-subscription-key': apiKey
+    },
+    body: formData
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    console.error('Sarvam AI STT error:', response.status, errText);
+    throw new Error(`Sarvam STT failed: ${response.status}`);
+  }
+
+  const data = await response.json();
+  return (data.transcript || '').trim();
+}
+
+/**
+ * Universal Speech Recognition Controller (100% Sarvam AI API):
+ * Directly records microphone audio, downsamples to 16kHz WAV,
+ * and transcribes using Sarvam AI saaras:v3 model.
+ * Fully supports Santhali ('sat-IN'), Hindi ('hi-IN'), and English ('en-IN').
+ */
+function startSarvamVoiceRecognition({
+  triggerBtn,
+  statusEl,
+  onResult,
+  onError,
+  maxDurationSeconds = 10
+}) {
+  const dict = translations[currentLang] || translations.en;
+
+  // If already recording with the same button, user clicked to finish & transcribe now
+  if (activeAudioRecorder && activeAudioRecorder.triggerBtn === triggerBtn) {
+    activeAudioRecorder.stop();
+    return;
+  }
+  if (activeAudioRecorder) {
+    activeAudioRecorder.cancel();
+  }
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    toast(dict.voice_not_supported || 'Microphone access is not supported or requires HTTPS/localhost in this browser.');
     return;
   }
 
+  // Map active portal language to Sarvam AI language codes
+  const langCodeMap = {
+    'sat': 'sat-IN',
+    'hi': 'hi-IN',
+    'en': 'en-IN'
+  };
+  const targetLangCode = langCodeMap[currentLang] || 'en-IN';
+
+  let isStopping = false;
+  let audioContext = null;
+  let mediaStream = null;
+  let scriptProcessor = null;
+  let inputSource = null;
+  let silenceGain = null;
+  let audioChunks = [];
+  let timeoutId = null;
+
+  const stopRecording = async () => {
+    if (isStopping) return;
+    isStopping = true;
+    if (timeoutId) clearTimeout(timeoutId);
+
+    if (triggerBtn) {
+      triggerBtn.classList.remove('recording', 'listening');
+      triggerBtn.classList.add('processing');
+    }
+    if (statusEl) {
+      statusEl.textContent = dict.voice_status_processing || 'Transcribing audio with Sarvam AI…';
+    }
+    toast(dict.voice_status_processing || 'Transcribing audio with Sarvam AI…');
+
+    try {
+      if (scriptProcessor) scriptProcessor.disconnect();
+      if (silenceGain) silenceGain.disconnect();
+      if (inputSource) inputSource.disconnect();
+      window._activeSarvamProcessor = null;
+
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+      }
+
+      // Flatten Float32 samples
+      let totalLength = audioChunks.reduce((acc, chunk) => acc + chunk.length, 0);
+      if (totalLength === 0) {
+        throw new Error('No audio data captured');
+      }
+
+      let mergedSamples = new Float32Array(totalLength);
+      let offset = 0;
+      for (let chunk of audioChunks) {
+        mergedSamples.set(chunk, offset);
+        offset += chunk.length;
+      }
+
+      const inputSampleRate = audioContext ? audioContext.sampleRate : 16000;
+      if (audioContext && audioContext.state !== 'closed') {
+        await audioContext.close();
+      }
+
+      // Downsample to 16kHz standard for Sarvam
+      const downsampled = downsampleBuffer(mergedSamples, inputSampleRate, 16000);
+      const wavBlob = encodeWavPcm16(downsampled, 16000);
+
+      const transcript = await transcribeWithSarvamAI(wavBlob, targetLangCode);
+
+      if (triggerBtn) triggerBtn.classList.remove('processing', 'recording', 'listening');
+      activeAudioRecorder = null;
+
+      if (transcript) {
+        if (statusEl) statusEl.textContent = dict.voice_status_captured || 'Voice captured ✓';
+        toast(dict.voice_status_captured || 'Voice captured ✓');
+        if (onResult) onResult(transcript);
+      } else {
+        if (statusEl) statusEl.textContent = dict.voice_status_error || 'Could not capture voice';
+        toast(dict.voice_status_error || 'No speech detected, please speak clearly');
+      }
+    } catch (err) {
+      console.error('Sarvam AI transcription error:', err);
+      if (triggerBtn) triggerBtn.classList.remove('processing', 'recording', 'listening');
+      activeAudioRecorder = null;
+      if (statusEl) statusEl.textContent = dict.voice_status_error || 'Could not capture voice';
+      toast(dict.voice_status_error || 'Could not capture voice');
+      if (onError) onError(err);
+    } finally {
+      setTimeout(() => {
+        if (statusEl && statusEl.textContent !== dict.voice_status_listening) {
+          statusEl.textContent = dict.voice_status_ready || 'Speak (Hindi, Santhali, English)';
+        }
+      }, 3500);
+    }
+  };
+
+  const cancelRecording = () => {
+    isStopping = true;
+    if (timeoutId) clearTimeout(timeoutId);
+    if (scriptProcessor) scriptProcessor.disconnect();
+    if (silenceGain) silenceGain.disconnect();
+    if (inputSource) inputSource.disconnect();
+    window._activeSarvamProcessor = null;
+    if (mediaStream) mediaStream.getTracks().forEach(track => track.stop());
+    if (audioContext && audioContext.state !== 'closed') audioContext.close();
+    if (triggerBtn) triggerBtn.classList.remove('recording', 'listening', 'processing');
+    activeAudioRecorder = null;
+  };
+
+  navigator.mediaDevices.getUserMedia({
+    audio: {
+      echoCancellation: true,
+      noiseSuppression: true,
+      autoGainControl: true
+    }
+  })
+  .then(async (stream) => {
+    mediaStream = stream;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    audioContext = new AudioContextClass();
+    if (audioContext.state === 'suspended') {
+      await audioContext.resume();
+    }
+
+    inputSource = audioContext.createMediaStreamSource(stream);
+    scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+    // Prevent garbage collection in V8
+    window._activeSarvamProcessor = scriptProcessor;
+
+    scriptProcessor.onaudioprocess = (e) => {
+      if (isStopping) return;
+      const inputData = e.inputBuffer.getChannelData(0);
+      const copy = new Float32Array(inputData.length);
+      copy.set(inputData);
+      audioChunks.push(copy);
+    };
+
+    // Route through zero-gain node to prevent microphone feedback loop into user speakers
+    silenceGain = audioContext.createGain();
+    silenceGain.gain.value = 0;
+
+    inputSource.connect(scriptProcessor);
+    scriptProcessor.connect(silenceGain);
+    silenceGain.connect(audioContext.destination);
+
+    if (triggerBtn) {
+      triggerBtn.classList.remove('processing');
+      triggerBtn.classList.add('recording', 'listening');
+    }
+    if (statusEl) {
+      statusEl.textContent = dict.voice_status_listening || 'Listening… speak naturally (click to finish)';
+    }
+    toast(dict.voice_status_listening || 'Listening… speak naturally (click to finish)');
+
+    activeAudioRecorder = {
+      triggerBtn,
+      stop: stopRecording,
+      cancel: cancelRecording
+    };
+
+    // Auto-stop after maxDurationSeconds
+    timeoutId = setTimeout(() => {
+      if (!isStopping) {
+        stopRecording();
+      }
+    }, maxDurationSeconds * 1000);
+  })
+  .catch(err => {
+    console.error('Microphone access denied:', err);
+    if (triggerBtn) triggerBtn.classList.remove('recording', 'listening', 'processing');
+    if (statusEl) statusEl.textContent = dict.voice_status_error || 'Could not capture voice';
+    toast('Microphone permission required. Please allow microphone access.');
+    if (onError) onError(err);
+  });
+}
+
+// Backward compatibility alias
+const startHybridSpeechRecognition = startSarvamVoiceRecognition;
+
+// 1. Citizen Grievance Form (index.html)
+function handleGrievanceVoiceInput() {
+  const voiceBtn = document.getElementById('voiceBtn');
+  const voiceStatus = document.getElementById('voiceStatus');
+  const problemInput = document.getElementById('problem');
+
+  startSarvamVoiceRecognition({
+    triggerBtn: voiceBtn,
+    statusEl: voiceStatus,
+    onResult: (transcript) => {
+      if (problemInput) {
+        const existing = problemInput.value.trim();
+        problemInput.value = existing ? `${existing} ${transcript}` : transcript;
+        problemInput.dispatchEvent(new Event('input', { bubbles: true }));
+        problemInput.focus();
+      }
+    }
+  });
+}
+
+// 2. Main AI Chatbot (impact.html)
+function handleChatbotSpeechInput() {
   const micBtn = document.getElementById('chatMicBtn');
-  const dict = translations[currentLang] || translations.en;
+  const inputEl = document.getElementById('chatInput');
 
-  const recognition = new SpeechRecognition();
-  recognition.lang = dict.speechLang || 'en-IN';
-  recognition.interimResults = false;
-
-  recognition.onstart = () => {
-    if (micBtn) micBtn.classList.add('listening');
-    toast(dict.voice_status_listening || 'Listening… speak naturally');
-  };
-
-  recognition.onresult = (e) => {
-    const transcript = e.results[0][0].transcript;
-    const inputEl = document.getElementById('chatInput');
-    if (inputEl) inputEl.value = transcript;
-    if (micBtn) micBtn.classList.remove('listening');
-    sendChatMessage(transcript);
-  };
-
-  recognition.onerror = () => {
-    if (micBtn) micBtn.classList.remove('listening');
-    toast(dict.voice_status_error || 'Could not capture voice');
-  };
-
-  recognition.onend = () => {
-    if (micBtn) micBtn.classList.remove('listening');
-  };
-
-  recognition.start();
+  startSarvamVoiceRecognition({
+    triggerBtn: micBtn,
+    statusEl: null,
+    onResult: (transcript) => {
+      if (inputEl) inputEl.value = transcript;
+      sendChatMessage(transcript);
+    }
+  });
 }
 
 // ==========================================================================
@@ -3005,42 +3279,17 @@ function appendFloatingChatMessage(sender, htmlContent, speechText = null) {
 }
 
 function handleFloatingChatbotSpeechInput() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) {
-    toast('Voice input is not supported in this browser.');
-    return;
-  }
-
   const micBtn = document.getElementById('floatingMicBtn');
-  const dict = translations[currentLang] || translations.en;
+  const inputEl = document.getElementById('floatingChatInput');
 
-  const recognition = new SpeechRecognition();
-  recognition.lang = dict.speechLang || 'en-IN';
-  recognition.interimResults = false;
-
-  recognition.onstart = () => {
-    if (micBtn) micBtn.classList.add('listening');
-    toast(dict.voice_status_listening || 'Listening… speak naturally');
-  };
-
-  recognition.onresult = (e) => {
-    const transcript = e.results[0][0].transcript;
-    const inputEl = document.getElementById('floatingChatInput');
-    if (inputEl) inputEl.value = transcript;
-    if (micBtn) micBtn.classList.remove('listening');
-    sendFloatingChatMessage(transcript);
-  };
-
-  recognition.onerror = () => {
-    if (micBtn) micBtn.classList.remove('listening');
-    toast(dict.voice_status_error || 'Could not capture voice');
-  };
-
-  recognition.onend = () => {
-    if (micBtn) micBtn.classList.remove('listening');
-  };
-
-  recognition.start();
+  startSarvamVoiceRecognition({
+    triggerBtn: micBtn,
+    statusEl: null,
+    onResult: (transcript) => {
+      if (inputEl) inputEl.value = transcript;
+      sendFloatingChatMessage(transcript);
+    }
+  });
 }
 
 // ==========================================================================
@@ -3054,6 +3303,12 @@ function initApp() {
   updateUnivAuthUI();
   updateIndAuthUI();
   updateAdminAuthUI();
+
+  // Attach grievance voice button listener if present
+  const voiceBtn = document.getElementById('voiceBtn');
+  if (voiceBtn) {
+    voiceBtn.addEventListener('click', handleGrievanceVoiceInput);
+  }
 
   // If on tracking page, initialize projects & chatbot
   if (document.getElementById('projectsGrid')) {

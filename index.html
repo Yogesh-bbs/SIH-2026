@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>AapV — Citizen Portal</title><link rel="stylesheet" href="styles.css">
+<title>AapV — Citizen Portal</title>
+<link rel="icon" type="image/png" href="Icon.png"><link rel="stylesheet" href="styles.css">
 <script>
   (function() {
     var savedTheme = localStorage.getItem('aapv_theme') || 'light';
@@ -214,7 +215,7 @@
       <label data-i18n="label_problem">Submit your grievance below</label>
       <textarea id="problem" data-i18n-placeholder="placeholder_problem" placeholder="Speak or type in your own words…&#10;e.g. Our village handpump has stopped working."></textarea>
       <div class="actions">
-        <button class="voice" id="voiceBtn" type="button" data-i18n="btn_voice">🎙 AI Voice-to-Text</button>
+        <button class="voice" id="voiceBtn" type="button" data-i18n="btn_voice" onclick="handleGrievanceVoiceInput()">🎙 AI Voice-to-Text</button>
         <span id="voiceStatus" data-i18n="voice_status_ready">Speak (Hindi, Santhali, English)</span>
       </div>
       <label data-i18n="label_location">Add location here</label>
@@ -568,6 +569,7 @@
 </div>
 
 <div id="toast" class="toast"></div>
+<script src="config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

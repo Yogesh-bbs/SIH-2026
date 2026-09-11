@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AapV — Track Grievances & Community Impact</title>
+<link rel="icon" type="image/png" href="Icon.png">
 <link rel="stylesheet" href="styles.css">
 <script>
   (function() {
@@ -397,7 +398,10 @@
       <div class="footer-copy" data-i18n="footer_copy">
         © 2026 Government of Jharkhand & Partner Universities. All rights reserved.
       </div>
-   
+      <button class="footer-credit-btn" type="button" onclick="openTeamModal()" aria-label="Team Unova">
+        Created with <span class="love-heart">❤️</span> - Team Unova
+      </button>
+    </div>
   </div>
 </footer>
 
@@ -531,6 +535,8 @@
     
     <div class="team-sih-tag">Smart India Hackathon 2026</div>
     <h3 id="teamModalTitle" class="team-simple-title">Team Unova</h3>
+    <div class="team-simple-sub">Created with <span class="love-heart">❤️</span></div>
+
     <div class="team-members-list">
       <div class="team-member-name">Himanshi</div>
       <div class="team-member-name">Chirag</div>
@@ -615,13 +621,14 @@
 
   <!-- Floating Trigger Button -->
   <button type="button" class="floating-ai-trigger-btn" id="floatingAiBtn" onclick="toggleFloatingAiAssistant()" aria-label="Ask AI Assistant" aria-expanded="false">
-    <span class="floating-ai-sparkle">➤</span>
+    <span class="floating-ai-sparkle">✨</span>
     <span class="floating-ai-btn-text" data-i18n="floating_ask_ai">Ask AI Assistant</span>
     <span class="floating-ai-online-dot"></span>
   </button>
 </div>
 
 <div id="toast" class="toast"></div>
+<script src="config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
