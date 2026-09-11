@@ -160,8 +160,8 @@ const translations = {
     // Voice Narration & Audio Reader Showcase
     audio_guide_bar_title: "Voice Narration & Audio Guide",
     audio_guide_bar_desc: "Tap any speaker icon 🔊 or click 'Read Page Aloud' to listen to this page in your language.",
-    btn_read_page: "▶ Read Page Aloud",
-    btn_stop_audio: "⏹ Stop",
+    btn_read_page: "Read Page Aloud",
+    btn_stop_audio: "Stop Reading",
     narrate_btn_label: "Listen",
     narrate_btn_speaking: "Stop ⏹",
     toast_audio_showcase: "Voice Narration & Audio Guide (Showcase Mode)",
@@ -298,7 +298,15 @@ const translations = {
     // 404 Error Page
     page_not_found_title: "404 • Page Not Found",
     page_not_found_desc: "The page you are looking for does not exist, has been removed, or has moved.",
-    btn_back_home: "Back to Citizen Home"
+    btn_back_home: "Back to Citizen Home",
+
+    // Mobile Portal Menu
+    portal_sub_citizen: "Grievance & Redressal",
+    portal_sub_impact: "Live Metrics & Progress",
+    portal_sub_admin: "Panchayat Administration",
+    portal_sub_university: "Academic & Research Hub",
+    portal_sub_industry: "CSR & Private Sector",
+    mobile_menu_title: "All Portals"
   },
   hi: {
     label: "हिन्दी",
@@ -461,8 +469,8 @@ const translations = {
     // Voice Narration & Audio Reader Showcase
     audio_guide_bar_title: "वॉइस नैरेशन और ऑडियो गाइड",
     audio_guide_bar_desc: "किसी भी स्पीकर 🔊 पर टैप करें या अपनी भाषा में सुनने के लिए 'पेज सुनें' पर क्लिक करें।",
-    btn_read_page: "▶ पूरा पेज सुनें",
-    btn_stop_audio: "⏹ रोकें",
+    btn_read_page: "पूरा पेज सुनें",
+    btn_stop_audio: "रोकें",
     narrate_btn_label: "सुनें",
     narrate_btn_speaking: "रोकें ⏹",
     toast_audio_showcase: "ऑडियो गाइड (शोकेस मोड): सामग्री हाइलाइट की गई।",
@@ -599,7 +607,15 @@ const translations = {
     // 404 Error Page
     page_not_found_title: "404 • पृष्ठ नहीं मिला",
     page_not_found_desc: "जिस पृष्ठ को आप खोज रहे हैं वह मौजूद नहीं है, हटा दिया गया है या स्थानांतरित कर दिया गया है।",
-    btn_back_home: "नागरिक होम पर वापस जाएं"
+    btn_back_home: "नागरिक होम पर वापस जाएं",
+
+    // Mobile Portal Menu
+    portal_sub_citizen: "शिकायत एवं समाधान",
+    portal_sub_impact: "लाइव प्रगति एवं आंकड़े",
+    portal_sub_admin: "पंचायत प्रशासन",
+    portal_sub_university: "शैक्षणिक एवं अनुसंधान केंद्र",
+    portal_sub_industry: "सीएसआर एवं निजी क्षेत्र",
+    mobile_menu_title: "सभी पोर्टल"
   },
   sat: {
     label: "संताली",
@@ -762,8 +778,8 @@ const translations = {
     // Voice Narration & Audio Reader Showcase
     audio_guide_bar_title: "ᱟᱲᱟᱝ ᱱᱮᱨᱮᱥᱚᱱ ᱟᱨ ᱟᱰᱤᱭᱳ ᱜᱟᱭᱤᱰ",
     audio_guide_bar_desc: "ᱡᱟᱦᱟᱸᱱ ᱥᱯᱤᱠᱟᱨ 🔊 ᱪᱮᱛᱟᱱ ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ ᱥᱮ ᱟᱢᱟᱜ ᱯᱟᱹᱨᱥᱤ ᱛᱮ ᱟᱸᱡᱚᱢ ᱞᱟᱹᱜᱤᱫ 'ᱥᱟᱦᱴᱟ ᱟᱸᱡᱚᱢ' ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ᱾",
-    btn_read_page: "▶ ᱥᱟᱱᱟᱢ ᱥᱟᱦᱴᱟ ᱟᱸᱡᱚᱢ ᱢᱮ",
-    btn_stop_audio: "⏹ ᱛᱷᱟᱢᱵᱷᱟᱣ",
+    btn_read_page: "ᱥᱟᱱᱟᱢ ᱥᱟᱦᱴᱟ ᱟᱸᱡᱚᱢ ᱢᱮ",
+    btn_stop_audio: "ᱛᱷᱟᱢᱵᱷᱟᱣ ᱢᱮ",
     narrate_btn_label: "ᱟᱸᱡᱚᱢ ᱢᱮ",
     narrate_btn_speaking: "ᱛᱷᱟᱢᱵᱷᱟᱣ ⏹",
     toast_audio_showcase: "ᱟᱰᱤᱭᱳ ᱜᱟᱭᱤᱰ (Showcase Mode): ᱚᱞ ᱪᱤᱱᱦᱟᱹᱣ ᱮᱱᱟ᱾",
@@ -900,7 +916,15 @@ const translations = {
     // 404 Error Page
     page_not_found_title: "404 • ᱥᱟᱦᱴᱟ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ",
     page_not_found_desc: "ᱡᱟᱦᱟᱸ ᱥᱟᱦᱴᱟ ᱟᱢ ᱯᱟᱱᱛᱮ ᱮᱫᱟ ᱚᱱᱟ ᱵᱟᱹᱱᱩᱜᱼᱟ, ᱚᱪᱚᱜ ᱟᱠᱟᱱᱟ ᱥᱮ ᱩᱪᱟᱹᱲ ᱟᱠᱟᱱᱟ᱾",
-    btn_back_home: "ᱱᱟᱹᱜᱟᱹᱨᱤᱭᱟᱹ ᱚᱲᱟᱜ ᱛᱮ ᱨᱩᱣᱟᱹᱲ"
+    btn_back_home: "ᱱᱟᱹᱜᱟᱹᱨᱤᱭᱟᱹ ᱚᱲᱟᱜ ᱛᱮ ᱨᱩᱣᱟᱹᱲ",
+
+    // Mobile Portal Menu
+    portal_sub_citizen: "ᱦᱟᱹᱲᱟᱹᱥ ᱟᱨ ᱥᱚᱞᱦᱮ",
+    portal_sub_impact: "ᱞᱟᱭᱤᱵᱽ ᱯᱨᱚᱜᱨᱮᱥ ᱟᱨ ᱞᱮᱠᱷᱟ",
+    portal_sub_admin: "ᱯᱚᱧᱪᱟᱭᱚᱛ ᱥᱟᱥᱚᱱ",
+    portal_sub_university: "ᱥᱮᱪᱮᱫ ᱟᱨ ᱠᱷᱚᱸᱫᱽᱨᱚᱸᱫᱽ ᱛᱟᱞᱢᱟ",
+    portal_sub_industry: "ᱥᱤ.ᱮᱥ.ᱟᱨ. ᱟᱨ ᱱᱤᱡᱮᱨᱟᱜ ᱦᱟᱹᱴᱤᱧ",
+    mobile_menu_title: "ᱥᱟᱱᱟᱢ ᱯᱚᱨᱴᱟᱞ"
   }
 };
 
@@ -918,6 +942,8 @@ function setLanguage(lang) {
   // Update button label
   const labelEl = document.getElementById('currentLangLabel');
   if (labelEl) labelEl.textContent = dict.label;
+  const shortLabelEl = document.getElementById('currentLangShort');
+  if (shortLabelEl) shortLabelEl.textContent = lang.toUpperCase();
 
   // Update active state in menu
   document.querySelectorAll('.lang-option').forEach(btn => {
@@ -939,6 +965,13 @@ function setLanguage(lang) {
       el.placeholder = dict[key];
     }
   });
+
+  if (typeof isShowcasePlaying !== 'undefined' && isShowcasePlaying) {
+    const readPageBtnLabel = document.getElementById('readPageBtnLabel');
+    if (readPageBtnLabel) {
+      readPageBtnLabel.textContent = dict.btn_stop_audio || 'Stop Reading';
+    }
+  }
 
   document.documentElement.lang = lang === 'sat' ? 'sat' : (lang === 'hi' ? 'hi' : 'en');
   updateAuthUI();
@@ -991,6 +1024,62 @@ function updateThemeUI() {
     label.textContent = dict[textKey] || (isDark ? 'Light' : 'Dark');
   });
 }
+
+// ==========================================================================
+// MOBILE MENU DRAWER CONTROLS
+// ==========================================================================
+function toggleMobileMenu() {
+  const drawer = document.getElementById('mobileNavDrawer');
+  if (!drawer) return;
+  const isOpen = drawer.style.display === 'flex';
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+}
+
+function openMobileMenu() {
+  const drawer = document.getElementById('mobileNavDrawer');
+  const backdrop = document.getElementById('mobileNavBackdrop');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (drawer) {
+    drawer.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  if (backdrop) backdrop.style.display = 'block';
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'true');
+    const ico = btn.querySelector('.hamburger-icon');
+    if (ico) ico.textContent = '✕';
+  }
+}
+
+function closeMobileMenu() {
+  const drawer = document.getElementById('mobileNavDrawer');
+  const backdrop = document.getElementById('mobileNavBackdrop');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (drawer) {
+    drawer.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  if (backdrop) backdrop.style.display = 'none';
+  if (btn) {
+    btn.setAttribute('aria-expanded', 'false');
+    const ico = btn.querySelector('.hamburger-icon');
+    if (ico) ico.textContent = '☰';
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMobileMenu();
+    if (typeof closeLoginModal === 'function') closeLoginModal();
+    if (typeof closeUnivLoginModal === 'function') closeUnivLoginModal();
+    if (typeof closeIndLoginModal === 'function') closeIndLoginModal();
+    if (typeof closeAdminLoginModal === 'function') closeAdminLoginModal();
+  }
+});
 
 // Submitter Type Toggle
 function toggleCommunityInput() {
@@ -1115,6 +1204,13 @@ function getLoggedInCitizen() {
   }
 }
 
+function renderAvatarContent(avatarCode) {
+  if (!avatarCode || avatarCode === 'CU' || avatarCode === '👤') {
+    return `<svg class="user-avatar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+  }
+  return `<span class="user-avatar-initials">${avatarCode}</span>`;
+}
+
 function updateAuthUI() {
   const user = getLoggedInCitizen();
   const dict = translations[currentLang] || translations.en;
@@ -1125,7 +1221,7 @@ function updateAuthUI() {
     if (user) {
       navContainer.innerHTML = `
         <div class="user-chip" id="userChip">
-          <div class="user-avatar">${user.avatar || 'CU'}</div>
+          <div class="user-avatar">${renderAvatarContent(user.avatar || 'CU')}</div>
           <div class="user-meta">
             <span class="user-name">${user.name}</span>
             <span class="user-badge">${dict.role_citizen || 'Citizen'}</span>
@@ -1140,7 +1236,7 @@ function updateAuthUI() {
       navContainer.innerHTML = `
         <button class="login-nav-btn" id="loginNavBtn" type="button" onclick="openLoginView()">
           <span class="user-ico">👤</span>
-          <span>${dict.btn_login || 'Log In'}</span>
+          <span data-i18n="btn_login">${dict.btn_login || 'Log In'}</span>
         </button>
       `;
     }
@@ -1159,7 +1255,7 @@ function updateAuthUI() {
       // User is authenticated
       loginGate.style.display = 'none';
       grievanceForm.style.display = 'block';
-      if (sessionAvatar) sessionAvatar.textContent = user.avatar || 'CU';
+      if (sessionAvatar) sessionAvatar.innerHTML = renderAvatarContent(user.avatar || 'CU');
       if (sessionName) sessionName.textContent = user.name;
       if (sessionSubtitle) sessionSubtitle.innerHTML = `+91 ${user.phone} • <span>${dict.session_verified_badge || 'Verified Citizen'}</span>`;
       if (sessionActionBtn) {
@@ -1217,6 +1313,9 @@ function handleSessionSwitch() {
     sessionStorage.removeItem('aapv_citizen_guest');
   } catch (e) {}
   updateAuthUI();
+  updateUnivAuthUI();
+  updateIndAuthUI();
+  updateAdminAuthUI();
   const dict = translations[currentLang] || translations.en;
   toast(dict.logout_success_toast || 'Logged out successfully.');
 }
@@ -1300,6 +1399,9 @@ function loginCitizen(userData) {
   } catch (e) {}
   closeLoginModal();
   updateAuthUI();
+  updateUnivAuthUI();
+  updateIndAuthUI();
+  updateAdminAuthUI();
   const dict = translations[currentLang] || translations.en;
   toast(dict.login_success_toast || 'Logged in successfully! Welcome back.');
 }
@@ -1329,7 +1431,7 @@ function updateUnivAuthUI() {
   if (user) {
     navContainer.innerHTML = `
       <div class="user-chip user-chip-univ" id="univUserChip">
-        <div class="user-avatar">${user.avatar || 'UN'}</div>
+        <div class="user-avatar">${renderAvatarContent(user.avatar || 'UN')}</div>
         <div class="user-meta">
           <span class="user-name">${user.name}</span>
           <span class="user-badge">${user.institution || 'University Lead'}</span>
@@ -1341,12 +1443,29 @@ function updateUnivAuthUI() {
       </div>
     `;
   } else {
-    navContainer.innerHTML = `
-      <button class="login-nav-btn univ-login-nav-btn" id="univLoginNavBtn" type="button" onclick="openUnivLoginModal()">
-        <span class="user-ico">🏛️</span>
-        <span data-i18n="univ_login_btn">${dict.univ_login_btn || 'Faculty & Lab Login'}</span>
-      </button>
-    `;
+    const citUser = getLoggedInCitizen();
+    if (citUser) {
+      navContainer.innerHTML = `
+        <div class="user-chip" id="univCitizenUserChip">
+          <div class="user-avatar">${renderAvatarContent(citUser.avatar || 'CU')}</div>
+          <div class="user-meta">
+            <span class="user-name">${citUser.name}</span>
+            <span class="user-badge">${dict.role_citizen || 'Citizen'}</span>
+          </div>
+          <button class="user-logout-btn" type="button" onclick="handleSessionSwitch()" title="${dict.btn_logout || 'Log out'}">
+            <span class="logout-ico">⎋</span>
+            <span class="logout-text" data-i18n="btn_logout">${dict.btn_logout || 'Log out'}</span>
+          </button>
+        </div>
+      `;
+    } else {
+      navContainer.innerHTML = `
+        <button class="login-nav-btn univ-login-nav-btn" id="univLoginNavBtn" type="button" onclick="openUnivLoginModal()">
+          <span class="user-ico">🏛️</span>
+          <span data-i18n="univ_login_btn">${dict.univ_login_btn || 'Faculty & Lab Login'}</span>
+        </button>
+      `;
+    }
   }
 }
 
@@ -1428,7 +1547,7 @@ function updateIndAuthUI() {
   if (user) {
     navContainer.innerHTML = `
       <div class="user-chip user-chip-ind" id="indUserChip">
-        <div class="user-avatar">${user.avatar || 'CSR'}</div>
+        <div class="user-avatar">${renderAvatarContent(user.avatar || 'CSR')}</div>
         <div class="user-meta">
           <span class="user-name">${user.name}</span>
           <span class="user-badge">${user.company || 'CSR Partner'}</span>
@@ -1440,12 +1559,29 @@ function updateIndAuthUI() {
       </div>
     `;
   } else {
-    navContainer.innerHTML = `
-      <button class="login-nav-btn ind-login-nav-btn" id="indLoginNavBtn" type="button" onclick="openIndLoginModal()">
-        <span class="user-ico">🏢</span>
-        <span data-i18n="ind_login_btn">${dict.ind_login_btn || 'Industry & CSR Login'}</span>
-      </button>
-    `;
+    const citUser = getLoggedInCitizen();
+    if (citUser) {
+      navContainer.innerHTML = `
+        <div class="user-chip" id="indCitizenUserChip">
+          <div class="user-avatar">${renderAvatarContent(citUser.avatar || 'CU')}</div>
+          <div class="user-meta">
+            <span class="user-name">${citUser.name}</span>
+            <span class="user-badge">${dict.role_citizen || 'Citizen'}</span>
+          </div>
+          <button class="user-logout-btn" type="button" onclick="handleSessionSwitch()" title="${dict.btn_logout || 'Log out'}">
+            <span class="logout-ico">⎋</span>
+            <span class="logout-text" data-i18n="btn_logout">${dict.btn_logout || 'Log out'}</span>
+          </button>
+        </div>
+      `;
+    } else {
+      navContainer.innerHTML = `
+        <button class="login-nav-btn ind-login-nav-btn" id="indLoginNavBtn" type="button" onclick="openIndLoginModal()">
+          <span class="user-ico">🏢</span>
+          <span data-i18n="ind_login_btn">${dict.ind_login_btn || 'Industry & CSR Login'}</span>
+        </button>
+      `;
+    }
   }
 }
 
@@ -1527,7 +1663,7 @@ function updateAdminAuthUI() {
   if (user) {
     navContainer.innerHTML = `
       <div class="user-chip user-chip-admin" id="adminUserChip">
-        <div class="user-avatar">${user.avatar || 'GOJ'}</div>
+        <div class="user-avatar">${renderAvatarContent(user.avatar || 'GOJ')}</div>
         <div class="user-meta">
           <span class="user-name">${user.name}</span>
           <span class="user-badge">${user.dept || 'State Admin'}</span>
@@ -1539,12 +1675,29 @@ function updateAdminAuthUI() {
       </div>
     `;
   } else {
-    navContainer.innerHTML = `
-      <button class="login-nav-btn admin-login-nav-btn" id="adminLoginNavBtn" type="button" onclick="openAdminLoginModal()">
-        <span class="user-ico">🛡️</span>
-        <span data-i18n="admin_login_btn">${dict.admin_login_btn || 'Admin Officer Login'}</span>
-      </button>
-    `;
+    const citUser = getLoggedInCitizen();
+    if (citUser) {
+      navContainer.innerHTML = `
+        <div class="user-chip" id="adminCitizenUserChip">
+          <div class="user-avatar">${renderAvatarContent(citUser.avatar || 'CU')}</div>
+          <div class="user-meta">
+            <span class="user-name">${citUser.name}</span>
+            <span class="user-badge">${dict.role_citizen || 'Citizen'}</span>
+          </div>
+          <button class="user-logout-btn" type="button" onclick="handleSessionSwitch()" title="${dict.btn_logout || 'Log out'}">
+            <span class="logout-ico">⎋</span>
+            <span class="logout-text" data-i18n="btn_logout">${dict.btn_logout || 'Log out'}</span>
+          </button>
+        </div>
+      `;
+    } else {
+      navContainer.innerHTML = `
+        <button class="login-nav-btn admin-login-nav-btn" id="adminLoginNavBtn" type="button" onclick="openAdminLoginModal()">
+          <span class="user-ico">🛡️</span>
+          <span data-i18n="admin_login_btn">${dict.admin_login_btn || 'Admin Officer Login'}</span>
+        </button>
+      `;
+    }
   }
 }
 
@@ -1764,7 +1917,7 @@ function narrateElement(arg1, arg2) {
 
   const stopAudioBtn = document.getElementById('stopAudioBtn');
   if (stopAudioBtn) {
-    stopAudioBtn.style.display = 'inline-flex';
+    stopAudioBtn.style.display = 'none';
   }
 
   const dict = translations[currentLang] || translations.en;
@@ -1796,7 +1949,7 @@ function narrateText(text, targetEl, callback) {
 
   const stopAudioBtn = document.getElementById('stopAudioBtn');
   if (stopAudioBtn) {
-    stopAudioBtn.style.display = 'inline-flex';
+    stopAudioBtn.style.display = 'none';
   }
 
   const dict = translations[currentLang] || translations.en;
@@ -1828,12 +1981,17 @@ function toggleReadEntirePage() {
   isShowcasePlaying = true;
 
   const readPageBtn = document.getElementById('readPageBtn');
+  const readPageBtnIcon = document.getElementById('readPageBtnIcon') || readPageBtn?.querySelector('.audio-play-icon');
   const readPageBtnLabel = document.getElementById('readPageBtnLabel');
   const stopAudioBtn = document.getElementById('stopAudioBtn');
 
   if (readPageBtn) readPageBtn.classList.add('speaking');
-  if (readPageBtnLabel) readPageBtnLabel.textContent = 'Reading Page (Showcase)…';
-  if (stopAudioBtn) stopAudioBtn.style.display = 'inline-flex';
+  if (readPageBtnIcon) readPageBtnIcon.textContent = '⏹';
+  if (readPageBtnLabel) {
+    const dict = translations[currentLang] || translations.en;
+    readPageBtnLabel.textContent = dict.btn_stop_audio || 'Stop Reading';
+  }
+  if (stopAudioBtn) stopAudioBtn.style.display = 'none';
 
   toast(translations[currentLang]?.toast_audio_showcase || 'Voice Narration (Showcase Mode) — Reading Page');
 
@@ -1875,11 +2033,14 @@ function stopSpeaking(silent = false) {
   if (stopAudioBtn) stopAudioBtn.style.display = 'none';
 
   const readPageBtn = document.getElementById('readPageBtn');
-  if (readPageBtn) readPageBtn.classList.remove('speaking');
-
+  const readPageBtnIcon = document.getElementById('readPageBtnIcon') || readPageBtn?.querySelector('.audio-play-icon');
   const readPageBtnLabel = document.getElementById('readPageBtnLabel');
+  if (readPageBtn) readPageBtn.classList.remove('speaking');
+  if (readPageBtnIcon) readPageBtnIcon.textContent = '▶';
+
   if (readPageBtnLabel) {
-    readPageBtnLabel.textContent = translations[currentLang]?.btn_read_page || 'Read Page Aloud';
+    const dict = translations[currentLang] || translations.en;
+    readPageBtnLabel.textContent = dict.btn_read_page || 'Read Page Aloud';
   }
 
   showcaseActiveBtn = null;
@@ -2427,7 +2588,7 @@ function sendChatMessage(textOverride = null) {
     typingEl.className = 'chat-msg bot';
     typingEl.id = typingId;
     typingEl.innerHTML = `
-      <div class="chatbot-avatar" style="width:32px; height:32px; font-size:14px; background:#4338ca; color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center;">🤖</div>
+      <div class="chatbot-msg-avatar">🤖</div>
       <div class="msg-bubble" style="color:var(--muted); font-style:italic;">
         ${currentLang === 'hi' ? 'विश्लेषण कर रहे हैं…' : (currentLang === 'sat' ? 'ᱵᱤᱪᱟᱹᱨᱮᱫᱟ…' : 'Analyzing progress data…')}
       </div>
@@ -2457,7 +2618,7 @@ function appendChatMessage(sender, htmlContent, speechText = null) {
 
   if (sender === 'bot') {
     msgEl.innerHTML = `
-      <div class="chatbot-avatar" style="width:32px; height:32px; font-size:14px; background:#4338ca; color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤖</div>
+      <div class="chatbot-msg-avatar">🤖</div>
       <div class="msg-bubble">
         ${htmlContent}
         <div>

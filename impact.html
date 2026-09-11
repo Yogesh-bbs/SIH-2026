@@ -15,7 +15,12 @@
 <body>
 
 <header class="topbar">
-  <div class="brand">AapV<span>•</span></div>
+  <div class="topbar-left">
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="hamburger-icon">☰</span>
+    </button>
+    <a href="index.html" class="brand" aria-label="AapV Home">AapV<span>•</span></a>
+  </div>
   <nav>
     <a href="index.html" data-i18n="nav_citizen">Citizen</a>
     <a class="active" href="impact.html" data-i18n="nav_impact">Track & Impact</a>
@@ -32,6 +37,7 @@
       <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
         <span>🌐</span>
         <span id="currentLangLabel">English</span>
+        <span class="lang-short-label" id="currentLangShort" style="display:none;">EN</span>
         <span class="lang-arrow">▾</span>
       </button>
       <div class="lang-menu" id="langMenu" role="menu">
@@ -46,8 +52,25 @@
         </button>
       </div>
     </div>
+    <div id="authNavContainer" class="auth-nav">
+      <button class="login-nav-btn" id="loginNavBtn" type="button" onclick="openLoginModal()">
+        <span class="user-ico">👤</span>
+        <span data-i18n="btn_login">Log In</span>
+      </button>
+    </div>
   </div>
 </header>
+
+<!-- Mobile Quick Portal Bar (Sticky & always visible on mobile) -->
+<nav class="mobile-portal-bar" aria-label="Portal Quick Switcher">
+  <div class="mobile-portal-scroll">
+    <a class="mobile-portal-link" href="index.html"><span class="portal-ico">🏛️</span> <span data-i18n="nav_citizen">Citizen</span></a>
+    <a class="mobile-portal-link active" href="impact.html"><span class="portal-ico">📊</span> <span data-i18n="nav_impact">Track & Impact</span></a>
+    <a class="mobile-portal-link" href="admin.html"><span class="portal-ico">🛡️</span> <span data-i18n="nav_admin">Admin</span></a>
+    <a class="mobile-portal-link" href="university.html"><span class="portal-ico">🎓</span> <span data-i18n="nav_university">University</span></a>
+    <a class="mobile-portal-link" href="industry.html"><span class="portal-ico">🏢</span> <span data-i18n="nav_industry">Industry</span></a>
+  </div>
+</nav>
 
 <!-- Accessibility Audio Reader & Narration Bar -->
 <aside class="audio-guide-bar" id="audioGuideBar" aria-label="Audio Reader">
@@ -62,12 +85,8 @@
     </div>
     <div class="audio-guide-controls">
       <button type="button" class="audio-guide-btn read-all-btn" id="readPageBtn" onclick="toggleReadEntirePage()">
-        <span class="audio-play-icon">▶</span>
+        <span class="audio-play-icon" id="readPageBtnIcon">▶</span>
         <span id="readPageBtnLabel" data-i18n="btn_read_page">Read Page Aloud</span>
-      </button>
-      <button type="button" class="audio-guide-btn stop-audio-btn" id="stopAudioBtn" onclick="stopSpeaking(true)" style="display:none;" title="Stop Audio">
-        <span>⏹</span>
-        <span data-i18n="btn_stop_audio">Stop</span>
       </button>
     </div>
   </div>
@@ -97,7 +116,7 @@
         <small data-i18n="metric_problems_title">Problems Submitted</small>
         <strong>2,481+</strong>
         <span class="metric-sub">
-          <span style="color:#16a34a;">↑ 14.8%</span>
+          <span class="metric-trend">↑ 14.8%</span>
           <span data-i18n="metric_problems_sub">Across all 24 districts</span>
         </span>
       </div>
@@ -105,7 +124,7 @@
         <small data-i18n="metric_active_title">Active University Projects</small>
         <strong>428</strong>
         <span class="metric-sub">
-          <span style="color:#16a34a;">↑ 21.4%</span>
+          <span class="metric-trend">↑ 21.4%</span>
           <span data-i18n="metric_active_sub">Engineering prototypes & trials</span>
         </span>
       </div>
@@ -113,7 +132,7 @@
         <small data-i18n="metric_completed_title">Completed & Deployed</small>
         <strong>126</strong>
         <span class="metric-sub">
-          <span style="color:#16a34a;">✓ 100% verified</span>
+          <span class="metric-trend">✓ 100% verified</span>
           <span data-i18n="metric_completed_sub">Verified community solutions</span>
         </span>
       </div>
@@ -121,7 +140,7 @@
         <small data-i18n="metric_impacted_title">Citizens Benefited</small>
         <strong>1.4M+</strong>
         <span class="metric-sub">
-          <span style="color:#16a34a;">↑ 32.1%</span>
+          <span class="metric-trend">↑ 32.1%</span>
           <span data-i18n="metric_impacted_sub">Directly improved lives</span>
         </span>
       </div>
@@ -236,7 +255,7 @@
         <!-- Message list -->
         <div class="chat-messages" id="chatMessages">
           <div class="chat-msg bot">
-            <div class="chatbot-avatar" style="width:32px; height:32px; font-size:14px; background:#4338ca; color:#fff; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">🤖</div>
+            <div class="chatbot-msg-avatar">🤖</div>
             <div class="msg-bubble">
               <p data-i18n="chatbot_welcome">
                 Namaste! I am your 24/7 AI Progress Assistant. Ask me anything about the progress of your grievance, ongoing university projects, or completed solutions in your area.
@@ -301,7 +320,9 @@
       <!-- Channel 1: Calling Helpline -->
       <div class="contact-card call-card" data-narrate-item>
         <div class="contact-card-header">
-          <div class="contact-icon call-icon">📞</div>
+          <div class="contact-icon call-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
           <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Calling options" title="Listen"><span class="speaker-icon">🔊</span></button>
         </div>
         <h3 data-i18n="contact_call_title">Toll-Free Helpline</h3>
@@ -318,7 +339,9 @@
       <!-- Channel 2: Email Support -->
       <div class="contact-card email-card" data-narrate-item>
         <div class="contact-card-header">
-          <div class="contact-icon email-icon">✉️</div>
+          <div class="contact-icon email-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
           <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to Email options" title="Listen"><span class="speaker-icon">🔊</span></button>
         </div>
         <h3 data-i18n="contact_email_title">Email Support Desk</h3>
@@ -335,7 +358,9 @@
       <!-- Channel 3: WhatsApp Chat -->
       <div class="contact-card whatsapp-card" data-narrate-item>
         <div class="contact-card-header">
-          <div class="contact-icon whatsapp-icon">💬</div>
+          <div class="contact-icon whatsapp-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
           <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, 'parent')" aria-label="Listen to WhatsApp options" title="Listen"><span class="speaker-icon">🔊</span></button>
         </div>
         <h3 data-i18n="contact_whatsapp_title">Chat on WhatsApp</h3>
@@ -373,6 +398,129 @@
     </div>
   </div>
 </footer>
+
+<!-- Citizen Login Modal -->
+<div id="loginModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle" onclick="handleModalBackdropClick(event)">
+  <div class="login-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closeLoginModal()" aria-label="Close modal">✕</button>
+    
+    <div class="login-modal-header">
+      <div class="login-gov-badge">
+        <span class="badge-emblem">🏛️</span>
+        <span>AapV • Citizen Portal</span>
+      </div>
+      <h2 id="loginModalTitle" data-i18n="login_modal_title">Citizen Login</h2>
+      <p id="loginModalSub" class="login-modal-sub" data-i18n="login_modal_sub">
+        Sign in to track your grievances, view university responses, and receive real-time SMS updates.
+      </p>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+      <!-- Step 1: Phone input -->
+      <div id="loginPhoneStep">
+        <label for="citizenPhone" class="login-label" data-i18n="label_phone">Mobile Number</label>
+        <div class="phone-input-group">
+          <span class="country-code">+91</span>
+          <input type="tel" id="citizenPhone" maxlength="10" placeholder="98765 43210" pattern="[0-9]{10}" data-i18n-placeholder="placeholder_phone" value="9876543210">
+        </div>
+        <p class="login-hint" data-i18n="phone_hint">An OTP will be sent to this number for quick verification.</p>
+        <button type="button" class="primary full login-primary-btn" onclick="sendOtp()" data-i18n="btn_send_otp">
+          Get Verification OTP →
+        </button>
+      </div>
+
+      <!-- Step 2: OTP input -->
+      <div id="loginOtpStep" style="display:none;">
+        <div class="otp-notice">
+          <span><span data-i18n="otp_sent_msg">OTP sent to</span> <strong id="otpTargetPhone">+91 98765 43210</strong></span>
+          <button type="button" class="change-phone-btn" onclick="resetPhoneStep()" data-i18n="btn_change_number">Change</button>
+        </div>
+        <label for="citizenOtp" class="login-label" data-i18n="label_otp">Enter 4-Digit OTP</label>
+        <input type="text" id="citizenOtp" class="otp-input" maxlength="4" placeholder="• • • •" value="1234">
+        <p class="login-hint" data-i18n="otp_demo_hint">Demo OTP 1234 is pre-filled for testing.</p>
+        <button type="submit" class="primary full login-primary-btn" data-i18n="btn_verify_login">
+          Verify & Sign In →
+        </button>
+      </div>
+    </form>
+
+    <div class="login-divider">
+      <span data-i18n="login_or">OR</span>
+    </div>
+
+    <!-- Quick 1-Click Demo Login for Instant Testing -->
+    <div class="demo-login-box">
+      <p class="demo-login-label" data-i18n="demo_login_title">Quick Review / Evaluator Access:</p>
+      <button type="button" class="demo-login-btn" onclick="loginDemoCitizen('Ramesh Murmu', '98765 43210', 'Citizen')">
+        <span class="demo-avatar">RM</span>
+        <div class="demo-info">
+          <strong>Ramesh Murmu</strong>
+          <small>Citizen • Ranchi, Jharkhand</small>
+        </div>
+        <span class="demo-arrow">⚡ One-Click Login</span>
+      </button>
+      <button type="button" class="demo-login-btn" onclick="loginDemoCitizen('Sunita Devi', '98234 56789', 'Community Lead')">
+        <span class="demo-avatar" style="background:#e0f2fe; color:#0369a1;">SD</span>
+        <div class="demo-info">
+          <strong>Sunita Devi</strong>
+          <small>Community Lead • Dumka, Jharkhand</small>
+        </div>
+        <span class="demo-arrow">⚡ One-Click Login</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobileNavDrawer" class="mobile-nav-drawer" style="display:none;" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+  <div class="mobile-nav-header">
+    <a href="index.html" class="brand" aria-label="AapV Home">AapV<span>•</span></a>
+    <button class="mobile-nav-close" type="button" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="mobile-nav-links">
+    <a class="mobile-nav-item" href="index.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🏛️</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_citizen">Citizen</strong>
+        <small data-i18n="portal_sub_citizen">Grievance & Redressal</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item active" href="impact.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">📊</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_impact">Track & Impact</strong>
+        <small data-i18n="portal_sub_impact">Live Metrics & Progress</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="admin.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🛡️</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_admin">Admin</strong>
+        <small data-i18n="portal_sub_admin">Panchayat Administration</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="university.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🎓</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_university">University</strong>
+        <small data-i18n="portal_sub_university">Academic & Research Hub</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="industry.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🏢</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_industry">Industry</strong>
+        <small data-i18n="portal_sub_industry">CSR & Private Sector</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+  </nav>
+</div>
+<div id="mobileNavBackdrop" class="mobile-nav-backdrop" style="display:none;" onclick="closeMobileMenu()"></div>
 
 <div id="toast" class="toast"></div>
 <script src="app.js"></script>

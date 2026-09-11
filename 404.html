@@ -28,7 +28,12 @@
 </head>
 <body>
 <header class="topbar">
-  <div class="brand">AapV<span>•</span></div>
+  <div class="topbar-left">
+    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="hamburger-icon">☰</span>
+    </button>
+    <a href="index.html" class="brand" aria-label="AapV Home">AapV<span>•</span></a>
+  </div>
   <nav>
     <a href="index.html" data-i18n="nav_citizen">Citizen</a>
     <a href="impact.html" data-i18n="nav_impact">Track & Impact</a>
@@ -45,6 +50,7 @@
       <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
         <span>🌐</span>
         <span id="currentLangLabel">English</span>
+        <span class="lang-short-label" id="currentLangShort" style="display:none;">EN</span>
         <span class="lang-arrow">▾</span>
       </button>
       <div class="lang-menu" id="langMenu" role="menu">
@@ -61,6 +67,17 @@
     </div>
   </div>
 </header>
+
+<!-- Mobile Quick Portal Bar (Sticky & always visible on mobile) -->
+<nav class="mobile-portal-bar" aria-label="Portal Quick Switcher">
+  <div class="mobile-portal-scroll">
+    <a class="mobile-portal-link" href="index.html"><span class="portal-ico">🏛️</span> <span data-i18n="nav_citizen">Citizen</span></a>
+    <a class="mobile-portal-link" href="impact.html"><span class="portal-ico">📊</span> <span data-i18n="nav_impact">Track & Impact</span></a>
+    <a class="mobile-portal-link" href="admin.html"><span class="portal-ico">🛡️</span> <span data-i18n="nav_admin">Admin</span></a>
+    <a class="mobile-portal-link" href="university.html"><span class="portal-ico">🎓</span> <span data-i18n="nav_university">University</span></a>
+    <a class="mobile-portal-link" href="industry.html"><span class="portal-ico">🏢</span> <span data-i18n="nav_industry">Industry</span></a>
+  </div>
+</nav>
 
 <main class="dashboard" style="display: flex; align-items: center; justify-content: center; min-height: 65vh; padding: 40px 5vw;">
   <div class="card" style="max-width: 580px; width: 100%; text-align: center; padding: 48px 32px; border-radius: 20px;">
@@ -105,6 +122,57 @@
     </div>
   </div>
 </footer>
+
+<!-- Mobile Navigation Drawer -->
+<div id="mobileNavDrawer" class="mobile-nav-drawer" style="display:none;" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+  <div class="mobile-nav-header">
+    <a href="index.html" class="brand" aria-label="AapV Home">AapV<span>•</span></a>
+    <button class="mobile-nav-close" type="button" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="mobile-nav-links">
+    <a class="mobile-nav-item" href="index.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🏛️</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_citizen">Citizen</strong>
+        <small data-i18n="portal_sub_citizen">Grievance & Redressal</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="impact.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">📊</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_impact">Track & Impact</strong>
+        <small data-i18n="portal_sub_impact">Live Metrics & Progress</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="admin.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🛡️</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_admin">Admin</strong>
+        <small data-i18n="portal_sub_admin">Panchayat Administration</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="university.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🎓</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_university">University</strong>
+        <small data-i18n="portal_sub_university">Academic & Research Hub</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+    <a class="mobile-nav-item" href="industry.html" onclick="closeMobileMenu()">
+      <span class="mobile-nav-icon">🏢</span>
+      <div class="mobile-nav-text">
+        <strong data-i18n="nav_industry">Industry</strong>
+        <small data-i18n="portal_sub_industry">CSR & Private Sector</small>
+      </div>
+      <span class="mobile-nav-arrow">→</span>
+    </a>
+  </nav>
+</div>
+<div id="mobileNavBackdrop" class="mobile-nav-backdrop" style="display:none;" onclick="closeMobileMenu()"></div>
 
 <div id="toast" class="toast"></div>
 <script src="app.js"></script>
