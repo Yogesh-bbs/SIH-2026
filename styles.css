@@ -387,6 +387,16 @@ button, input, textarea {
   background: #f6faff;
 }
 
+.lang-globe-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
 .lang-arrow {
   font-size: 10px;
   color: var(--muted);
@@ -697,11 +707,15 @@ button, input, textarea {
 .hero {
   max-width: 1180px;
   margin: auto;
-  padding: 80px 5vw 70px;
+  padding: 28px 5vw 45px;
   display: grid;
   grid-template-columns: 1fr 520px;
-  gap: 75px;
-  align-items: center;
+  gap: 60px;
+  align-items: start;
+}
+
+.hero-copy {
+  padding-top: 4px;
 }
 
 .eyebrow {
@@ -709,14 +723,14 @@ button, input, textarea {
   letter-spacing: 2px;
   font-weight: 700;
   color: var(--accent);
-  margin: 0 0 16px;
+  margin: 0 0 12px;
 }
 
 .hero h1 {
-  font-size: 46px;
-  line-height: 1.14;
-  letter-spacing: -1.6px;
-  margin: 0 0 22px;
+  font-size: 43px;
+  line-height: 1.15;
+  letter-spacing: -1.4px;
+  margin: 0 0 14px;
   font-family: "DM Sans", system-ui, -apple-system, sans-serif;
   font-weight: 700;
   color: var(--ink);
@@ -729,17 +743,18 @@ button, input, textarea {
 }
 
 .lead {
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 16.5px;
+  line-height: 1.6;
   color: var(--muted);
   max-width: 540px;
+  margin: 0 0 14px;
 }
 
 .trust {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 26px;
+  gap: 8px;
+  margin-top: 18px;
   color: #3b5066;
   font-size: 14px;
 }
@@ -1948,8 +1963,9 @@ textarea {
 @media (max-width: 850px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: 35px;
-    padding-top: 45px;
+    gap: 24px;
+    padding-top: 18px;
+    padding-bottom: 30px;
   }
   .hero h1 {
     font-size: 38px;
@@ -3741,7 +3757,7 @@ textarea {
 .audio-guide-bar {
   background: #eff6ff;
   border-bottom: 1.5px solid #bfdbfe;
-  padding: 10px 5vw;
+  padding: 6px 5vw;
 }
 
 .audio-guide-content {
@@ -6441,5 +6457,214 @@ textarea {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
+
+/* ==========================================================================
+   "Why Help Us?" / Strategic Value Proposition (Industry & University)
+   ========================================================================== */
+.why-help-section {
+  margin-top: 48px;
+  margin-bottom: 32px;
+}
+
+.why-help-head {
+  margin-bottom: 24px;
+}
+
+.why-help-head-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.why-help-head h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.6px;
+  margin: 6px 0 10px;
+}
+
+.why-help-desc {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 820px;
+  margin: 0;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  margin-bottom: 26px;
+}
+
+.why-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 26px 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.why-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(30, 91, 166, 0.12);
+}
+
+.why-card:hover::before {
+  opacity: 1;
+}
+
+.why-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.why-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent2);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.why-card-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(30, 91, 166, 0.08);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.why-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.35;
+}
+
+.why-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  flex-grow: 1;
+}
+
+.why-cta-banner {
+  background: linear-gradient(135deg, rgba(30, 91, 166, 0.06) 0%, rgba(30, 91, 166, 0.12) 100%);
+  border: 1px solid rgba(30, 91, 166, 0.22);
+  border-radius: 16px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.why-cta-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.why-cta-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(30, 91, 166, 0.25);
+  flex-shrink: 0;
+}
+
+.why-cta-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(30, 91, 166, 0.35);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .why-card {
+  background: #0e1622;
+  border-color: #182434;
+}
+
+[data-theme="dark"] .why-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .why-card-icon {
+  background: #142236;
+}
+
+[data-theme="dark"] .why-card-tag {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .why-cta-banner {
+  background: linear-gradient(135deg, rgba(30, 91, 166, 0.18) 0%, rgba(14, 22, 34, 0.95) 100%);
+  border-color: #1e3554;
+}
+
+@media (max-width: 850px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .why-cta-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .why-cta-btn {
+    justify-content: center;
+  }
+}
+
 
 

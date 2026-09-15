@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AapV — Industry & CSR</title>
 <link rel="icon" type="image/png" href="Icon.png">
+<link rel="apple-touch-icon" href="Icon.png">
 <link rel="stylesheet" href="styles.css">
 <script>
   (function() {
@@ -36,7 +37,7 @@
     </button>
     <div class="lang-dropdown">
       <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
-        <span>🌐</span>
+        <img src="Icon.png" alt="AapV" class="lang-globe-icon">
         <span id="currentLangLabel">English</span>
         <span class="lang-short-label" id="currentLangShort" style="display:none;">EN</span>
         <span class="lang-arrow">▾</span>
@@ -153,6 +154,71 @@
       <div><strong>11</strong><small data-i18n="ind_stat_supported">projects supported</small></div>
       <div><strong>7</strong><small data-i18n="ind_stat_districts">districts reached</small></div>
       <div><strong>3,840</strong><small data-i18n="ind_stat_people">people impacted</small></div>
+    </div>
+  </section>
+
+  <!-- Why Partner With Us? / Industry & CSR Value Proposition Section -->
+  <section class="why-help-section" id="indWhySection" data-narrate-item>
+    <div class="why-help-head">
+      <div class="why-help-head-row">
+        <div>
+          <p class="eyebrow" data-i18n="ind_why_eyebrow">WHY PARTNER WITH AAPV? • MEASURABLE ROI</p>
+          <h2 data-i18n="ind_why_title">Why help solve grassroots problems?</h2>
+        </div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, '#indWhySection')" aria-label="Listen to industry benefits" title="Listen">
+          <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+        </button>
+      </div>
+      <p class="why-help-desc" data-i18n="ind_why_subtitle">We realize that businesses run on real returns, not just goodwill or corporate buzzwords. Sponsoring community solutions through AapV isn't just about charity — it's a strategic investment that directly lowers your hiring costs, tests your products in real markets, and earns public trust.</p>
+    </div>
+
+    <div class="why-grid">
+      <!-- Card 1: Early Talent Scouting -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">🎯</div>
+          <span class="why-card-tag" data-i18n="ind_why_c1_tag">TALENT PIPELINE</span>
+        </div>
+        <h3 data-i18n="ind_why_c1_title">Early Talent Scouting: Skip the Hiring Guesswork</h3>
+        <p data-i18n="ind_why_c1_desc">Standard campus interviews test memorization, not execution. When you sponsor a live community challenge, you watch engineering and tech students solve tough, messy problems in real time. You get first pick of battle-tested young talent who already know your stack, drastically cutting your recruitment agency fees and 6-month onboarding cycles.</p>
+      </article>
+
+      <!-- Card 2: Ground-Level Market Validation -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">🌱</div>
+          <span class="why-card-tag" data-i18n="ind_why_c2_tag">MARKET VALIDATION</span>
+        </div>
+        <h3 data-i18n="ind_why_c2_title">Real Rural Market Testing: A Free Ground Sandbox</h3>
+        <p data-i18n="ind_why_c2_desc">Building for Bharat from an AC office in Bengaluru or Gurugram rarely works. If you're developing agritech, solar microgrids, EV battery systems, or sanitation hardware, Jharkhand's districts offer an unmatched real-world testbed. You get rapid, honest field feedback directly from actual end-users before sinking millions into mass manufacturing.</p>
+      </article>
+
+      <!-- Card 3: 100% Auditable CSR -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">📊</div>
+          <span class="why-card-tag" data-i18n="ind_why_c3_tag">CSR WITH ROI</span>
+        </div>
+        <h3 data-i18n="ind_why_c3_title">Auditable CSR: 100% Transparent, Board-Ready Impact</h3>
+        <p data-i18n="ind_why_c3_desc">Mandatory CSR spending often disappears into vague intermediary reports. With AapV, every rupee is tracked on an open, geo-tagged dashboard. You see the exact hand-pump repaired, solar unit deployed, or telemetry sensor installed — complete with timestamped photos, citizen feedback, and transparent board-ready compliance.</p>
+      </article>
+
+      <!-- Card 4: Community Goodwill & Regulatory Trust -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">🤝</div>
+          <span class="why-card-tag" data-i18n="ind_why_c4_tag">STRATEGIC TRUST</span>
+        </div>
+        <h3 data-i18n="ind_why_c4_title">Community Goodwill & Smoother Regional Approvals</h3>
+        <p data-i18n="ind_why_c4_desc">Operating in industrial, mining, or manufacturing belts requires authentic social license and community trust. Solving urgent local grievances alongside district authorities builds lasting goodwill with local communities and state departments, preventing friction and speeding up regional approvals.</p>
+      </article>
+    </div>
+
+    <div class="why-cta-banner">
+      <p class="why-cta-text" data-i18n="ind_why_cta_text">Ready to see measurable business returns while solving critical local challenges?</p>
+      <button type="button" class="why-cta-btn" onclick="openIndLoginModal()">
+        <span>🏢</span> <span data-i18n="ind_why_cta_btn">Partner With Us Today</span>
+      </button>
     </div>
   </section>
 </main>

@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AapV — Citizen Portal</title>
-<link rel="icon" type="image/png" href="Icon.png"><link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="Icon.png">
+<link rel="apple-touch-icon" href="Icon.png">
+<link rel="stylesheet" href="styles.css">
 <script>
   (function() {
     var savedTheme = localStorage.getItem('aapv_theme') || 'light';
@@ -33,7 +35,7 @@
     </button>
     <div class="lang-dropdown">
       <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
-        <span>🌐</span>
+        <img src="Icon.png" alt="AapV" class="lang-globe-icon">
         <span id="currentLangLabel">English</span>
         <span class="lang-short-label" id="currentLangShort" style="display:none;">EN</span>
         <span class="lang-arrow">▾</span>

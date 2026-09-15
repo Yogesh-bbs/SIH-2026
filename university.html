@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AapV — University Innovation Workspace</title>
 <link rel="icon" type="image/png" href="Icon.png">
+<link rel="apple-touch-icon" href="Icon.png">
 <link rel="stylesheet" href="styles.css">
 <script>
   (function() {
@@ -36,7 +37,7 @@
     </button>
     <div class="lang-dropdown">
       <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" title="Change Language">
-        <span>🌐</span>
+        <img src="Icon.png" alt="AapV" class="lang-globe-icon">
         <span id="currentLangLabel">English</span>
         <span class="lang-short-label" id="currentLangShort" style="display:none;">EN</span>
         <span class="lang-arrow">▾</span>
@@ -135,6 +136,71 @@
       <div class="current"><b>03</b><span data-i18n="step_testing">Prototype testing</span></div>
       <div><b>04</b><span data-i18n="step_deployment">Field deployment</span></div>
       <div><b>05</b><span data-i18n="step_impact">Impact assessment</span></div>
+    </div>
+  </section>
+
+  <!-- Why Partner With Us? / University Value Proposition Section -->
+  <section class="why-help-section" id="univWhySection" data-narrate-item>
+    <div class="why-help-head">
+      <div class="why-help-head-row">
+        <div>
+          <p class="eyebrow" data-i18n="univ_why_eyebrow">WHY PARTICIPATE? • ACADEMIC & CAREER ADVANTAGE</p>
+          <h2 data-i18n="univ_why_title">Why bring your students to AapV? Here's what your campus gains.</h2>
+        </div>
+        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, '#univWhySection')" aria-label="Listen to university benefits" title="Listen">
+          <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
+        </button>
+      </div>
+      <p class="why-help-desc" data-i18n="univ_why_subtitle">We know faculty time is stretched and students already have heavy academic workloads. AapV isn't another hackathon or theoretical assignment. It connects your campus directly with funded challenges that satisfy government mandates, unlock serious research grants, and get your students hired.</p>
+    </div>
+
+    <div class="why-grid">
+      <!-- Card 1: NEP 2020 Compliance -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">📜</div>
+          <span class="why-card-tag" data-i18n="univ_why_c1_tag">ACADEMIC MANDATE</span>
+        </div>
+        <h3 data-i18n="univ_why_c1_title">NEP 2020 Compliance, Built Right In</h3>
+        <p data-i18n="univ_why_c1_desc">National Education Policy 2020 explicitly requires colleges to provide students with experiential learning and community engagement for academic credit. Instead of scrambling to invent artificial coursework, your departments can use live AapV civic challenges as accredited semester capstones and multidisciplinary team credits with zero guesswork.</p>
+      </article>
+
+      <!-- Card 2: Research Grants -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">🔬</div>
+          <span class="why-card-tag" data-i18n="univ_why_c2_tag">RESEARCH FUNDING</span>
+        </div>
+        <h3 data-i18n="univ_why_c2_title">Unlocking Government Research Grants (DST & MeitY)</h3>
+        <p data-i18n="univ_why_c2_desc">Grant screening committees routinely reject purely theoretical proposals. When your professors apply to DST, MeitY, or CSIR with a project that already has verified community demand and confirmed industry co-sponsorship on AapV, your funding odds skyrocket. Real field data makes your grant proposals stand out.</p>
+      </article>
+
+      <!-- Card 3: Placement Portfolios -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">💼</div>
+          <span class="why-card-tag" data-i18n="univ_why_c3_tag">STUDENT PLACEMENTS</span>
+        </div>
+        <h3 data-i18n="univ_why_c3_title">Differentiated Portfolios: Real Deployments, Not Clones</h3>
+        <p data-i18n="univ_why_c3_desc">Tech recruiters are tired of seeing identical e-commerce clones or to-do lists on student resumes. When your graduates interview with a portfolio showcasing an IoT water sensor deployed in Dumka or a plastic recovery network serving 3,000 villagers, they don't just pass interviews — they negotiate premium starting packages.</p>
+      </article>
+
+      <!-- Card 4: Primary Data & NIRF -->
+      <article class="why-card" data-narrate-item>
+        <div class="why-card-top">
+          <div class="why-card-icon">🏆</div>
+          <span class="why-card-tag" data-i18n="univ_why_c4_tag">RANKING BOOST</span>
+        </div>
+        <h3 data-i18n="univ_why_c4_title">Primary Research Data, Patents & NIRF Ranking Boost</h3>
+        <p data-i18n="univ_why_c4_desc">Grassroots challenges provide unique, unpublished regional datasets that you cannot get from textbooks. Faculty and research scholars can publish peer-reviewed papers, file practical utility patents, and significantly improve the university's NAAC accreditation and NIRF ranking scores.</p>
+      </article>
+    </div>
+
+    <div class="why-cta-banner">
+      <p class="why-cta-text" data-i18n="univ_why_cta_text">Ready to empower your students and faculty with accredited real-world challenges?</p>
+      <button type="button" class="why-cta-btn" onclick="openUnivLoginModal()">
+        <span>🏛️</span> <span data-i18n="univ_why_cta_btn">Register Your University Lab</span>
+      </button>
     </div>
   </section>
 </main>
