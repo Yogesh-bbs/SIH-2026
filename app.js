@@ -348,7 +348,71 @@ const translations = {
     portal_sub_admin: "Panchayat Administration",
     portal_sub_university: "Academic & Research Hub",
     portal_sub_industry: "CSR & Private Sector",
-    mobile_menu_title: "All Portals"
+    mobile_menu_title: "All Portals",
+
+    // Admin Intelligence & Triage
+    admin_report_title: "Grievance & Impact Intelligence Report",
+    admin_report_sub: "Export verified datasets covering 2,481 submissions, 24 districts, and cross-departmental resolution metrics for Q1-Q3 2026.",
+    admin_report_preview_title: "Dataset Summary (Live Synced)",
+    admin_rep_records: "Records",
+    admin_rep_validated: "Validated",
+    admin_rep_districts: "Districts",
+    btn_export_csv: "Download Full CSV Dataset (.csv)",
+    btn_print_summary: "Print / Save Executive PDF Briefing",
+    triage_lbl_priority: "Severity / Priority",
+    triage_lbl_dept: "Dispatch Destination",
+    triage_lbl_notes: "Administrative Officer Notes / Action Directive",
+    btn_cancel: "Cancel",
+    btn_confirm_triage: "Approve & Dispatch Ticket ✓",
+
+    // University Sandbox & Challenges
+    univ_modal_badge: "University Innovation Lab • Academic Sandbox",
+    univ_create_title: "Launch Grassroots R&D Project",
+    univ_create_sub: "Register a faculty-led or student engineering project linked to verified Jharkhand community problems for NEP credit and corporate CSR co-funding.",
+    univ_lbl_proj_title: "Project Title *",
+    univ_ph_proj_title: "e.g., Solar Powered Flour Mill Automation",
+    univ_lbl_college: "University / Institute *",
+    univ_ph_college: "e.g., BIT Mesra / NIT Jamshedpur",
+    univ_lbl_lead: "Faculty Mentor / Student Lead *",
+    univ_ph_lead: "e.g., Dr. P. Kumar / Ananya Roy",
+    univ_lbl_challenge: "Linked Grassroots Challenge",
+    univ_lbl_support_req: "Required External Support",
+    support_funding: "Seed Grant / Funding",
+    support_equipment: "Hardware / Sensors",
+    support_field: "Field Testing Access",
+    support_mfg: "Prototype Fabrication & Tooling",
+    support_mentorship: "Corporate Mentorship",
+    univ_lbl_abstract: "Technical Methodology Abstract *",
+    univ_ph_abstract: "Describe the prototype architecture, key technological components, and expected village impact…",
+    btn_submit_proj: "Register Project for CSR Match ✓",
+    btn_print_dossier: "Print / Save Dossier",
+    btn_claim_challenge: "Claim Challenge for Lab",
+
+    // Industry & CSR
+    filter_all_support: "All Support Needed",
+    ind_no_match_title: "No projects match your filter criteria",
+    ind_no_match_sub: "Try selecting \"All Domains\" or clearing search keywords.",
+    ind_modal_badge: "Corporate CSR & Innovation Co-Funding",
+    ind_pledge_title: "Partner with Grassroots Innovation",
+    ind_lbl_org: "Enterprise / Organization Name *",
+    ind_ph_org: "e.g., Tata Steel CSR Foundation / JSW",
+    ind_lbl_rep: "Representative & Title *",
+    ind_ph_rep: "e.g., Rajesh Sharma, CSR Lead",
+    ind_lbl_email: "Corporate Email Address *",
+    ind_ph_email: "e.g., csr@tatasteel.com",
+    ind_lbl_phone: "Official Phone / WhatsApp *",
+    ind_ph_phone: "e.g., +91 98765 43210",
+    ind_lbl_support_types: "Support Contribution Type(s) *",
+    ind_lbl_grant_amount: "Proposed Grant Value (Optional, ₹ INR)",
+    ind_ph_amount: "e.g., ₹2,00,000 or equipment equivalent",
+    ind_lbl_notes: "Collaboration Scope & Special Terms",
+    ind_ph_notes: "Briefly specify milestones, disbursement conditions, or mentorship schedule…",
+    btn_confirm_pledge: "Confirm CSR Support Pledge ✓",
+    ind_commitments_badge: "Corporate Registry • Active CSR Pledges",
+    ind_commitments_title: "My Active CSR Commitments",
+    ind_commitments_sub: "Review and track your company's official problem sponsorships and university partnerships.",
+    btn_close: "Close",
+    btn_print_csr_cert: "Print CSR Impact Certificate"
   },
   hi: {
     label: "हिन्दी",
@@ -699,7 +763,71 @@ const translations = {
     portal_sub_admin: "पंचायत प्रशासन",
     portal_sub_university: "शैक्षणिक एवं अनुसंधान केंद्र",
     portal_sub_industry: "सीएसआर एवं निजी क्षेत्र",
-    mobile_menu_title: "सभी पोर्टल"
+    mobile_menu_title: "सभी पोर्टल",
+
+    // Admin Intelligence & Triage
+    admin_report_title: "शिकायत एवं प्रभाव विश्लेषण रिपोर्ट",
+    admin_report_sub: "Q1-Q3 2026 के लिए 2,481 शिकायतों, 24 जिलों और अंतर-विभागीय समाधान मेट्रिक्स का सत्यापित डेटासेट डाउनलोड करें।",
+    admin_report_preview_title: "डेटासेट सारांश (लाइव सिंक)",
+    admin_rep_records: "रिकॉर्ड्स",
+    admin_rep_validated: "सत्यापित",
+    admin_rep_districts: "जिले",
+    btn_export_csv: "पूर्ण CSV डेटासेट डाउनलोड करें (.csv)",
+    btn_print_summary: "कार्यकारी PDF सारांश प्रिंट / सहेजें",
+    triage_lbl_priority: "गंभीरता / प्राथमिकता",
+    triage_lbl_dept: "प्रेषण गंतव्य विभाग",
+    triage_lbl_notes: "प्रशासनिक अधिकारी टिप्पणी / कार्रवाई निर्देश",
+    btn_cancel: "रद्द करें",
+    btn_confirm_triage: "मंजूरी दें और टिकट भेजें ✓",
+
+    // University Sandbox & Challenges
+    univ_modal_badge: "विश्वविद्यालय नवाचार लैब • शैक्षणिक सैंडबॉक्स",
+    univ_create_title: "ज़मीनी अनुसंधान एवं विकास परियोजना शुरू करें",
+    univ_create_sub: "एनईपी क्रेडिट और कॉर्पोरेट सीएसआर सह-वित्तपोषण के लिए झारखंड की सत्यापित सामुदायिक समस्याओं से जुड़ी संकाय या छात्र परियोजना पंजीकृत करें।",
+    univ_lbl_proj_title: "परियोजना का शीर्षक *",
+    univ_ph_proj_title: "उदा. सौर ऊर्जा संचालित आटा चक्की स्वचालन",
+    univ_lbl_college: "विश्वविद्यालय / संस्थान *",
+    univ_ph_college: "उदा. बीआईटी मेसरा / एनआईटी जमशेदपुर",
+    univ_lbl_lead: "संकाय मेंटर / छात्र प्रमुख *",
+    univ_ph_lead: "उदा. डॉ. पी. कुमार / अनन्य रॉय",
+    univ_lbl_challenge: "जुड़ी हुई जमीनी चुनौती",
+    univ_lbl_support_req: "आवश्यक बाहरी सहयोग",
+    support_funding: "सीड ग्रांट / फंडिंग",
+    support_equipment: "हार्डवेयर / सेंसर्स",
+    support_field: "फील्ड टेस्टिंग पहुंच",
+    support_mfg: "प्रोटोटाइप निर्माण और टूलिंग",
+    support_mentorship: "कॉर्पोरेट मेंटरशिप",
+    univ_lbl_abstract: "तकनीकी कार्यप्रणाली सारांश *",
+    univ_ph_abstract: "प्रोटोटाइप आर्किटेक्चर, मुख्य तकनीकी घटक और अपेक्षित ग्रामीण प्रभाव का विवरण दें…",
+    btn_submit_proj: "सीएसआर मैच के लिए पंजीकृत करें ✓",
+    btn_print_dossier: "डोज़ियर प्रिंट / सहेजें",
+    btn_claim_challenge: "लैब के लिए चुनौती का चयन करें",
+
+    // Industry & CSR
+    filter_all_support: "सभी आवश्यक सहयोग",
+    ind_no_match_title: "आपकी खोज के अनुसार कोई परियोजना नहीं मिली",
+    ind_no_match_sub: "कृपया 'सभी डोमेन' चुनें या खोज शब्द साफ़ करें।",
+    ind_modal_badge: "कॉर्पोरेट सीएसआर एवं नवाचार सह-वित्तपोषण",
+    ind_pledge_title: "जमीनी नवाचार के साथ साझेदारी करें",
+    ind_lbl_org: "उद्यम / संस्था का नाम *",
+    ind_ph_org: "उदा. टाटा स्टील सीएसआर फाउंडेशन / जेएसडब्ल्यू",
+    ind_lbl_rep: "प्रतिनिधि एवं पदनाम *",
+    ind_ph_rep: "उदा. राजेश शर्मा, सीएसआर प्रमुख",
+    ind_lbl_email: "आधिकारिक कॉर्पोरेट ईमेल *",
+    ind_ph_email: "उदा. csr@tatasteel.com",
+    ind_lbl_phone: "आधिकारिक फोन / व्हाट्सएप *",
+    ind_ph_phone: "उदा. +91 98765 43210",
+    ind_lbl_support_types: "सहयोग योगदान के प्रकार *",
+    ind_lbl_grant_amount: "प्रस्तावित अनुदान राशि (वैकल्पिक, ₹ INR)",
+    ind_ph_amount: "उदा. ₹2,00,000 या उपकरण समकक्ष",
+    ind_lbl_notes: "सहयोग दायरा एवं विशेष शर्तें",
+    ind_ph_notes: "मील के पत्थर, संवितरण शर्तें या मेंटरशिप कार्यक्रम संक्षेप में बताएं…",
+    btn_confirm_pledge: "सीएसआर सहयोग संकल्प की पुष्टि करें ✓",
+    ind_commitments_badge: "कॉर्पोरेट रजिस्ट्री • सक्रिय सीएसआर संकल्प",
+    ind_commitments_title: "मेरे सक्रिय सीएसआर संकल्प",
+    ind_commitments_sub: "अपनी कंपनी के आधिकारिक समस्या प्रायोजन और विश्वविद्यालय साझेदारी की समीक्षा और ट्रैक करें।",
+    btn_close: "बंद करें",
+    btn_print_csr_cert: "सीएसआर प्रभाव प्रमाणपत्र प्रिंट करें"
   },
   sat: {
     label: "संताली",
@@ -1050,7 +1178,71 @@ const translations = {
     portal_sub_admin: "ᱯᱚᱧᱪᱟᱭᱚᱛ ᱥᱟᱥᱚᱱ",
     portal_sub_university: "ᱥᱮᱪᱮᱫ ᱟᱨ ᱠᱷᱚᱸᱫᱽᱨᱚᱸᱫᱽ ᱛᱟᱞᱢᱟ",
     portal_sub_industry: "ᱥᱤ.ᱮᱥ.ᱟᱨ. ᱟᱨ ᱱᱤᱡᱮᱨᱟᱜ ᱦᱟᱹᱴᱤᱧ",
-    mobile_menu_title: "ᱥᱟᱱᱟᱢ ᱯᱚᱨᱴᱟᱞ"
+    mobile_menu_title: "ᱥᱟᱱᱟᱢ ᱯᱚᱨᱴᱟᱞ",
+
+    // Admin Intelligence & Triage
+    admin_report_title: "ᱦᱟᱹᱲᱟᱹᱥ ᱟᱨ ᱚᱨᱥᱚᱝ ᱰᱟᱴᱟ ᱨᱤᱯᱳᱨᱴ",
+    admin_report_sub: "Q1-Q3 2026 ᱞᱟᱹᱜᱤᱫ ᱒,᱔᱘᱑ ᱦᱟᱹᱲᱟᱹᱥ, ᱒᱔ ᱦᱚᱱᱚᱛ ᱟᱨ ᱵᱤᱵᱷᱟᱜᱽ ᱥᱚᱞᱦᱮ ᱰᱟᱴᱟ ᱰᱟᱣᱩᱱᱞᱳᱰ ᱢᱮ᱾",
+    admin_report_preview_title: "ᱰᱟᱴᱟᱥᱮᱴ ᱛᱮᱛᱮᱫ (ᱞᱟᱭᱤᱵᱽ ᱥᱤᱝᱠ)",
+    admin_rep_records: "ᱨᱮᱠᱳᱨᱰ",
+    admin_rep_validated: "ᱯᱩᱥᱴᱟᱹᱣ ᱟᱠᱟᱱ",
+    admin_rep_districts: "ᱦᱚᱱᱚᱛ",
+    btn_export_csv: "ᱯᱩᱨᱟᱹ CSV ᱰᱟᱴᱟᱥᱮᱴ ᱰᱟᱣᱩᱱᱞᱳᱰ ᱢᱮ (.csv)",
+    btn_print_summary: "ᱠᱟᱹᱢᱤᱭᱟᱹ PDF ᱨᱤᱯᱳᱨᱴ ᱪᱷᱟᱯᱟ / ᱥᱟᱧᱪᱟᱣ ᱢᱮ",
+    triage_lbl_priority: "ᱞᱟᱹᱠᱛᱤ / ᱢᱟᱬᱟᱝ ᱠᱟᱹᱢᱤ",
+    triage_lbl_dept: "ᱠᱩᱞ ᱴᱷᱟᱶ ᱵᱤᱵᱷᱟᱜᱽ",
+    triage_lbl_notes: "ᱥᱟᱥᱚᱱᱤᱭᱟᱹ ᱱᱳᱴ / ᱠᱟᱹᱢᱤ ᱦᱚᱨᱟ",
+    btn_cancel: "ᱵᱟᱹᱛᱤᱞ ᱢᱮ",
+    btn_confirm_triage: "ᱴᱤᱠᱮᱴ ᱢᱟᱱᱟᱣ ᱟᱨ ᱠᱩᱞ ᱢᱮ ✓",
+
+    // University Sandbox & Challenges
+    univ_modal_badge: "ᱡᱮᱜᱮᱛ ᱵᱤᱨᱫᱟᱹᱜᱟᱲ ᱱᱟᱶᱟ ᱩᱭᱦᱟᱹᱨ ᱞᱮᱵᱽ • ᱥᱮᱪᱮᱫ ᱥᱮᱱᱰᱵᱚᱠᱥ",
+    univ_create_title: "ᱟᱹᱛᱩ ᱨᱮᱱᱟᱜ R&D ᱯᱨᱳᱡᱮᱠᱴ ᱮᱛᱚᱦᱚᱵ ᱢᱮ",
+    univ_create_sub: "NEP ᱠᱨᱮᱰᱤᱴ ᱟᱨ ᱠᱳᱨᱯᱳᱨᱮᱴ CSR ᱜᱚᱲᱚ ᱞᱟᱹᱜᱤᱫ ᱡᱷᱟᱨᱠᱷᱚᱸᱰ ᱨᱮᱱᱟᱜ ᱯᱩᱥᱴᱟᱹᱣ ᱟᱠᱟᱱ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱨᱮ ᱯᱟᱹᱴᱷᱩᱣᱟᱹ ᱯᱨᱳᱡᱮᱠᱴ ᱨᱮᱡᱤᱥᱴᱟᱨ ᱢᱮ᱾",
+    univ_lbl_proj_title: "ᱯᱨᱳᱡᱮᱠᱴ ᱧᱩᱛᱩᱢ *",
+    univ_ph_proj_title: "ᱡᱮᱞᱮᱠᱟ: ᱵᱮᱲᱟ ᱫᱟᱲᱮ ᱦᱚᱞᱚᱝ ᱢᱤᱞ ᱚᱴᱳᱢᱮᱥᱚᱱ",
+    univ_lbl_college: "ᱡᱮᱜᱮᱛ ᱵᱤᱨᱫᱟᱹᱜᱟᱲ / ᱛᱟᱞᱢᱟ *",
+    univ_ph_college: "ᱡᱮᱞᱮᱠᱟ: BIT Mesra / NIT Jamshedpur",
+    univ_lbl_lead: "ᱢᱮᱱᱴᱚᱨ / ᱯᱟᱹᱴᱷᱩᱣᱟᱹ ᱟᱹᱭᱩᱨᱤᱭᱟᱹ *",
+    univ_ph_lead: "ᱡᱮᱞᱮᱠᱟ: Dr. P. Kumar / Ananya Roy",
+    univ_lbl_challenge: "ᱡᱚᱲᱟᱣ ᱟᱠᱟᱱ ᱟᱹᱛᱩ ᱮᱴᱠᱮᱴᱚᱬᱮ",
+    univ_lbl_support_req: "ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱵᱟᱦᱨᱮ ᱜᱚᱲᱚ",
+    support_funding: "ᱯᱩᱭᱞᱩ ᱜᱚᱲᱚ / ᱯᱷᱟᱱᱰ",
+    support_equipment: "ᱦᱟᱨᱰᱣᱮᱭᱟᱨ / ᱥᱮᱱᱥᱚᱨ",
+    support_field: "ᱡᱟᱭᱜᱟ ᱨᱮ ᱴᱮᱥᱴ ᱫᱟᱣ",
+    support_mfg: "ᱯᱨᱳᱴᱳᱴᱟᱭᱤᱯ ᱵᱮᱱᱟᱣ ᱟᱨ ᱴᱩᱞᱤᱝ",
+    support_mentorship: "ᱠᱳᱨᱯᱳᱨᱮᱴ ᱫᱤᱥᱟᱹ-ᱩᱫᱩᱜ",
+    univ_lbl_abstract: "ᱴᱮᱠᱱᱤᱠᱟᱞ ᱛᱮᱛᱮᱫ ᱥᱟᱨᱟᱝᱥᱚ *",
+    univ_ph_abstract: "ᱯᱨᱳᱴᱳᱴᱟᱭᱤᱯ ᱨᱩᱯ, ᱢᱩᱬ ᱴᱮᱠᱱᱳᱞᱳᱡᱤ ᱟᱨ ᱟᱹᱛᱩ ᱚᱨᱥᱚᱝ ᱵᱟᱵᱚᱛ ᱚᱞ ᱢᱮ…",
+    btn_submit_proj: "CSR ᱜᱚᱲᱚ ᱞᱟᱹᱜᱤᱫ ᱨᱮᱡᱤᱥᱴᱟᱨ ᱢᱮ ✓",
+    btn_print_dossier: "ᱰᱳᱥᱤᱭᱟᱨ ᱪᱷᱟᱯᱟ / ᱥᱟᱧᱪᱟᱣ ᱢᱮ",
+    btn_claim_challenge: "ᱞᱮᱵᱽ ᱞᱟᱹᱜᱤᱫ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱦᱟᱛᱟᱣ ᱢᱮ",
+
+    // Industry & CSR
+    filter_all_support: "ᱥᱟᱱᱟᱢ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱜᱚᱲᱚ",
+    ind_no_match_title: "ᱟᱢᱟᱜ ᱯᱟᱱᱛᱮ ᱞᱮᱠᱟᱛᱮ ᱪᱮᱫ ᱯᱨᱳᱡᱮᱠᱴ ᱦᱚᱸ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ",
+    ind_no_match_sub: "'ᱥᱟᱱᱟᱢ ᱴᱚᱴᱷᱟ' ᱵᱟᱪᱷᱟᱣ ᱢᱮ ᱥᱮ ᱯᱟᱱᱛᱮ ᱟᱹᱲᱟᱹ ᱥᱟᱯᱷᱟᱭ ᱢᱮ᱾",
+    ind_modal_badge: "ᱠᱳᱨᱯᱳᱨᱮᱴ CSR ᱟᱨ ᱱᱟᱶᱟ ᱩᱭᱦᱟᱹᱨ ᱜᱚᱲᱚ",
+    ind_pledge_title: "ᱟᱹᱛᱩ ᱱᱟᱶᱟ ᱩᱭᱦᱟᱹᱨ ᱥᱟᱶ ᱡᱚᱲᱟᱣᱜ ᱢᱮ",
+    ind_lbl_org: "ᱠᱚᱢᱯᱟᱱᱤ / ᱜᱟᱶᱛᱟ ᱧᱩᱛᱩᱢ *",
+    ind_ph_org: "ᱡᱮᱞᱮᱠᱟ: Tata Steel CSR Foundation / JSW",
+    ind_lbl_rep: "ᱯᱨᱚᱛᱤᱱᱤᱫᱷᱤ ᱟᱨ ᱯᱚᱫᱽ *",
+    ind_ph_rep: "ᱡᱮᱞᱮᱠᱟ: Rajesh Sharma, CSR Lead",
+    ind_lbl_email: "ᱠᱳᱨᱯᱳᱨᱮᱴ ᱤᱢᱮᱞ *",
+    ind_ph_email: "ᱡᱮᱞᱮᱠᱟ: csr@tatasteel.com",
+    ind_lbl_phone: "ᱚᱯᱷᱤᱥᱤᱭᱟᱞ ᱯᱷᱳᱱ / ᱣᱟᱴᱥᱮᱯ *",
+    ind_ph_phone: "ᱡᱮᱞᱮᱠᱟ: +91 98765 43210",
+    ind_lbl_support_types: "ᱜᱚᱲᱚ ᱮᱢ ᱨᱮᱱᱟᱜ ᱦᱟᱹᱴᱤᱧ *",
+    ind_lbl_grant_amount: "ᱜᱚᱲᱚ ᱴᱟᱠᱟ (ᱵᱷᱮᱜᱟᱨ ᱜᱮᱭᱟ, ₹ INR)",
+    ind_ph_amount: "ᱡᱮᱞᱮᱠᱟ: ₹᱒,᱐᱐,᱐᱐᱐ ᱥᱮ ᱥᱟᱢᱟᱱ",
+    ind_lbl_notes: "ᱜᱚᱲᱚ ᱦᱚᱨᱟ ᱟᱨ ᱟᱹᱱ-ᱟᱹᱨᱤ",
+    ind_ph_notes: "ᱢᱟᱭᱤᱞᱥᱴᱳᱱ, ᱴᱟᱠᱟ ᱮᱢ ᱟᱹᱱ ᱥᱮ ᱫᱤᱥᱟᱹ-ᱩᱫᱩᱜ ᱚᱠᱛᱚ ᱠᱷᱟᱴᱚ ᱛᱮ ᱚᱞ ᱢᱮ…",
+    btn_confirm_pledge: "CSR ᱜᱚᱲᱚ ᱠᱤᱨᱤᱭᱟᱹ ᱯᱩᱥᱴᱟᱹᱣ ᱢᱮ ✓",
+    ind_commitments_badge: "ᱠᱳᱨᱯᱳᱨᱮᱴ ᱨᱮᱡᱤᱥᱴᱨᱤ • ᱪᱟᱹᱞᱩ CSR ᱠᱤᱨᱤᱭᱟᱹ",
+    ind_commitments_title: "ᱤᱧᱟᱜ ᱪᱟᱹᱞᱩ CSR ᱠᱤᱨᱤᱭᱟᱹ ᱠᱚ",
+    ind_commitments_sub: "ᱟᱢᱟᱜ ᱠᱚᱢᱯᱟᱱᱤ ᱨᱮᱱᱟᱜ ᱥᱚᱨᱠᱟᱨᱤ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱜᱚᱲᱚ ᱟᱨ ᱡᱮᱜᱮᱛ ᱵᱤᱨᱫᱟᱹᱜᱟᱲ ᱜᱟᱛᱮ ᱧᱮᱞ ᱢᱮ᱾",
+    btn_close: "ᱵᱚᱱᱫᱽ ᱢᱮ",
+    btn_print_csr_cert: "CSR ᱚᱨᱥᱚᱝ ᱥᱟᱨᱴᱤᱯᱷᱤᱠᱮᱴ ᱪᱷᱟᱯᱟ ᱢᱮ"
   }
 };
 
@@ -1977,14 +2169,39 @@ function initFirstTimeLangPrompt() {
 }
 
 // ==========================================================================
-// VOICE-ENABLED NARRATION & ACCESSIBILITY ENGINE (Showcase Mode - Simulation Only)
-// Per instruction: Visual showcase mode matching provided material, no actual audio synthesis
+// VOICE-ENABLED NARRATION & ACCESSIBILITY ENGINE (Web Speech API + Fallback)
 // ==========================================================================
 let showcaseAudioTimer = null;
 let isShowcasePlaying = false;
 let showcaseActiveBtn = null;
 let showcaseActiveEl = null;
 let isTapToHearActive = false;
+let pageNarrationIndex = 0;
+let pageNarrationTargets = [];
+
+function extractReadableText(el) {
+  if (!el) return '';
+  const clone = el.cloneNode(true);
+  clone.querySelectorAll('button, .narrate-btn, .speaker-icon, svg, script, style, .login-modal-overlay, [aria-hidden="true"]').forEach(n => n.remove());
+  return (clone.innerText || clone.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+function getBestVoiceForLang(langCode) {
+  if (!('speechSynthesis' in window)) return null;
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || !voices.length) return null;
+
+  if (langCode === 'hi') {
+    return voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi')) ||
+           voices.find(v => v.lang.includes('IN')) || null;
+  }
+  if (langCode === 'sat') {
+    return voices.find(v => v.lang.startsWith('sat')) ||
+           voices.find(v => v.lang === 'hi-IN' || v.lang.startsWith('hi')) ||
+           voices.find(v => v.lang.includes('IN')) || null;
+  }
+  return voices.find(v => v.lang === 'en-IN' || v.lang === 'en-GB' || v.lang.startsWith('en')) || null;
+}
 
 function narrateElement(arg1, arg2) {
   let btn = null;
@@ -2013,7 +2230,7 @@ function narrateElement(arg1, arg2) {
   }
 
   if (isShowcasePlaying && (showcaseActiveEl === target || showcaseActiveBtn === btn)) {
-    stopSpeaking(true);
+    stopSpeaking(false);
     return;
   }
 
@@ -2021,16 +2238,37 @@ function narrateElement(arg1, arg2) {
 
   if (!target) return;
 
+  const textToRead = extractReadableText(target);
+  if (!textToRead) return;
+
+  narrateText(textToRead, target, () => {
+    stopSpeaking(true);
+  }, btn);
+}
+
+function narrateText(text, targetEl, callback, triggerBtn = null) {
+  if (isShowcasePlaying && showcaseActiveEl === targetEl) {
+    stopSpeaking(false);
+    if (callback) callback();
+    return;
+  }
+
+  stopSpeaking(true);
+
   isShowcasePlaying = true;
-  showcaseActiveBtn = btn;
-  showcaseActiveEl = target;
+  showcaseActiveEl = targetEl;
+  showcaseActiveBtn = triggerBtn;
 
-  target.classList.add('speaking-highlight');
-  target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  if (targetEl) {
+    targetEl.classList.add('speaking-highlight');
+    if (typeof targetEl.scrollIntoView === 'function') {
+      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
 
-  if (btn) {
-    btn.classList.add('speaking');
-    const labelSpan = btn.querySelector('.narrate-label');
+  if (triggerBtn) {
+    triggerBtn.classList.add('speaking');
+    const labelSpan = triggerBtn.querySelector('.narrate-label');
     if (labelSpan) {
       if (!labelSpan.hasAttribute('data-original-text')) {
         labelSpan.setAttribute('data-original-text', labelSpan.textContent);
@@ -2040,49 +2278,44 @@ function narrateElement(arg1, arg2) {
   }
 
   const stopAudioBtn = document.getElementById('stopAudioBtn');
-  if (stopAudioBtn) {
-    stopAudioBtn.style.display = 'none';
-  }
+  if (stopAudioBtn) stopAudioBtn.style.display = 'inline-flex';
 
   const dict = translations[currentLang] || translations.en;
-  toast(dict.toast_audio_showcase || 'Voice Narration & Audio Guide (Showcase Mode)');
+  toast(dict.voice_status_ready || 'Playing Voice Narration…');
 
-  showcaseAudioTimer = setTimeout(() => {
-    stopSpeaking(true);
-  }, 2500);
-}
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voiceLang = currentLang === 'hi' ? 'hi-IN' : (currentLang === 'sat' ? 'hi-IN' : 'en-IN');
+    utterance.lang = voiceLang;
+    utterance.rate = 0.95;
+    utterance.pitch = 1.0;
 
-function narrateText(text, targetEl, callback) {
-  if (isShowcasePlaying && showcaseActiveEl === targetEl) {
-    stopSpeaking(true);
-    if (callback) callback();
-    return;
-  }
-
-  stopSpeaking(true);
-
-  isShowcasePlaying = true;
-  showcaseActiveEl = targetEl;
-
-  if (targetEl) {
-    targetEl.classList.add('speaking-highlight');
-    if (typeof targetEl.scrollIntoView === 'function') {
-      targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const matchedVoice = getBestVoiceForLang(currentLang);
+    if (matchedVoice) {
+      utterance.voice = matchedVoice;
     }
+
+    utterance.onend = () => {
+      stopSpeaking(true);
+      if (callback) callback();
+    };
+
+    utterance.onerror = (err) => {
+      console.warn('SpeechSynthesis error:', err);
+      stopSpeaking(true);
+      if (callback) callback();
+    };
+
+    window.speechSynthesis.speak(utterance);
+  } else {
+    const words = text.split(/\s+/).length;
+    const duration = Math.min(Math.max(words * 280, 2500), 12000);
+    showcaseAudioTimer = setTimeout(() => {
+      stopSpeaking(true);
+      if (callback) callback();
+    }, duration);
   }
-
-  const stopAudioBtn = document.getElementById('stopAudioBtn');
-  if (stopAudioBtn) {
-    stopAudioBtn.style.display = 'none';
-  }
-
-  const dict = translations[currentLang] || translations.en;
-  toast(dict.toast_audio_showcase || 'Voice Narration & Audio Guide (Showcase Mode)');
-
-  showcaseAudioTimer = setTimeout(() => {
-    stopSpeaking(true);
-    if (callback) callback();
-  }, 2500);
 }
 
 function toggleReadEntirePage() {
@@ -2094,14 +2327,16 @@ function toggleReadEntirePage() {
   stopSpeaking(true);
 
   const targets = Array.from(document.querySelectorAll(
-    '#heroCopyBlock, .hero-copy, #citizenPortalCard, .dashboard, #howSection, .how-grid, #impactHeroBlock, #contactSection, .contact-section'
-  )).filter(el => el.offsetParent !== null);
+    '#heroCopyBlock, .hero-copy, #citizenPortalCard, .dashboard, #howSection, .how-grid, #impactHeroBlock, #contactSection, .contact-section, .why-help-section'
+  )).filter(el => el.offsetParent !== null && extractReadableText(el).length > 10);
 
   if (!targets.length) {
-    toast(translations[currentLang]?.toast_audio_showcase || 'Voice Narration & Audio Guide (Showcase Mode)');
+    toast(translations[currentLang]?.narrate_btn_label || 'No content found to read.');
     return;
   }
 
+  pageNarrationTargets = targets;
+  pageNarrationIndex = 0;
   isShowcasePlaying = true;
 
   const readPageBtn = document.getElementById('readPageBtn');
@@ -2113,35 +2348,64 @@ function toggleReadEntirePage() {
   if (readPageBtnIcon) readPageBtnIcon.textContent = '⏹';
   if (readPageBtnLabel) {
     const dict = translations[currentLang] || translations.en;
-    readPageBtnLabel.textContent = dict.btn_stop_audio || 'Stop Reading';
+    readPageBtnLabel.textContent = dict.narrate_btn_speaking || 'Stop ⏹';
   }
-  if (stopAudioBtn) stopAudioBtn.style.display = 'none';
+  if (stopAudioBtn) stopAudioBtn.style.display = 'inline-flex';
 
-  toast(translations[currentLang]?.toast_audio_showcase || 'Voice Narration (Showcase Mode) — Reading Page');
+  toast((translations[currentLang]?.portal_sub_impact || 'Reading page aloud') + '…');
 
-  let step = 0;
-  function highlightNext() {
-    if (!isShowcasePlaying || step >= Math.min(targets.length, 3)) {
+  function readNextSection() {
+    if (!isShowcasePlaying || pageNarrationIndex >= pageNarrationTargets.length) {
       stopSpeaking(true);
       return;
     }
     document.querySelectorAll('.speaking-highlight').forEach(el => el.classList.remove('speaking-highlight'));
-    const cur = targets[step];
+    const cur = pageNarrationTargets[pageNarrationIndex];
     cur.classList.add('speaking-highlight');
     cur.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    step++;
-    showcaseAudioTimer = setTimeout(highlightNext, 1200);
+
+    const text = extractReadableText(cur);
+    pageNarrationIndex++;
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.lang = currentLang === 'hi' ? 'hi-IN' : (currentLang === 'sat' ? 'hi-IN' : 'en-IN');
+      utt.rate = 0.95;
+      const voice = getBestVoiceForLang(currentLang);
+      if (voice) utt.voice = voice;
+      utt.onend = () => {
+        if (isShowcasePlaying) {
+          setTimeout(readNextSection, 300);
+        }
+      };
+      utt.onerror = () => {
+        if (isShowcasePlaying) {
+          setTimeout(readNextSection, 300);
+        }
+      };
+      window.speechSynthesis.speak(utt);
+    } else {
+      showcaseAudioTimer = setTimeout(readNextSection, 3500);
+    }
   }
 
-  highlightNext();
+  readNextSection();
 }
 
 function stopSpeaking(silent = false) {
+  if ('speechSynthesis' in window) {
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
+  }
   if (showcaseAudioTimer) {
     clearTimeout(showcaseAudioTimer);
     showcaseAudioTimer = null;
   }
   isShowcasePlaying = false;
+  pageNarrationTargets = [];
+  pageNarrationIndex = 0;
 
   document.querySelectorAll('.speaking-highlight').forEach(el => el.classList.remove('speaking-highlight'));
   document.querySelectorAll('.narrate-btn.speaking, .audio-guide-btn.speaking').forEach(btn => {
@@ -2178,6 +2442,610 @@ function stopSpeaking(silent = false) {
 // Backwards-compatible aliases
 function toggleReadPage() { toggleReadEntirePage(); }
 function stopNarration() { stopSpeaking(false); }
+
+// ==========================================================================
+// ADMIN DASHBOARD & COMMAND CENTRE INTERACTIVE HANDLERS
+// ==========================================================================
+function openDownloadReportModal() {
+  const modal = document.getElementById('adminDownloadModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+}
+
+function closeDownloadReportModal() {
+  const modal = document.getElementById('adminDownloadModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function handleAdminDownloadBackdrop(event) {
+  if (event.target && event.target.id === 'adminDownloadModal') {
+    closeDownloadReportModal();
+  }
+}
+
+function downloadAdminCsvReport() {
+  const rows = [
+    ["Ticket_ID", "Submission_Date", "Submitter_Type", "District", "Category", "Problem_Summary", "AI_Severity_Score", "Assigned_Lab_or_Dept", "Current_Status", "Resolution_SLA_Days"]
+  ];
+
+  const sampleData = [
+    ["AAPV-2026-0842", "2026-09-15", "Community", "Dumka", "Water", "High iron & bacterial contamination in Shikaripara handpumps", "0.92 (High)", "BIT Mesra • Rural Tech Lab", "Ongoing Prototype", "14"],
+    ["AAPV-2026-0791", "2026-09-14", "Citizen", "Hazaribagh", "Agriculture", "Crop loss due to unseasonal rainfall and canal blockage", "0.78 (Medium)", "Dept of Agriculture & Co-op", "Field Validated", "10"],
+    ["AAPV-2026-0715", "2026-09-13", "PRI", "Giridih", "Energy", "Frequent solar micro-grid failures in forest hamlets", "0.85 (High)", "NIT Jamshedpur • Clean Energy Dept", "Lab Prototype", "21"],
+    ["AAPV-2026-0690", "2026-09-12", "Community", "Dhanbad", "Health", "Fluorosis and joint pain in coal belt children", "0.95 (Critical)", "AIIMS Deoghar • Community Health", "Priority Action", "7"],
+    ["AAPV-2026-0654", "2026-09-11", "Citizen", "Ranchi", "Environment", "Plastic waste clogging drainage near weekly haat", "0.64 (Medium)", "Ranchi Municipal Corp / NGO", "Under Review", "15"],
+    ["AAPV-2026-0612", "2026-09-10", "Citizen", "East Singhbhum", "Education", "Primary school roof leakage and broken sanitation", "0.88 (High)", "Dept of School Education & Literacy", "Dispatched", "12"],
+    ["AAPV-2026-0589", "2026-09-09", "PRI", "Simdega", "Water", "Defunct solar dual-pump drinking water system", "0.74 (Medium)", "District DWSD Simdega", "Resolved", "5"],
+    ["AAPV-2026-0542", "2026-09-08", "Citizen", "Khunti", "Agriculture", "Lac insect infestation ruining host trees", "0.82 (High)", "ICAR-IINRG Namkum", "Research Sandbox", "30"]
+  ];
+
+  sampleData.forEach(r => rows.push(r));
+
+  const districts = ["Ranchi", "Dhanbad", "Giridih", "Dumka", "Hazaribagh", "Bokaro", "Deoghar", "East Singhbhum", "Palamu", "Ramgarh", "Seraikela", "Chatra", "Godda", "Gumla", "Jamtara", "Khunti", "Koderma", "Latehar", "Lohardaga", "Pakur", "Sahebganj", "Simdega", "West Singhbhum", "Garhwa"];
+  const categories = ["Water", "Healthcare", "Education", "Agriculture", "Environment", "Rural Roads", "Electricity"];
+  
+  for (let i = 1; i <= 40; i++) {
+    const id = "AAPV-2026-" + String(1000 - i).padStart(4, '0');
+    const d = districts[i % districts.length];
+    const cat = categories[i % categories.length];
+    const sev = (0.60 + (i % 38) * 0.01).toFixed(2);
+    rows.push([id, "2026-08-" + String(10 + (i % 20)).padStart(2, '0'), i % 2 === 0 ? "Citizen" : "Community", d, cat, `Field verification for ${cat.toLowerCase()} grievance at ${d} block`, sev, "State Innovation Taskforce", "Validated", String(7 + (i % 14))]);
+  }
+
+  const csvContent = rows.map(e => e.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(",")).join("\n");
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", "Jharkhand_AapV_Grievance_Intelligence_2026.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+
+  closeDownloadReportModal();
+  toast(currentLang === 'hi' ? 'सत्यापित CSV डेटासेट सफलतापूर्वक डाउनलोड किया गया!' : (currentLang === 'sat' ? 'CSV ᱰᱟᱴᱟᱥᱮᱴ ᱰᱟᱣᱩᱱᱞᱳᱰ ᱮᱱᱟ!' : 'Verified CSV Dataset successfully downloaded (2,481 records)!'));
+}
+
+function printAdminExecutiveReport() {
+  closeDownloadReportModal();
+  window.print();
+}
+
+function filterAdminTimeRange(val) {
+  const dict = translations[currentLang] || translations.en;
+  toast((dict.admin_triage_queue || 'Triage queue') + ` • Filtered to ${val} days`);
+  
+  const barTracks = {
+    Health: val === '30' ? '92%' : (val === '365' ? '78%' : '86%'),
+    Edu: val === '30' ? '65%' : (val === '365' ? '74%' : '70%'),
+    Agri: val === '30' ? '58%' : (val === '365' ? '48%' : '51%'),
+    Env: val === '30' ? '45%' : (val === '365' ? '35%' : '40%'),
+    Water: val === '30' ? '32%' : (val === '365' ? '28%' : '23%')
+  };
+
+  const elH = document.getElementById('barTrackHealth'); if (elH) elH.style.width = barTracks.Health;
+  const elE = document.getElementById('barTrackEdu'); if (elE) elE.style.width = barTracks.Edu;
+  const elA = document.getElementById('barTrackAgri'); if (elA) elA.style.width = barTracks.Agri;
+  const elEnv = document.getElementById('barTrackEnv'); if (elEnv) elEnv.style.width = barTracks.Env;
+  const elW = document.getElementById('barTrackWater'); if (elW) elW.style.width = barTracks.Water;
+}
+
+let currentTriageTicket = 'q1';
+const TRIAGE_TICKETS = {
+  q1: {
+    id: "AAPV-2026-0842",
+    title: "Handpump Contamination & Fluorosis",
+    district: "Giridih • Jamua Block",
+    category: "Water & Sanitation",
+    urgency: "High (0.92)",
+    transcript: "हमार गांव का चापाकल से पियर-पियर बदबूदार पानी निकल रहल बा। तीन गो लइका लोग के पेट खराब भइल बा। (Yellow smelly water from village handpump; 3 children fell ill).",
+    suggestedDept: "District Jal Swachhata Dept (DWSD)",
+    defaultNotes: "Dispatch DWSD water testing kit to Jamua within 48h. Direct BIT Mesra team to evaluate field filter pilot."
+  },
+  q2: {
+    id: "AAPV-2026-0789",
+    title: "Broken School Toilets & Running Water",
+    district: "Dumka • Shikaripara Block",
+    category: "Education & Infrastructure",
+    urgency: "Medium (0.76)",
+    transcript: "ᱟᱥᱲᱟ ᱨᱮ ᱴᱚᱭᱞᱮᱴ ᱨᱟᱹᱯᱩᱫ ᱟᱠᱟᱱᱟ, ᱫᱟᱜ ᱦᱚᱸ ᱵᱟᱹᱱᱩᱜᱼᱟ᱾ ᱠᱩᱲᱤ ᱜᱤᱫᱽᱨᱟᱹ ᱠᱚ ᱟᱹᱰᱤ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱨᱮ ᱢᱮᱱᱟᱜ ᱠᱚᱣᱟ᱾ (School toilet damaged, no water. Girl students facing severe difficulties).",
+    suggestedDept: "Dept of School Education & Literacy",
+    defaultNotes: "Allocate priority composite school grant for immediate plumbing repairs and rooftop rain harvesting."
+  },
+  q3: {
+    id: "AAPV-2026-0710",
+    title: "Crop Irrigation Scheduling Failure",
+    district: "Hazaribagh • Barhi Block",
+    category: "Agriculture & Co-op",
+    urgency: "Low (0.58)",
+    transcript: "नहर से पानी समय पर नहीं मिल रहा है, धान की रोपाई पिछड़ रही है। पंप मरम्मत के लिए सहयोग चाहिए। (Canal water not reaching on time, paddy transplanting delayed).",
+    suggestedDept: "Dept of Agriculture & Co-op",
+    defaultNotes: "Synchronize canal release with Barhi Krishi Vigyan Kendra advisories and inspect diesel pumps."
+  }
+};
+
+function openTriageReviewModal(ticketKey) {
+  currentTriageTicket = ticketKey;
+  const ticket = TRIAGE_TICKETS[ticketKey] || TRIAGE_TICKETS.q1;
+  const modal = document.getElementById('adminTriageModal');
+  const detailsBox = document.getElementById('triageDetailsBox');
+  const badge = document.getElementById('triageQueueBadge');
+  const notes = document.getElementById('triageOfficerNotes');
+
+  if (badge) badge.textContent = `AI Triage • Ticket #${ticket.id}`;
+  if (notes) notes.value = ticket.defaultNotes;
+
+  if (detailsBox) {
+    detailsBox.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px;">
+        <div>
+          <strong style="font-size:16px; color:var(--ink);">${ticket.title}</strong>
+          <div style="color:var(--muted); font-size:12px; margin-top:2px;">📍 ${ticket.district} • 🏷️ ${ticket.category}</div>
+        </div>
+        <span class="tag water" style="font-size:11px; padding:3px 10px;">${ticket.urgency}</span>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; margin-top:8px;">
+        <small style="display:block; font-size:11px; text-transform:uppercase; font-weight:700; color:var(--accent); margin-bottom:4px;">🎙️ AI Voice Transcript (Sarvam AI STT):</small>
+        <p style="font-size:13px; color:var(--ink); margin:0; line-height:1.5; font-style:italic;">"${ticket.transcript}"</p>
+      </div>
+    `;
+  }
+
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+}
+
+function closeTriageReviewModal() {
+  const modal = document.getElementById('adminTriageModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function handleAdminTriageBackdrop(event) {
+  if (event.target && event.target.id === 'adminTriageModal') {
+    closeTriageReviewModal();
+  }
+}
+
+function submitTriageAction(event) {
+  if (event) event.preventDefault();
+  const dept = document.getElementById('triageDeptSelect')?.value || 'Departmental Officer';
+  const priority = document.getElementById('triagePrioritySelect')?.value || 'High';
+  
+  const cardEl = document.getElementById(`triageCard-${currentTriageTicket}`);
+  if (cardEl) {
+    cardEl.style.transition = 'all 0.3s ease';
+    cardEl.style.opacity = '0.4';
+    cardEl.style.pointerEvents = 'none';
+    const btn = cardEl.querySelector('button');
+    if (btn) {
+      btn.textContent = 'Dispatched ✓';
+      btn.disabled = true;
+      btn.style.background = '#16a34a';
+      btn.style.color = '#fff';
+    }
+  }
+
+  closeTriageReviewModal();
+  toast(currentLang === 'hi' ? `टिकट #${currentTriageTicket.toUpperCase()} सफलतापूर्वक ${dept} को प्रेषित किया गया!` : (currentLang === 'sat' ? `ᱴᱤᱠᱮᱴ ᱠᱩᱞ ᱮᱱᱟ!` : `Ticket #${currentTriageTicket.toUpperCase()} dispatched to ${dept} (${priority}) ✓`));
+}
+
+// ==========================================================================
+// UNIVERSITY PORTAL & CHALLENGE REVIEW HANDLERS
+// ==========================================================================
+function openCreateProjectModal() {
+  const modal = document.getElementById('univCreateProjectModal');
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+}
+
+function closeCreateProjectModal() {
+  const modal = document.getElementById('univCreateProjectModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function handleUnivCreateProjectBackdrop(event) {
+  if (event.target && event.target.id === 'univCreateProjectModal') {
+    closeCreateProjectModal();
+  }
+}
+
+function handleCreateProjectSubmit(event) {
+  if (event) event.preventDefault();
+  const title = document.getElementById('univNewProjectTitle')?.value || 'New Research Project';
+  const college = document.getElementById('univNewProjectCollege')?.value || 'University Lab';
+  const lead = document.getElementById('univNewProjectLead')?.value || 'Faculty Mentor';
+  const challenge = document.getElementById('univNewProjectChallenge')?.value || 'Grassroots Challenge';
+
+  const newProject = {
+    id: "JH-UNIV-" + Date.now().toString().slice(-4),
+    title,
+    college,
+    lead,
+    challenge,
+    date: new Date().toLocaleDateString()
+  };
+
+  try {
+    const existing = JSON.parse(localStorage.getItem('aapv_univ_projects') || '[]');
+    existing.unshift(newProject);
+    localStorage.setItem('aapv_univ_projects', JSON.stringify(existing));
+  } catch (e) {}
+
+  closeCreateProjectModal();
+  toast(currentLang === 'hi' ? `परियोजना "${title}" पंजीकृत! सीएसआर सह-वित्तपोषण के लिए प्रस्तुत।` : (currentLang === 'sat' ? `ᱯᱨᱳᱡᱮᱠᱴ ᱨᱮᱡᱤᱥᱴᱟᱨ ᱮᱱᱟ!` : `Project "${title}" registered! Submitted for CSR matching.`));
+  
+  const form = document.getElementById('univCreateProjectForm');
+  if (form) form.reset();
+}
+
+let activeChallengeKey = 'water';
+const UNIV_CHALLENGES = {
+  water: {
+    title: "Low-Cost Fluoride & Heavy Metal Water Filtration",
+    badge: "JH-2026-W01 • Dumka (Shikaripara)",
+    domain: "Water Engineering • Environmental Biotech",
+    urgency: "High Priority • 8 Villages Affected",
+    statement: "Handpumps across 8 villages in Shikaripara exhibit fluoride concentration of 3.8 mg/L (WHO permissible limit: 1.5 mg/L). Citizens suffer from skeletal fluorosis, dental discoloration, and severe joint stiffness.",
+    fieldConstraints: [
+      "Zero continuous electricity supply at pump sites; requires gravity or solar-assist operation.",
+      "Local community maintenance using indigenous clay, activated alumina, or bio-char media.",
+      "Capital expenditure target below ₹25,000 per handpump filtration unit."
+    ],
+    grant: "₹3,50,000 CSR Grant available from Jharkhand State Innovation Fund & Tata Steel Foundation."
+  },
+  agri: {
+    title: "Smart Evaporative Cold-Storage for Tomato Farmers",
+    badge: "JH-2026-A02 • Hazaribagh & Ranchi",
+    domain: "Agricultural Eng. • IoT & Thermal Automation",
+    urgency: "Medium Priority • 42 Farmers Co-operative",
+    statement: "Smallholder tomato farmers experience 35% post-harvest spoilage during March-June due to lack of decentralized cold storage, forcing distress sales at ₹3/kg.",
+    fieldConstraints: [
+      "Must utilize zero-energy cool chamber (ZECC) design with solar misting nozzles.",
+      "Internal temperature maintained between 16°C–20°C with 85% relative humidity.",
+      "Capacity for 2.5 metric tonnes storage with battery backup."
+    ],
+    grant: "₹2,80,000 Seed Grant available via NABARD Rural Innovation Pipeline."
+  },
+  env: {
+    title: "Decentralized Village Plastic Waste Pyrolysis & Recovery",
+    badge: "JH-2026-E03 • Ranchi & Ramgarh",
+    domain: "Chemical Eng. • Waste Management • Circular Economy",
+    urgency: "High Priority • Peri-urban Watershed",
+    statement: "Multi-layered plastic packaging from weekly rural haats clogs storm drains and agricultural runoff streams, leaching microplastics into irrigation reservoirs.",
+    fieldConstraints: [
+      "Decentralized batch shredding and thermal recovery under 300°C without toxic dioxin fumes.",
+      "Produces aggregate binding additive for rural road construction (PMGSY compliance).",
+      "Low operating skill requirement for self-help group (SHG) management."
+    ],
+    grant: "₹4,20,000 Innovation Pilot Co-funded by State Urban Development Agency (SUDA)."
+  }
+};
+
+function openChallengeModal(challengeKey, btn) {
+  activeChallengeKey = challengeKey;
+  const challenge = UNIV_CHALLENGES[challengeKey] || UNIV_CHALLENGES.water;
+  const modal = document.getElementById('univReviewChallengeModal');
+  const badge = document.getElementById('univChallengeBadge');
+  const title = document.getElementById('univChallengeModalTitle');
+  const content = document.getElementById('univChallengeDetailContent');
+
+  if (badge) badge.textContent = challenge.badge;
+  if (title) title.textContent = challenge.title;
+
+  if (content) {
+    content.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+        <div>
+          <span class="tag water" style="font-size:11px; padding:3px 10px;">${challenge.domain}</span>
+          <span style="display:block; font-size:12px; color:var(--muted); margin-top:4px;">🚨 ${challenge.urgency}</span>
+        </div>
+      </div>
+      <div style="margin-bottom:12px;">
+        <strong style="display:block; font-size:13px; color:var(--ink); margin-bottom:4px;">Field Problem Statement:</strong>
+        <p style="font-size:13px; color:var(--muted); line-height:1.5; margin:0;">${challenge.statement}</p>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; margin-bottom:12px;">
+        <strong style="display:block; font-size:12px; text-transform:uppercase; color:var(--accent); font-weight:700; margin-bottom:6px;">Key Field Constraints & Guidelines:</strong>
+        <ul style="margin:0; padding-left:18px; font-size:12.5px; color:var(--ink); line-height:1.6;">
+          ${challenge.fieldConstraints.map(c => `<li>${c}</li>`).join('')}
+        </ul>
+      </div>
+      <div style="background:rgba(16, 185, 129, 0.08); border:1px solid rgba(16, 185, 129, 0.25); border-radius:8px; padding:10px 14px; font-size:12.5px; color:#059669;">
+        💰 <strong>Matching Support:</strong> ${challenge.grant}
+      </div>
+    `;
+  }
+
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+}
+
+function closeChallengeModal() {
+  const modal = document.getElementById('univReviewChallengeModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function handleUnivReviewChallengeBackdrop(event) {
+  if (event.target && event.target.id === 'univReviewChallengeModal') {
+    closeChallengeModal();
+  }
+}
+
+function claimCurrentChallenge() {
+  const challenge = UNIV_CHALLENGES[activeChallengeKey] || UNIV_CHALLENGES.water;
+  const btn = document.getElementById(`univBtn-${activeChallengeKey}`);
+  if (btn) {
+    btn.textContent = 'Claimed by Your Lab ✓';
+    btn.disabled = true;
+    btn.style.background = '#16a34a';
+  }
+  closeChallengeModal();
+  toast(currentLang === 'hi' ? `चुनौती "${challenge.title}" को आपकी लैब द्वारा स्वीकार कर लिया गया है!` : (currentLang === 'sat' ? `ᱮᱴᱠᱮᱴᱚᱬᱮ ᱞᱮᱵᱽ ᱦᱟᱛᱟᱣ ᱠᱮᱫᱟᱭ!` : `Challenge "${challenge.title}" claimed for your University Lab! ✓`));
+}
+
+function printChallengeBrief() {
+  closeChallengeModal();
+  window.print();
+}
+
+// ==========================================================================
+// INDUSTRY & CSR FILTERING, PLEDGES & COMMITMENTS HANDLERS
+// ==========================================================================
+function filterIndustryProjects() {
+  const searchInput = document.getElementById('indSearchInput');
+  const domainSelect = document.getElementById('indDomainFilter');
+  const supportSelect = document.getElementById('indSupportFilter');
+  const noResults = document.getElementById('indNoResults');
+
+  const query = (searchInput ? searchInput.value : '').toLowerCase().trim();
+  const domain = domainSelect ? domainSelect.value : 'all';
+  const support = supportSelect ? supportSelect.value : 'all';
+
+  const cards = document.querySelectorAll('#industryCardsGrid .problemcard');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const cardDomain = card.getAttribute('data-domain') || '';
+    const cardSupport = (card.getAttribute('data-support') || '').toLowerCase();
+    const cardDistrict = (card.getAttribute('data-district') || '').toLowerCase();
+    const cardTitle = (card.getAttribute('data-title') || '').toLowerCase();
+    const cardText = card.innerText.toLowerCase();
+
+    const matchesDomain = (domain === 'all' || cardDomain === domain);
+    const matchesSupport = (support === 'all' || cardSupport.includes(support));
+    const matchesQuery = (!query || cardTitle.includes(query) || cardDistrict.includes(query) || cardText.includes(query));
+
+    if (matchesDomain && matchesSupport && matchesQuery) {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (noResults) {
+    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+  }
+}
+
+let activePledgeProject = 'water';
+const PLEDGE_PROJECTS = {
+  water: {
+    title: "Rural Water Purification",
+    district: "Dumka",
+    org: "BIT Mesra • Student & Faculty Team",
+    totalReq: "₹5,00,000",
+    openNeeds: "₹2L seed funding, fabrication access, field testing with 50 households"
+  },
+  agri: {
+    title: "Smart Irrigation for Small Farms",
+    district: "Hazaribagh",
+    org: "VBU Hazaribagh • AgriTech Innovation Group",
+    totalReq: "₹2,50,000",
+    openNeeds: "IoT sensors, prototype machining, 2 village demo plots"
+  },
+  env: {
+    title: "Community Plastic Recovery",
+    district: "Ranchi",
+    org: "Ranchi University + Swachh Jharkhand NGO",
+    totalReq: "₹8,00,000",
+    openNeeds: "CSR equipment grant, plastic pelletizing partner, collection logistics"
+  }
+};
+
+function openPledgeModal(projectId, btn) {
+  activePledgeProject = projectId;
+  const project = PLEDGE_PROJECTS[projectId] || PLEDGE_PROJECTS.water;
+  const modal = document.getElementById('indPledgeModal');
+  const targetBox = document.getElementById('indPledgeTargetBox');
+
+  if (targetBox) {
+    targetBox.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+        <div>
+          <strong style="font-size:16px; color:var(--ink);">${project.title}</strong>
+          <div style="color:var(--muted); font-size:12px;">📍 ${project.district} • 🏛️ ${project.org}</div>
+        </div>
+        <div style="text-align:right;">
+          <b style="font-size:15px; color:var(--ink);">${project.totalReq}</b>
+          <small style="display:block; font-size:10px; text-transform:uppercase; color:var(--muted);">Requirement</small>
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--ink); margin:0; line-height:1.4;"><strong>Open Support Needs:</strong> ${project.openNeeds}</p>
+    `;
+  }
+
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+}
+
+function closePledgeModal() {
+  const modal = document.getElementById('indPledgeModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function handleIndPledgeBackdrop(event) {
+  if (event.target && event.target.id === 'indPledgeModal') {
+    closePledgeModal();
+  }
+}
+
+function handlePledgeSubmit(event) {
+  if (event) event.preventDefault();
+  const orgName = document.getElementById('pledgeOrgName')?.value || 'Partner Enterprise';
+  const repName = document.getElementById('pledgeRepName')?.value || 'CSR Lead';
+  const email = document.getElementById('pledgeEmail')?.value || '';
+  const phone = document.getElementById('pledgePhone')?.value || '';
+  const amount = document.getElementById('pledgeAmountInput')?.value || 'In-Kind Support';
+  const notes = document.getElementById('pledgeNotes')?.value || '';
+
+  const types = [];
+  document.querySelectorAll('#indPledgeForm input[name="pledgeTypes"]:checked').forEach(cb => {
+    types.push(cb.value);
+  });
+
+  const project = PLEDGE_PROJECTS[activePledgeProject] || PLEDGE_PROJECTS.water;
+
+  const pledgeRecord = {
+    id: "CSR-" + Date.now().toString().slice(-4),
+    projectTitle: project.title,
+    district: project.district,
+    orgName,
+    repName,
+    email,
+    phone,
+    amount,
+    types: types.length ? types : ["Corporate Partnership"],
+    notes,
+    date: new Date().toLocaleDateString(),
+    status: "Active Commitment"
+  };
+
+  try {
+    const existing = JSON.parse(localStorage.getItem('aapv_csr_commitments') || '[]');
+    existing.unshift(pledgeRecord);
+    localStorage.setItem('aapv_csr_commitments', JSON.stringify(existing));
+  } catch (e) {}
+
+  closePledgeModal();
+  toast(currentLang === 'hi' ? `धन्यवाद ${orgName}! "${project.title}" के लिए आपका सीएसआर सहयोग संकल्प पंजीकृत हुआ।` : (currentLang === 'sat' ? `ᱥᱟᱨᱦᱟᱣ ${orgName}! ᱟᱢᱟᱜ CSR ᱜᱚᱲᱚ ᱨᱮᱡᱤᱥᱴᱟᱨ ᱮᱱᱟ᱾` : `Thank you ${orgName}! CSR Pledge confirmed for "${project.title}".`));
+
+  const form = document.getElementById('indPledgeForm');
+  if (form) form.reset();
+}
+
+function openMyCommitmentsModal() {
+  const modal = document.getElementById('indCommitmentsModal');
+  const list = document.getElementById('indCommitmentsList');
+
+  let commitments = [];
+  try {
+    commitments = JSON.parse(localStorage.getItem('aapv_csr_commitments') || '[]');
+  } catch (e) {}
+
+  if (!commitments.length) {
+    commitments = [
+      {
+        id: "CSR-9410",
+        projectTitle: "Rural Water Purification (Dumka)",
+        district: "Dumka",
+        orgName: "Tata Steel CSR Foundation",
+        amount: "₹2,00,000 Grant + Fabrication Tooling",
+        types: ["Funding Grant", "Manufacturing Access"],
+        date: "12 Sept 2026",
+        status: "Active Sponsoring"
+      },
+      {
+        id: "CSR-8821",
+        projectTitle: "Solar Microgrid Diagnostic Sensors",
+        district: "Giridih",
+        orgName: "Adani Green Energy Ltd",
+        amount: "₹1,50,000 Sensor Donation",
+        types: ["Equipment & Hardware", "Field Sandboxing"],
+        date: "04 Sept 2026",
+        status: "Field Pilot Phase"
+      }
+    ];
+  }
+
+  if (list) {
+    list.innerHTML = commitments.map(c => `
+      <div style="background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+            <strong style="font-size:14.5px; color:var(--ink);">${c.projectTitle}</strong>
+            <span class="tag water" style="font-size:10px; padding:2px 8px;">${c.id}</span>
+          </div>
+          <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">🏢 ${c.orgName} • 📍 ${c.district} • 📅 ${c.date}</div>
+          <div style="font-size:12.5px; color:var(--ink);">
+            <strong>Commitment:</strong> <span style="color:#059669; font-weight:600;">${c.amount}</span>
+          </div>
+          <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:4px;">
+            ${(c.types || []).map(t => `<span style="background:var(--bg); border:1px solid var(--line); font-size:11px; padding:2px 8px; border-radius:4px; color:var(--ink);">${t}</span>`).join('')}
+          </div>
+        </div>
+        <span style="background:rgba(16,185,129,0.12); color:#059669; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px; white-space:nowrap;">${c.status}</span>
+      </div>
+    `).join('');
+  }
+
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.classList.add('modal-open');
+  }
+}
+
+function closeMyCommitmentsModal() {
+  const modal = document.getElementById('indCommitmentsModal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.classList.remove('modal-open');
+  }
+}
+
+function handleIndCommitmentsBackdrop(event) {
+  if (event.target && event.target.id === 'indCommitmentsModal') {
+    closeMyCommitmentsModal();
+  }
+}
+
+function printCSRCertificate() {
+  closeMyCommitmentsModal();
+  window.print();
+}
+
+// Backward-compatibility alias
+function supportProject(btn) {
+  const card = btn ? btn.closest('.problemcard') : null;
+  const domain = card ? card.getAttribute('data-domain') : 'water';
+  openPledgeModal(domain || 'water', btn);
+}
 
 function toggleTapToHearMode() {
   isTapToHearActive = !isTapToHearActive;

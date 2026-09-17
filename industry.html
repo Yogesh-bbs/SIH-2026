@@ -81,17 +81,30 @@
       <h1 data-i18n="ind_title">Find problems worth solving.</h1>
       <p data-i18n="ind_subtitle">Support credible projects with funding, expertise, equipment or field access.</p>
     </div>
-    <button class="outline" data-i18n="btn_my_commitments">My commitments</button>
+    <button class="outline" onclick="openMyCommitmentsModal()" data-i18n="btn_my_commitments">My commitments</button>
   </div>
 
-  <div class="filter">
-    <input placeholder="Search projects, technologies, districts…" data-i18n-placeholder="ind_search_placeholder">
-    <button data-i18n="btn_all_domains">All domains ▾</button>
-    <button data-i18n="btn_support_needed">Support needed ▾</button>
+  <div class="filter ind-filter-bar">
+    <div class="ind-search-wrap">
+      <input id="indSearchInput" placeholder="Search projects, technologies, districts…" data-i18n-placeholder="ind_search_placeholder" oninput="filterIndustryProjects()">
+    </div>
+    <select id="indDomainFilter" class="ind-filter-select" onchange="filterIndustryProjects()">
+      <option value="all" data-i18n="filter_all_domains">All Domains</option>
+      <option value="water" data-i18n="domain_water">Water</option>
+      <option value="agri" data-i18n="domain_agriculture">Agriculture</option>
+      <option value="env" data-i18n="domain_environment">Environment</option>
+    </select>
+    <select id="indSupportFilter" class="ind-filter-select" onchange="filterIndustryProjects()">
+      <option value="all" data-i18n="filter_all_support">All Support Needed</option>
+      <option value="funding" data-i18n="support_funding">Funding / Grants</option>
+      <option value="equipment" data-i18n="support_equipment">Equipment / Components</option>
+      <option value="field" data-i18n="support_field">Field Testing</option>
+      <option value="mentorship" data-i18n="support_mentorship">Mentorship</option>
+    </select>
   </div>
 
-  <div class="cards3">
-    <article class="problemcard featured">
+  <div class="cards3" id="industryCardsGrid">
+    <article class="problemcard featured" data-domain="water" data-support="funding,equipment,field,mentorship" data-district="Dumka" data-title="Rural Water Purification">
       <span class="tag water" data-i18n="domain_water">WATER</span>
       <h3>Rural Water Purification</h3>
       <p>Dumka • University-led prototype</p>
@@ -105,10 +118,10 @@
         <li>Field testing</li>
         <li>Technical mentorship</li>
       </ul>
-      <button class="primary full" onclick="supportProject(this)" data-i18n="btn_i_can_help">I can help</button>
+      <button class="primary full" onclick="openPledgeModal('water', this)" data-i18n="btn_i_can_help">I can help</button>
     </article>
 
-    <article class="problemcard">
+    <article class="problemcard" data-domain="agri" data-support="equipment,field" data-district="Hazaribagh" data-title="Smart irrigation for small farms">
       <span class="tag agri" data-i18n="domain_agriculture">AGRICULTURE</span>
       <h3>Smart irrigation for small farms</h3>
       <p>Hazaribagh • Student project</p>
@@ -121,10 +134,10 @@
         <li>Prototype manufacturing</li>
         <li>Field partner</li>
       </ul>
-      <button class="primary full" onclick="supportProject(this)" data-i18n="btn_i_can_help">I can help</button>
+      <button class="primary full" onclick="openPledgeModal('agri', this)" data-i18n="btn_i_can_help">I can help</button>
     </article>
 
-    <article class="problemcard">
+    <article class="problemcard" data-domain="env" data-support="funding,equipment" data-district="Ranchi" data-title="Community plastic recovery">
       <span class="tag env" data-i18n="domain_environment">ENVIRONMENT</span>
       <h3>Community plastic recovery</h3>
       <p>Ranchi • University + NGO</p>
@@ -137,8 +150,14 @@
         <li>Recycling partner</li>
         <li>Logistics support</li>
       </ul>
-      <button class="primary full" onclick="supportProject(this)" data-i18n="btn_i_can_help">I can help</button>
+      <button class="primary full" onclick="openPledgeModal('env', this)" data-i18n="btn_i_can_help">I can help</button>
     </article>
+
+    <div id="indNoResults" style="display:none; grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--muted); background: var(--card); border-radius: 12px; border: 1px dashed var(--line);">
+      <span style="font-size: 32px; display:block; margin-bottom: 8px;">🔍</span>
+      <strong data-i18n="ind_no_match_title">No projects match your filter criteria</strong>
+      <p data-i18n="ind_no_match_sub" style="font-size: 13px; margin-top: 4px;">Try selecting "All Domains" or clearing search keywords.</p>
+    </div>
   </div>
 
   <section class="panel" id="industryImpactPanel" data-narrate-item>
@@ -165,7 +184,7 @@
           <p class="eyebrow" data-i18n="ind_why_eyebrow">WHY PARTNER WITH AAPV? • MEASURABLE ROI</p>
           <h2 data-i18n="ind_why_title">Why help solve grassroots problems?</h2>
         </div>
-        <button class="narrate-btn narrate-card-btn" type="button" onclick="narrateElement(this, '#indWhySection')" aria-label="Listen to industry benefits" title="Listen">
+        <button class="narrate-btn" type="button" onclick="narrateElement(this, '#indWhySection')" aria-label="Listen to industry benefits" title="Listen">
           <span class="speaker-icon">🔊</span> <span class="narrate-label" data-i18n="narrate_btn_label">Listen</span>
         </button>
       </div>
@@ -449,6 +468,101 @@
       <div class="team-member-name">Tanu</div>
       <div class="team-member-name">Tapas</div>
       <div class="team-member-name">Yogesh</div>
+    </div>
+  </div>
+</div>
+
+<!-- Industry Pledge Support Modal -->
+<div id="indPledgeModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="indPledgeModalTitle" onclick="handleIndPledgeBackdrop(event)">
+  <div class="login-modal-card feature-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closePledgeModal()" aria-label="Close modal">✕</button>
+    <div class="login-modal-header">
+      <div class="login-gov-badge login-admin-badge" style="background: rgba(16, 185, 129, 0.08); color: #059669; border-color: rgba(16, 185, 129, 0.2);">
+        <span class="badge-emblem">🏢</span>
+        <span data-i18n="ind_modal_badge">Corporate CSR & Innovation Co-Funding</span>
+      </div>
+      <h2 id="indPledgeModalTitle" data-i18n="ind_pledge_title">Partner with Grassroots Innovation</h2>
+      <p class="login-modal-sub" id="indPledgeModalSub">Commit financial grants, testing facilities, or mentorship to accelerate real-world implementation in Jharkhand.</p>
+    </div>
+
+    <div class="modal-section-box" id="indPledgeTargetBox">
+      <!-- Target project summary dynamically updated -->
+    </div>
+
+    <form id="indPledgeForm" onsubmit="handlePledgeSubmit(event)">
+      <div class="modal-form-grid">
+        <div class="modal-field">
+          <label for="pledgeOrgName" data-i18n="ind_lbl_org">Enterprise / Organization Name *</label>
+          <input type="text" id="pledgeOrgName" required placeholder="e.g., Tata Steel CSR Foundation / JSW" data-i18n-placeholder="ind_ph_org">
+        </div>
+        <div class="modal-field">
+          <label for="pledgeRepName" data-i18n="ind_lbl_rep">Representative & Title *</label>
+          <input type="text" id="pledgeRepName" required placeholder="e.g., Rajesh Sharma, CSR Lead" data-i18n-placeholder="ind_ph_rep">
+        </div>
+      </div>
+
+      <div class="modal-form-grid">
+        <div class="modal-field">
+          <label for="pledgeEmail" data-i18n="ind_lbl_email">Corporate Email Address *</label>
+          <input type="email" id="pledgeEmail" required placeholder="e.g., csr@tatasteel.com" data-i18n-placeholder="ind_ph_email">
+        </div>
+        <div class="modal-field">
+          <label for="pledgePhone" data-i18n="ind_lbl_phone">Official Phone / WhatsApp *</label>
+          <input type="tel" id="pledgePhone" required placeholder="e.g., +91 98765 43210" data-i18n-placeholder="ind_ph_phone">
+        </div>
+      </div>
+
+      <div class="modal-field">
+        <label data-i18n="ind_lbl_support_types">Support Contribution Type(s) *</label>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-top: 4px;">
+          <label class="pledge-check-label"><input type="checkbox" name="pledgeTypes" value="Funding Grant" checked> <span data-i18n="support_funding">Financial Grant / Co-funding</span></label>
+          <label class="pledge-check-label"><input type="checkbox" name="pledgeTypes" value="Equipment & Hardware" checked> <span data-i18n="support_equipment">Equipment / Component Donation</span></label>
+          <label class="pledge-check-label"><input type="checkbox" name="pledgeTypes" value="Manufacturing Access"> <span data-i18n="support_mfg">Prototype Fabrication & Tooling</span></label>
+          <label class="pledge-check-label"><input type="checkbox" name="pledgeTypes" value="Field Sandboxing"> <span data-i18n="support_field">Field Testing & Rural Pilots</span></label>
+          <label class="pledge-check-label"><input type="checkbox" name="pledgeTypes" value="Executive Mentorship"> <span data-i18n="support_mentorship">Corporate Engineering Mentorship</span></label>
+        </div>
+      </div>
+
+      <div class="modal-field">
+        <label for="pledgeAmountInput" data-i18n="ind_lbl_grant_amount">Proposed Grant Value (Optional, ₹ INR)</label>
+        <input type="text" id="pledgeAmountInput" placeholder="e.g., ₹2,00,000 or equipment equivalent" data-i18n-placeholder="ind_ph_amount">
+      </div>
+
+      <div class="modal-field">
+        <label for="pledgeNotes" data-i18n="ind_lbl_notes">Collaboration Scope & Special Terms</label>
+        <textarea id="pledgeNotes" rows="2" placeholder="Briefly specify milestones, disbursement conditions, or mentorship schedule…" data-i18n-placeholder="ind_ph_notes"></textarea>
+      </div>
+
+      <div class="modal-actions-row">
+        <button type="button" class="btn-secondary" onclick="closePledgeModal()" data-i18n="btn_cancel">Cancel</button>
+        <button type="submit" class="primary" data-i18n="btn_confirm_pledge">Confirm CSR Support Pledge ✓</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- My Commitments Modal -->
+<div id="indCommitmentsModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="indCommitmentsModalTitle" onclick="handleIndCommitmentsBackdrop(event)">
+  <div class="login-modal-card feature-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closeMyCommitmentsModal()" aria-label="Close modal">✕</button>
+    <div class="login-modal-header">
+      <div class="login-gov-badge login-admin-badge" style="background: rgba(16, 185, 129, 0.08); color: #059669; border-color: rgba(16, 185, 129, 0.2);">
+        <span class="badge-emblem">💼</span>
+        <span data-i18n="ind_commitments_badge">Corporate Registry • Active CSR Pledges</span>
+      </div>
+      <h2 id="indCommitmentsModalTitle" data-i18n="ind_commitments_title">My Active CSR Commitments</h2>
+      <p class="login-modal-sub" data-i18n="ind_commitments_sub">Review and track your company's official problem sponsorships and university partnerships.</p>
+    </div>
+
+    <div id="indCommitmentsList" style="display: flex; flex-direction: column; gap: 12px; max-height: 380px; overflow-y: auto; padding-right: 4px;">
+      <!-- Populated dynamically via renderCommitmentsList() -->
+    </div>
+
+    <div class="modal-actions-row" style="margin-top: 20px;">
+      <button type="button" class="btn-secondary" onclick="closeMyCommitmentsModal()" data-i18n="btn_close">Close</button>
+      <button type="button" class="primary" onclick="printCSRCertificate()">
+        <span>🖨️</span> <span data-i18n="btn_print_csr_cert">Print CSR Impact Certificate</span>
+      </button>
     </div>
   </div>
 </div>

@@ -81,7 +81,7 @@
       <h1 data-i18n="admin_title">Innovation command centre</h1>
       <p data-i18n="admin_subtitle">From community voice to measurable action.</p>
     </div>
-    <button class="outline" data-i18n="btn_download_report">Download report</button>
+    <button class="outline" id="downloadReportBtn" onclick="openDownloadReportModal()" data-i18n="btn_download_report">Download report</button>
   </div>
 
   <div class="metrics">
@@ -111,51 +111,55 @@
     <section class="panel">
       <div class="panelhead">
         <h2 data-i18n="admin_problems_domain">Problems by domain</h2>
-        <span data-i18n="admin_last_90">Last 90 days ▾</span>
+        <select id="adminTimeRangeSelect" class="ind-filter-select" onchange="filterAdminTimeRange(this.value)" style="padding: 4px 12px; font-size: 11.5px;">
+          <option value="30">Last 30 days</option>
+          <option value="90" selected data-i18n="admin_last_90">Last 90 days ▾</option>
+          <option value="365">Last 1 year</option>
+        </select>
       </div>
-      <div class="bars">
-        <p><span data-i18n="domain_healthcare">Healthcare</span> <b>31%</b></p>
-        <div class="bar-track"><i style="width:86%"></i></div>
-        <p><span data-i18n="domain_education">Education</span> <b>25%</b></p>
-        <div class="bar-track"><i style="width:70%"></i></div>
-        <p><span data-i18n="domain_agriculture">Agriculture</span> <b>18%</b></p>
-        <div class="bar-track"><i style="width:51%"></i></div>
-        <p><span data-i18n="domain_environment">Environment</span> <b>14%</b></p>
-        <div class="bar-track"><i style="width:40%"></i></div>
-        <p><span data-i18n="domain_water">Water</span> <b>8%</b></p>
-        <div class="bar-track"><i style="width:23%"></i></div>
+      <div class="bars" id="adminDomainBars">
+        <p><span data-i18n="domain_healthcare">Healthcare</span> <b id="barValHealth">31%</b></p>
+        <div class="bar-track"><i id="barTrackHealth" style="width:86%"></i></div>
+        <p><span data-i18n="domain_education">Education</span> <b id="barValEdu">25%</b></p>
+        <div class="bar-track"><i id="barTrackEdu" style="width:70%"></i></div>
+        <p><span data-i18n="domain_agriculture">Agriculture</span> <b id="barValAgri">18%</b></p>
+        <div class="bar-track"><i id="barTrackAgri" style="width:51%"></i></div>
+        <p><span data-i18n="domain_environment">Environment</span> <b id="barValEnv">14%</b></p>
+        <div class="bar-track"><i id="barTrackEnv" style="width:40%"></i></div>
+        <p><span data-i18n="domain_water">Water</span> <b id="barValWater">8%</b></p>
+        <div class="bar-track"><i id="barTrackWater" style="width:23%"></i></div>
       </div>
     </section>
 
     <section class="panel">
       <div class="panelhead">
         <h2 data-i18n="admin_triage_queue">AI triage queue</h2>
-        <span class="pill" data-i18n="admin_pending_pill">38 pending</span>
+        <span class="pill" id="adminPendingPill" data-i18n="admin_pending_pill">38 pending</span>
       </div>
-      <div class="queue">
-        <article>
+      <div class="queue" id="adminTriageQueue">
+        <article id="triageCard-q1">
           <span class="dot high"></span>
           <div>
             <b data-i18n="admin_q1_title">Handpump contamination</b>
             <small data-i18n="admin_q1_meta">Giridih • Water • High</small>
           </div>
-          <button data-i18n="btn_review">Review</button>
+          <button type="button" data-i18n="btn_review" onclick="openTriageReviewModal('q1')">Review</button>
         </article>
-        <article>
+        <article id="triageCard-q2">
           <span class="dot med"></span>
           <div>
             <b data-i18n="admin_q2_title">Broken school toilets</b>
             <small data-i18n="admin_q2_meta">Dumka • Education • Medium</small>
           </div>
-          <button data-i18n="btn_review">Review</button>
+          <button type="button" data-i18n="btn_review" onclick="openTriageReviewModal('q2')">Review</button>
         </article>
-        <article>
+        <article id="triageCard-q3">
           <span class="dot low"></span>
           <div>
             <b data-i18n="admin_q3_title">Crop irrigation timing</b>
             <small data-i18n="admin_q3_meta">Hazaribagh • Agriculture • Low</small>
           </div>
-          <button data-i18n="btn_review">Review</button>
+          <button type="button" data-i18n="btn_review" onclick="openTriageReviewModal('q3')">Review</button>
         </article>
       </div>
     </section>
@@ -399,6 +403,103 @@
       <div class="team-member-name">Tapas</div>
       <div class="team-member-name">Yogesh</div>
     </div>
+  </div>
+</div>
+
+<!-- Admin Download Report Modal -->
+<div id="adminDownloadModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="adminDownloadModalTitle" onclick="handleAdminDownloadBackdrop(event)">
+  <div class="login-modal-card feature-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closeDownloadReportModal()" aria-label="Close modal">✕</button>
+    <div class="login-modal-header">
+      <div class="login-gov-badge login-admin-badge">
+        <span class="badge-emblem">📊</span>
+        <span>State Innovation Command • Official Reports</span>
+      </div>
+      <h2 id="adminDownloadModalTitle" data-i18n="admin_report_title">Grievance & Impact Intelligence Report</h2>
+      <p class="login-modal-sub" data-i18n="admin_report_sub">Export verified datasets covering 2,481 submissions, 24 districts, and cross-departmental resolution metrics for Q1-Q3 2026.</p>
+    </div>
+
+    <div class="modal-section-box">
+      <div class="modal-section-title" data-i18n="admin_report_preview_title">Dataset Summary (Live Synced)</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+        <div style="background: var(--card); padding: 10px; border-radius: 8px; border: 1px solid var(--line);">
+          <strong style="font-size: 16px; color: var(--ink);">2,481</strong>
+          <small style="display: block; color: var(--muted); font-size: 11px;" data-i18n="admin_rep_records">Records</small>
+        </div>
+        <div style="background: var(--card); padding: 10px; border-radius: 8px; border: 1px solid var(--line);">
+          <strong style="font-size: 16px; color: #16a34a;">1,734</strong>
+          <small style="display: block; color: var(--muted); font-size: 11px;" data-i18n="admin_rep_validated">Validated</small>
+        </div>
+        <div style="background: var(--card); padding: 10px; border-radius: 8px; border: 1px solid var(--line);">
+          <strong style="font-size: 16px; color: var(--accent);">24</strong>
+          <small style="display: block; color: var(--muted); font-size: 11px;" data-i18n="admin_rep_districts">Districts</small>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+      <button type="button" class="primary full" onclick="downloadAdminCsvReport()" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px;">
+        <span style="font-size: 18px;">📥</span>
+        <span data-i18n="btn_export_csv">Download Full CSV Dataset (.csv)</span>
+      </button>
+
+      <button type="button" class="btn-secondary" onclick="printAdminExecutiveReport()" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px;">
+        <span style="font-size: 18px;">🖨️</span>
+        <span data-i18n="btn_print_summary">Print / Save Executive PDF Briefing</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Admin AI Triage Review Modal -->
+<div id="adminTriageModal" class="login-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="adminTriageModalTitle" onclick="handleAdminTriageBackdrop(event)">
+  <div class="login-modal-card feature-modal-card" onclick="event.stopPropagation()">
+    <button class="login-close-btn" type="button" onclick="closeTriageReviewModal()" aria-label="Close modal">✕</button>
+    <div class="login-modal-header">
+      <div class="login-gov-badge login-admin-badge">
+        <span class="badge-emblem">⚡</span>
+        <span id="triageQueueBadge">AI Triage • Ticket #AAPV-2026-0842</span>
+      </div>
+      <h2 id="adminTriageModalTitle">Review & Route Grievance</h2>
+      <p class="login-modal-sub" id="adminTriageModalSub">Review AI voice transcript extraction, verify urgency, and dispatch to departmental officer or university innovation lab.</p>
+    </div>
+
+    <div class="modal-section-box" id="triageDetailsBox">
+      <!-- Injected via JavaScript based on ticket clicked -->
+    </div>
+
+    <form id="triageActionForm" onsubmit="submitTriageAction(event)">
+      <div class="modal-form-grid">
+        <div class="modal-field">
+          <label data-i18n="triage_lbl_priority">Severity / Priority</label>
+          <select id="triagePrioritySelect">
+            <option value="High" selected>High (Urgent Field Intervention)</option>
+            <option value="Medium">Medium (Scheduled Investigation)</option>
+            <option value="Low">Low (Policy & Planning)</option>
+          </select>
+        </div>
+        <div class="modal-field">
+          <label data-i18n="triage_lbl_dept">Dispatch Destination</label>
+          <select id="triageDeptSelect">
+            <option value="District Drinking Water & Sanitation Dept">District Jal Swachhata Dept (DWSD)</option>
+            <option value="Dept of School Education & Literacy">Dept of School Education & Literacy</option>
+            <option value="Dept of Agriculture, Animal Husbandry & Co-op">Dept of Agriculture & Co-op</option>
+            <option value="University Lab • BIT Mesra Rural Tech">University Lab • BIT Mesra Rural Tech</option>
+            <option value="Industry Partner • Tata Steel CSR">Industry Partner • Tata Steel CSR</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-field">
+        <label data-i18n="triage_lbl_notes">Administrative Officer Notes / Action Directive</label>
+        <textarea id="triageOfficerNotes" placeholder="Enter instructions for field inspection team or university researchers…">Direct technical team to conduct water spectrometry testing at Shikaripara handpumps within 48h.</textarea>
+      </div>
+
+      <div class="modal-actions-row">
+        <button type="button" class="btn-secondary" onclick="closeTriageReviewModal()" data-i18n="btn_cancel">Cancel</button>
+        <button type="submit" class="primary" data-i18n="btn_confirm_triage">Approve & Dispatch Ticket ✓</button>
+      </div>
+    </form>
   </div>
 </div>
 

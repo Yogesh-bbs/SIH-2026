@@ -2604,52 +2604,37 @@ textarea {
   border-radius: 6px;
 }
 
-/* ==========================================================================
-   Voice-Enabled Narration Accessibility Styles
-   ========================================================================== */
-.narrate-btn {
-  background: #e0f2fe;
-  border: 1px solid #bae6fd;
-  color: #0369a1;
-  border-radius: 6px;
-  padding: 3px 8px;
-  font-size: 11.5px;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
+/* Header & Card Alignment Helpers for Listen Buttons */
+.hero-title-row {
+  display: flex;
   align-items: center;
-  gap: 5px;
-  transition: all 0.18s ease;
-  vertical-align: middle;
-  margin-left: 6px;
-  user-select: none;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
-.narrate-btn:hover {
-  background: #e8f1fc;
-  border-color: #bcd4f2;
-  color: #1e5ba6;
-  transform: translateY(-1px);
+.hero-title-row .eyebrow {
+  margin: 0;
 }
 
-.narrate-btn.speaking {
-  background: #fef08a;
-  border-color: #facc15;
-  color: #854d0e;
-  animation: audioPulse 1.2s infinite ease-in-out;
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
 }
 
-@keyframes audioPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+.card-title-row h2,
+.card-title-row h3 {
+  margin: 0;
 }
 
-.speaking-highlight {
-  background: rgba(254, 240, 138, 0.42) !important;
-  outline: 2px solid #eab308 !important;
-  border-radius: 6px !important;
-  box-shadow: 0 0 16px rgba(234, 179, 8, 0.25) !important;
-  transition: all 0.25s ease !important;
+.step-num-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 /* Floating Voice Accessibility Bar */
@@ -3975,8 +3960,10 @@ textarea {
 }
 
 .narrate-icon-btn {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  max-width: 32px;
   padding: 0;
   display: inline-flex;
   align-items: center;
@@ -3984,6 +3971,7 @@ textarea {
   border-radius: 50%;
   font-size: 14px;
   flex-shrink: 0;
+  margin: 0;
 }
 
 .narrate-icon-btn .speaker-icon {
@@ -3992,8 +3980,10 @@ textarea {
 }
 
 .narrate-card-btn {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  max-width: 32px;
   padding: 0;
   display: inline-flex;
   align-items: center;
@@ -4001,11 +3991,22 @@ textarea {
   border-radius: 50%;
   font-size: 13.5px;
   flex-shrink: 0;
+  margin: 0;
 }
 
 .narrate-card-btn .speaker-icon {
   font-size: 13.5px;
   margin: 0;
+}
+
+.narrate-btn:has(.narrate-label),
+.narrate-btn.has-label {
+  width: auto !important;
+  height: auto !important;
+  min-width: unset !important;
+  max-width: unset !important;
+  padding: 5px 12px !important;
+  border-radius: 999px !important;
 }
 
 /* ==========================================================================
@@ -6665,6 +6666,265 @@ textarea {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   Interactive Modals for Admin, University, Industry & Filtering
+   ========================================================================== */
+.feature-modal-card {
+  max-width: 620px;
+  width: 94%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  padding: 28px 28px;
+}
+
+.modal-section-box {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.modal-section-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 600px) {
+  .modal-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.modal-field label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.modal-field input,
+.modal-field select,
+.modal-field textarea {
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--card);
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.modal-field input:focus,
+.modal-field select:focus,
+.modal-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30, 91, 166, 0.12);
+}
+
+.modal-field textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.pledge-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.pledge-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--ink);
+  transition: all 0.18s ease;
+}
+
+.pledge-check-label:hover {
+  border-color: var(--accent);
+  background: #f0f7ff;
+}
+
+.pledge-check-label input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--accent);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.pledge-check-content strong {
+  display: block;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.pledge-check-content small {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* Industry Filter Bar */
+.ind-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.ind-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.ind-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.ind-search-wrap input {
+  width: 100%;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 16px 10px 38px;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--card);
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.ind-search-wrap input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30, 91, 166, 0.12);
+}
+
+.ind-filter-select {
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.ind-filter-select:hover,
+.ind-filter-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(30, 91, 166, 0.12);
+}
+
+/* Modal Actions */
+.modal-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.btn-secondary {
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+/* Dark mode for new modal elements */
+[data-theme="dark"] .feature-modal-card {
+  background: #0e1622;
+  border-color: #182434;
+}
+
+[data-theme="dark"] .modal-section-box {
+  background: #142236;
+  border-color: #1e3554;
+}
+
+[data-theme="dark"] .modal-field input,
+[data-theme="dark"] .modal-field select,
+[data-theme="dark"] .modal-field textarea,
+[data-theme="dark"] .ind-search-wrap input,
+[data-theme="dark"] .ind-filter-select {
+  background: #090e17;
+  border-color: #1e3554;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .pledge-check-label {
+  background: #142236;
+  border-color: #1e3554;
+}
+
+[data-theme="dark"] .pledge-check-label:hover {
+  background: #1a2c44;
+  border-color: #3b82f6;
+}
+
+[data-theme="dark"] .btn-secondary {
+  background: #142236;
+  border-color: #1e3554;
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  background: #1a2c44;
+  border-color: #3b82f6;
+}
+
 
 
 
