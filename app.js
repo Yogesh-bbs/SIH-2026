@@ -33,6 +33,10 @@ const translations = {
     label_media: "Add evidence",
     optional: "(optional)",
     btn_submit: "Submit problem →",
+    cat_lbl_domain: "Assigned Domain",
+    cat_lbl_urgency: "Severity Level",
+    cat_lbl_dept: "Suggested Department Routing",
+    citizen_history_title: "📋 My Registered Grievances & Live Routing",
     how_eyebrow: "UNDER THE HOOD • HOW IT WORKS",
     how_title: "What happens after you submit?",
     how_desc: "A transparent 4-step pipeline that turns citizen challenges into university research and field action.",
@@ -449,6 +453,10 @@ const translations = {
     label_media: "तस्वीर या वीडियो जोड़ें",
     optional: "(वैकल्पिक)",
     btn_submit: "समस्या दर्ज करें →",
+    cat_lbl_domain: "निर्धारित क्षेत्र",
+    cat_lbl_urgency: "गंभीरता स्तर",
+    cat_lbl_dept: "सुझाया गया विभाग",
+    citizen_history_title: "📋 मेरी दर्ज शिकायतें एवं लाइव स्थिति",
     how_eyebrow: "प्रक्रिया • यह कैसे काम करता है",
     how_title: "समस्या दर्ज करने के बाद क्या होता है?",
     how_desc: "एक पारदर्शी 4-चरणीय प्रक्रिया जो नागरिकों की समस्याओं को विश्वविद्यालयी शोध और ज़मीनी कार्रवाई में बदलती है।",
@@ -864,6 +872,10 @@ const translations = {
     label_media: "ᱪᱤᱛᱟᱹᱨ ᱥᱮ ᱵᱷᱤᱰᱤᱭᱳ ᱡᱚᱲᱟᱣ ᱢᱮ",
     optional: "(ᱵᱟᱪᱷᱟᱣ ᱞᱮᱠᱟᱛᱮ)",
     btn_submit: "ᱮᱴᱠᱮᱴᱚᱬᱮ ᱫᱟᱠᱷᱚᱞ ᱢᱮ →",
+    cat_lbl_domain: "ᱦᱟᱹᱴᱤᱧ ᱴᱷᱟᱶ",
+    cat_lbl_urgency: "ᱞᱟᱹᱠᱛᱤ ᱛᱷᱚᱠ",
+    cat_lbl_dept: "ᱵᱤᱵᱷᱟᱜᱽ ᱠᱩᱞ",
+    citizen_history_title: "📋 ᱤᱧᱟᱜ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱠᱚ ᱟᱨ ᱞᱟᱭᱤᱵᱽ ᱴᱨᱟᱠᱤᱝ",
     how_eyebrow: "ᱵᱷᱤᱛᱨᱤ ᱠᱟᱹᱢᱤᱦᱚᱨᱟ • ᱪᱮᱫ ᱞᱮᱠᱟ ᱪᱟᱞᱟᱜ ᱠᱟᱱᱟ",
     how_title: "ᱮᱴᱠᱮᱴᱚᱬᱮ ᱞᱟᱹᱭ ᱛᱟᱭᱚᱢ ᱪᱮᱫ ᱦᱩᱭᱩᱜ-ᱟ?",
     how_desc: "ᱢᱤᱫ ᱥᱟᱯᱷᱟ ᱔-ᱫᱷᱟᱯ ᱠᱟᱹᱢᱤᱦᱚᱨᱟ ᱡᱟᱦᱟᱸ ᱫᱚ ᱟᱹᱛᱩ ᱦᱚᱲ ᱟᱲᱟᱝ ᱠᱷᱚᱱ ᱡᱮᱜᱮᱛ ᱵᱤᱨᱫᱟᱹᱜᱟᱲ ᱥᱚᱞᱦᱮ ᱨᱮ ᱵᱚᱫᱚᱞᱟ᱾",
@@ -1481,8 +1493,586 @@ if (voiceBtn) {
   voiceBtn.onclick = handleGrievanceVoiceInput;
 }
 
-// Problem submission
-function submitProblem() {
+// ==========================================================================
+// CENTRAL REGISTERED PROBLEMS & MULTI-PORTAL DATA PIPELINE STORE
+// ==========================================================================
+
+const SEED_REGISTERED_PROBLEMS = [
+  {
+    id: "AAPV-2026-0842",
+    title: "Handpump Contamination & Fluorosis",
+    statement: "हमार गांव का चापाकल से पियर-पियर बदबूदार पानी निकल रहल बा। तीन गो लइका लोग के पेट खराब भइल बा। (Yellow smelly water from village handpump; 3 children fell ill in Jamua block).",
+    district: "Giridih • Jamua Block",
+    category: "water",
+    categoryLabel: "Water & Sanitation",
+    urgency: "High",
+    urgencyScore: 0.92,
+    suggestedDept: "District Jal Swachhata Dept (DWSD)",
+    matchedFaculty: "Environmental Eng. • Chemistry • Biotech",
+    matchScore: 94,
+    csrFunding: "₹3,50,000",
+    status: "Under Triage",
+    submitterType: "Citizen",
+    date: "Sep 15, 2026",
+    user: "Ramesh Murmu"
+  },
+  {
+    id: "AAPV-2026-0789",
+    title: "Broken School Toilets & Running Water",
+    statement: "ᱟᱥᱲᱟ ᱨᱮ ᱴᱚᱭᱞᱮᱴ ᱨᱟᱹᱯᱩᱫ ᱟᱠᱟᱱᱟ, ᱫᱟᱜ ᱦᱚᱸ ᱵᱟᱹᱱᱩᱜᱼᱟ᱾ ᱠᱩᱲᱤ ᱜᱤᱫᱽᱨᱟᱹ ᱠᱚ ᱟᱹᱰᱤ ᱮᱴᱠᱮᱴᱚᱬᱮ ᱨᱮ ᱢᱮᱱᱟᱜ ᱠᱚᱣᱟ᱾ (School toilet damaged, no water. Girl students facing severe difficulties in Shikaripara).",
+    district: "Dumka • Shikaripara Block",
+    category: "edu",
+    categoryLabel: "Education & Infrastructure",
+    urgency: "Medium",
+    urgencyScore: 0.76,
+    suggestedDept: "Dept of School Education & Literacy",
+    matchedFaculty: "Civil Infrastructure • Educational Tech",
+    matchScore: 91,
+    csrFunding: "₹2,50,000",
+    status: "Under Triage",
+    submitterType: "Community Lead",
+    date: "Sep 16, 2026",
+    user: "Sunita Devi"
+  },
+  {
+    id: "AAPV-2026-0710",
+    title: "Crop Irrigation Scheduling Failure",
+    statement: "नहर से पानी समय पर नहीं मिल रहा है, धान की रोपाई पिछड़ रही है। पंप मरम्मत के लिए सहयोग चाहिए। (Canal water not reaching on time, paddy transplanting delayed in Barhi block).",
+    district: "Hazaribagh • Barhi Block",
+    category: "agri",
+    categoryLabel: "Agriculture & Co-op",
+    urgency: "Low",
+    urgencyScore: 0.58,
+    suggestedDept: "Dept of Agriculture & Co-op",
+    matchedFaculty: "Agricultural Eng. • IoT Automation",
+    matchScore: 89,
+    csrFunding: "₹2,80,000",
+    status: "Under Triage",
+    submitterType: "Citizen",
+    date: "Sep 17, 2026",
+    user: "Birsa Soren"
+  }
+];
+
+function getRegisteredProblems() {
+  try {
+    const raw = localStorage.getItem('aapv_registered_problems');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  try {
+    localStorage.setItem('aapv_registered_problems', JSON.stringify(SEED_REGISTERED_PROBLEMS));
+  } catch (e) {}
+  return [...SEED_REGISTERED_PROBLEMS];
+}
+
+function saveRegisteredProblem(problem) {
+  const problems = getRegisteredProblems();
+  problems.unshift(problem);
+  try {
+    localStorage.setItem('aapv_registered_problems', JSON.stringify(problems));
+  } catch (e) {}
+  syncProblemAcrossPortals(problem);
+}
+
+function updateProblemStatus(problemId, newStatus) {
+  const problems = getRegisteredProblems();
+  const item = problems.find(p => p.id === problemId);
+  if (item) {
+    item.status = newStatus;
+    try {
+      localStorage.setItem('aapv_registered_problems', JSON.stringify(problems));
+    } catch (e) {}
+  }
+}
+
+// --------------------------------------------------------------------------
+// AUTOMATED PROBLEM CATEGORIZATION ENGINE
+// --------------------------------------------------------------------------
+let currentAiCategorization = null;
+let aiCatDebounceTimer = null;
+
+function localCategorizeProblem(text, location = '') {
+  const lower = (text + ' ' + location).toLowerCase();
+  
+  // 1. Calculate dynamic urgency score (0.48 to 0.98)
+  let urgencyScore = 0.55;
+  if (/death|poison|arsenic|fluoride|outbreak|epidemic|icu|ambulance|casualty|collapse|flood|urgent|emergency|danger|risk|starvation|fatal|toxic/.test(lower)) {
+    urgencyScore += 0.28;
+  }
+  if (/ill|sick|vomit|diarrhea|infection|children|child|infant|women|girl|pregnant|student|students|patient|hospital/.test(lower)) {
+    urgencyScore += 0.10;
+  }
+  if (/months|month|years|year|weeks|week|since|daily|long time|frequently/.test(lower)) {
+    urgencyScore += 0.05;
+  }
+  if (/village|entire|whole|all|hundreds|panchayat|community|block|tola|families|people/.test(lower)) {
+    urgencyScore += 0.06;
+  }
+  urgencyScore = Math.min(0.98, Math.max(0.48, Math.round(urgencyScore * 100) / 100));
+  const urgency = urgencyScore >= 0.80 ? "High" : (urgencyScore >= 0.60 ? "Medium" : "Low");
+
+  // 2. Domain classification with specific department matching
+  let category = "infra";
+  let categoryLabel = "Rural Infrastructure, Roads & Connectivity";
+  let suggestedDept = "Rural Development Department & Panchayati Raj Engineering Wing";
+  let matchedFaculty = "Civil Highway Engineering • Geospatial Survey Cell";
+  let baseFacultyScore = 87;
+  let baseFunding = 360000;
+
+  // Water & Sanitation
+  if (/water|handpump|पानी|चापाकल|दᱟᱜ|fluoride|arsenic|contamin|well|नल|filter|pipe|borewell|tank|chlorin|drinking|jal|swachh/.test(lower)) {
+    category = "water";
+    categoryLabel = "Water Quality & Rural Sanitation";
+    baseFunding = 380000;
+    if (/arsenic|fluoride|poison|toxic|yellow|smell|chem|test|lab|quality/.test(lower)) {
+      suggestedDept = "DWSD State Water Quality Directorate & Jal Jeevan Lab";
+      matchedFaculty = "Environmental Toxicologists • Chemical Sciences • Water Filtration";
+      baseFacultyScore = 94;
+    } else if (/pipe|tap|jal jeevan|valve|supply|tank|distribution/.test(lower)) {
+      suggestedDept = "Panchayati Raj Piped Water Supply Division (Har Ghar Jal)";
+      matchedFaculty = "Civil Water Hydraulics • Rural Piped Systems • IoT Monitoring";
+      baseFacultyScore = 91;
+    } else if (/handpump|chaapkal|चापाकल|boring|borewell|repair|mechanic/.test(lower)) {
+      suggestedDept = "District Jal Swachhata Division (DWSD Mechanics & Repair Cell)";
+      matchedFaculty = "Mechanical Engineering • Groundwater Hydrogeology Lab";
+      baseFacultyScore = 89;
+    } else {
+      suggestedDept = "District Jal Swachhata Division (DWSD Jharkhand)";
+      matchedFaculty = "Environmental Eng. • Chemistry • Rural Water Systems";
+      baseFacultyScore = 91;
+    }
+  }
+  // Agriculture & Irrigation
+  else if (/crop|farm|irrigation|धान|फसल|किसान|ᱪᱟᱥ|soil|seed|canal|नहर|paddy|pest|drought|kharif|rabi|mand|fertiliz|kendra/.test(lower)) {
+    category = "agri";
+    categoryLabel = "Agriculture, Irrigation & Agritech";
+    baseFunding = 420000;
+    if (/canal|nahar|dam|irrigation|lift|water resource|drought|bore/.test(lower)) {
+      suggestedDept = "Minor Irrigation Directorate & Water Resources Department";
+      matchedFaculty = "Agricultural Water Resources • Smart Micro-Irrigation Lab";
+      baseFacultyScore = 93;
+    } else if (/pest|disease|worm|keeda|fungus|blight|seed|fertiliz/.test(lower)) {
+      suggestedDept = "District Krishi Vigyan Kendra (KVK) & Plant Protection Directorate";
+      matchedFaculty = "Agronomy • Botanical Diagnostics • Organic Entomology";
+      baseFacultyScore = 94;
+    } else {
+      suggestedDept = "Department of Agriculture, Animal Husbandry & Co-operative Development";
+      matchedFaculty = "Agricultural Eng. • Soil Health Informatics • Post-Harvest Lab";
+      baseFacultyScore = 89;
+    }
+  }
+  // Environment & Renewable Energy
+  else if (/electric|power|solar|waste|plastic|कचरा|बिजली|cold storage|पॉलिथीन|dung|forest|pollution|carbon|battery|wind/.test(lower)) {
+    category = "env";
+    categoryLabel = "Renewable Energy & Environmental Preservation";
+    baseFunding = 460000;
+    if (/solar|panel|microgrid|light|street light|inverter|solar pump/.test(lower)) {
+      suggestedDept = "Jharkhand Renewable Energy Development Agency (JREDA Solar Cell)";
+      matchedFaculty = "Electrical Power Systems • Photovoltaic & Micro-Grid Lab";
+      baseFacultyScore = 93;
+    } else if (/waste|garbage|plastic|dump|polythene|recycl/.test(lower)) {
+      suggestedDept = "State Pollution Control Board & District Solid Waste Management Cell";
+      matchedFaculty = "Environmental Chemical Engineering • Polymer Recycling Lab";
+      baseFacultyScore = 90;
+    } else {
+      suggestedDept = "Dept of Forest, Environment & Climate Change (Territorial Division)";
+      matchedFaculty = "Environmental Conservation • Remote Sensing & Forestry Systems";
+      baseFacultyScore = 88;
+    }
+  }
+  // Education & Skill Development
+  else if (/school|student|teacher|classroom|स्कूल|बच्चे|पढ़ाई|ᱟᱥᱲᱟ|toilet|blackboard|college|book|library|desk|bench|midday|anganwadi/.test(lower)) {
+    category = "edu";
+    categoryLabel = "Education Infrastructure & Digital Learning";
+    baseFunding = 290000;
+    if (/toilet|sanitation|water|girl|hygiene|washroom/.test(lower)) {
+      suggestedDept = "Jharkhand Education Project Council (JEPC) School Sanitation Cell";
+      matchedFaculty = "Civil Sanitation Engineering • Public Health In Schools";
+      baseFacultyScore = 92;
+    } else if (/roof|building|wall|crack|ceiling|boundary|infrastructure/.test(lower)) {
+      suggestedDept = "District Superintendent of Education (DSE Infra Works Wing)";
+      matchedFaculty = "Structural Civil Engineering • Rural Disaster-Resilient Architecture";
+      baseFacultyScore = 91;
+    } else {
+      suggestedDept = "Dept of School Education & Literacy (Samagra Shiksha Abhiyan)";
+      matchedFaculty = "Educational Technology • EdTech Hardware & Vernacular Learning";
+      baseFacultyScore = 88;
+    }
+  }
+  // Health & Public Safety
+  else if (/health|hospital|clinic|doctor|medicine|अस्पताल|दवा|रोग|बीमार|fever|ambulance|phc|chc|nurse|treatment|surgery|opd|rabies|snake/.test(lower)) {
+    category = "health";
+    categoryLabel = "Public Health & Primary Healthcare (PHC)";
+    baseFunding = 480000;
+    if (/medicine|dawa|injection|saline|oxygen|pharmacy|shortage/.test(lower)) {
+      suggestedDept = "Jharkhand Medical Services & Infrastructure Development Corp (JMSICL)";
+      matchedFaculty = "Biomedical Engineering • Pharmaceutical Logistics Systems";
+      baseFacultyScore = 94;
+    } else if (/ambulance|108|emergency|trauma|critical|death/.test(lower)) {
+      suggestedDept = "Emergency Medical Relief Wing & State 108 Ambulance Directorate";
+      matchedFaculty = "Critical Care Systems • Tele-Emergency Mobile Health Unit";
+      baseFacultyScore = 95;
+    } else {
+      suggestedDept = "Department of Health, Medical Education & Family Welfare (Civil Surgeon Office)";
+      matchedFaculty = "Community Public Health • Diagnostics & Telemedicine Lab";
+      baseFacultyScore = 92;
+    }
+  }
+  // Rural Infrastructure & Roads
+  else {
+    category = "infra";
+    categoryLabel = "Rural Infrastructure, Roads & Connectivity";
+    baseFunding = 390000;
+    if (/bridge|pul|culvert|river|stream|causeway/.test(lower)) {
+      suggestedDept = "Rural Works Department (RWD Special Bridge Division)";
+      matchedFaculty = "Structural Bridge Engineering • Hydrological Runoff Modeling";
+      baseFacultyScore = 93;
+    } else if (/road|sadak|pothole|tar|connectivity|mud|unpaved/.test(lower)) {
+      suggestedDept = "Pradhan Mantri Gram Sadak Yojana (PMGSY Implementation Unit)";
+      matchedFaculty = "Highway & Pavement Engineering • Geotechnical Stabilization";
+      baseFacultyScore = 91;
+    } else {
+      suggestedDept = "Rural Development Department & Panchayati Raj Engineering Wing";
+      matchedFaculty = "Rural Civil Engineering • Drainage & Geo-Survey Cell";
+      baseFacultyScore = 88;
+    }
+  }
+
+  // 3. Dynamic CSR funding calculation based on urgency and scope
+  const fundCalc = Math.round((baseFunding * (0.6 + urgencyScore * 0.7) + (text.length * 900)) / 10000) * 10000;
+  const csrFunding = '₹' + fundCalc.toLocaleString('en-IN');
+
+  // 4. Dynamic faculty match score
+  const matchScore = Math.min(98, baseFacultyScore + (text.length % 5));
+
+  // 5. Dynamic synthesized summary / title
+  const locPrefix = location ? `${location}: ` : '';
+  const firstSentence = text.split(/[.\n।]/)[0].trim();
+  const summary = (locPrefix + (firstSentence.length > 85 ? firstSentence.substring(0, 82) + '…' : firstSentence));
+
+  return {
+    category,
+    categoryLabel,
+    urgency,
+    urgencyScore,
+    suggestedDept,
+    matchedFaculty,
+    matchScore,
+    csrFunding,
+    summary,
+    _source: 'dynamic_local'
+  };
+}
+
+async function requestAiCategorization(text, location = '') {
+  const config = window.AAPV_CONFIG || {};
+  const isStaticHost = window.location.hostname.includes('github.io') || window.location.protocol === 'file:';
+
+  // Tier 1: Try Local Backend Server (/api/categorize) if not on purely static hosting
+  if (!isStaticHost) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 2000);
+      const backendRes = await fetch((config.BACKEND_API_URL || '/api') + '/categorize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, location }),
+        signal: controller.signal
+      });
+      clearTimeout(timeout);
+      if (backendRes.ok) {
+        const data = await backendRes.json();
+        if (data.success && data.categorization) {
+          data.categorization._source = 'ai';
+          return data.categorization;
+        }
+      }
+    } catch (e) {}
+  }
+
+  // Tier 2: Direct AI endpoint call from browser (Works 100% on GitHub Pages & Static Hosts)
+  const apiKey = config.AI_API_KEY;
+  if (apiKey && !apiKey.includes('REPLACE')) {
+    const prompt = `You are the AI triage engine for AapV, Jharkhand's civic grievance platform.
+Categorize this citizen problem into exactly one domain: "water", "agri", "env", "edu", "health", "infra".
+Assess the urgency ("High", "Medium", or "Low"), assign an urgencyScore between 0.45 and 0.99, select the best matching Jharkhand state department, and suggest university research disciplines.
+Respond ONLY with valid JSON matching this schema:
+{
+  "category": "water" | "agri" | "env" | "edu" | "health" | "infra",
+  "categoryLabel": string (e.g. "Water Quality & Sanitation"),
+  "urgency": "High" | "Medium" | "Low",
+  "urgencyScore": number (e.g. 0.92),
+  "suggestedDept": string,
+  "matchedFaculty": string,
+  "matchScore": number (percentage between 78 and 98),
+  "csrFunding": string (e.g. "₹4,20,000"),
+  "summary": string (concise 1-sentence issue summary)
+}
+
+Citizen Problem: "${text}"
+Location: "${location || 'Jharkhand'}"`;
+
+    const modelsToTry = [config.AI_MODEL || 'gemini-3.6-flash', 'gemini-flash-latest', 'gemini-3.5-flash'];
+    for (const model of modelsToTry) {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 6500);
+        const endpoint = `${config.AI_ENDPOINT || 'https://generativelanguage.googleapis.com/v1beta/models'}/${model}:generateContent?key=${apiKey}`;
+        
+        const directRes = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: "application/json" }
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeout);
+        if (directRes.ok) {
+          const json = await directRes.json();
+          const rawReply = json.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (rawReply) {
+            let cleaned = rawReply.trim();
+            if (cleaned.startsWith('```json')) cleaned = cleaned.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+            else if (cleaned.startsWith('```')) cleaned = cleaned.replace(/^```\s*/, '').replace(/\s*```$/, '');
+            const parsed = JSON.parse(cleaned);
+            if (parsed && parsed.category) {
+              parsed._source = 'ai';
+              return parsed;
+            }
+          }
+        }
+      } catch (e) {}
+    }
+  }
+
+  // Tier 3: High-accuracy dynamic local heuristic classification
+  return localCategorizeProblem(text, location);
+}
+
+async function triggerLiveProblemCategorization() {
+  const problemInput = document.getElementById('problem');
+  const locInput = document.getElementById('location');
+  const card = document.getElementById('aiCategorizationCard');
+  if (!problemInput || !card) return;
+
+  const text = problemInput.value.trim();
+  if (!text || text.length < 5) {
+    card.style.display = 'none';
+    currentAiCategorization = null;
+    return;
+  }
+
+  card.style.display = 'block';
+  const badge = document.getElementById('aiCatStatusBadge');
+  if (badge) {
+    badge.textContent = 'Analyzing…';
+    badge.className = 'ai-cat-badge analyzing';
+  }
+
+  const location = locInput ? locInput.value.trim() : '';
+  const result = await requestAiCategorization(text, location);
+  currentAiCategorization = result;
+
+  const domainEl = document.getElementById('aiCatDomain');
+  const urgencyEl = document.getElementById('aiCatUrgency');
+  const deptEl = document.getElementById('aiCatDept');
+
+  const domainIcons = {
+    water: '💧',
+    agri: '🌾',
+    env: '🌱',
+    edu: '🏫',
+    health: '🏥',
+    infra: '🛣️'
+  };
+
+  if (domainEl) domainEl.innerHTML = `${domainIcons[result.category] || '📌'} ${result.categoryLabel}`;
+  if (urgencyEl) {
+    const color = result.urgency === 'High' ? '#dc2626' : (result.urgency === 'Medium' ? '#d97706' : '#16a34a');
+    urgencyEl.innerHTML = `<span style="color:${color};">${result.urgency} Priority (${Math.round(result.urgencyScore * 100)}%)</span>`;
+  }
+  if (deptEl) deptEl.textContent = result.suggestedDept;
+
+  if (badge) {
+    badge.textContent = result._source === 'ai' ? 'AI Categorized ✓' : 'Categorized ✓';
+    badge.className = 'ai-cat-badge ready';
+  }
+}
+
+// --------------------------------------------------------------------------
+// DYNAMIC MULTI-PORTAL RENDERING
+// --------------------------------------------------------------------------
+
+function renderAdminTriageQueue() {
+  const queueEl = document.getElementById('adminTriageQueue');
+  const pillEl = document.getElementById('adminPendingPill');
+  if (!queueEl) return;
+
+  const problems = getRegisteredProblems();
+  if (pillEl) {
+    pillEl.textContent = `${problems.length} pending`;
+  }
+
+  problems.forEach(prob => {
+    TRIAGE_TICKETS[prob.id] = {
+      id: prob.id,
+      title: prob.title,
+      district: prob.district,
+      category: prob.categoryLabel || prob.category,
+      urgency: `${prob.urgency} (${prob.urgencyScore || 0.85})`,
+      transcript: prob.statement,
+      suggestedDept: prob.suggestedDept,
+      defaultNotes: `Dispatch ${prob.suggestedDept} inspection kit within 48h. Direct university research team to assess field feasibility.`
+    };
+  });
+
+  queueEl.innerHTML = problems.map(prob => {
+    const dotClass = prob.urgency === 'High' ? 'high' : (prob.urgency === 'Medium' ? 'med' : 'low');
+    const isDispatched = prob.status && prob.status.toLowerCase().includes('dispatched');
+    return `
+      <article id="triageCard-${prob.id}" style="${isDispatched ? 'opacity: 0.75; border-color: #10b981;' : ''}">
+        <span class="dot ${dotClass}"></span>
+        <div style="flex:1;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <b>${prob.title}</b>
+            <span style="font-size:10.5px; font-family:monospace; background:rgba(30,91,166,0.08); color:var(--accent); padding:1px 5px; border-radius:3px;">${prob.id}</span>
+          </div>
+          <small>${prob.district} • ${prob.categoryLabel || prob.category} • ${prob.urgency}</small>
+          <div style="font-size:11px; color:${isDispatched ? '#059669' : 'var(--muted)'}; margin-top:2px; font-weight:600;">
+            Status: ${prob.status || 'Under Triage'}
+          </div>
+        </div>
+        <button type="button" data-i18n="btn_review" onclick="openTriageReviewModal('${prob.id}')">Review</button>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderUniversityChallenges() {
+  const grid = document.getElementById('univChallengesGrid');
+  const countHeading = document.querySelector('.matchhero h2');
+  if (!grid) return;
+
+  const problems = getRegisteredProblems();
+  if (countHeading) {
+    countHeading.textContent = `${problems.length} challenges are a strong match for your institution`;
+  }
+
+  problems.forEach(prob => {
+    UNIV_CHALLENGES[prob.id] = {
+      title: prob.title,
+      badge: `${prob.id} • ${prob.district}`,
+      domain: prob.matchedFaculty || `${prob.categoryLabel} Engineering`,
+      urgency: `${prob.urgency} Priority • Verified Grassroots Problem`,
+      statement: prob.statement,
+      fieldConstraints: [
+        "Community-operated design with low maintenance cost.",
+        `Recommended routing: ${prob.suggestedDept}.`,
+        `Capital expenditure target within ${prob.csrFunding || '₹3,50,000'}.`
+      ],
+      grant: `${prob.csrFunding || '₹3,50,000'} State Innovation Pilot & CSR Matching Fund.`
+    };
+  });
+
+  grid.innerHTML = problems.map(prob => {
+    const domainTag = prob.category || 'water';
+    const isClaimed = prob.status && prob.status.toLowerCase().includes('claimed');
+    return `
+      <article class="problemcard" id="univCard-${prob.id}" style="${isClaimed ? 'border-color:#16a34a;' : ''}">
+        <span class="tag ${domainTag}">${(prob.category || 'CHALLENGE').toUpperCase()}</span>
+        <h3>${prob.title}</h3>
+        <p>${prob.district} • ${prob.urgency} priority</p>
+        <div class="chips">${prob.matchedFaculty || 'Interdisciplinary Eng. • Innovation Lab'}</div>
+        <div class="match">${prob.matchScore || 92}% match</div>
+        <button class="primary full" id="univBtn-${prob.id}" onclick="openChallengeModal('${prob.id}', this)" ${isClaimed ? 'disabled style="background:#16a34a;"' : ''}>
+          ${isClaimed ? 'Claimed by Your Lab ✓' : 'Review challenge'}
+        </button>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderIndustryProjects() {
+  const grid = document.getElementById('industryCardsGrid');
+  if (!grid) return;
+
+  const problems = getRegisteredProblems();
+  grid.innerHTML = problems.map((prob, idx) => {
+    const isPledged = prob.status && prob.status.toLowerCase().includes('pledged');
+    return `
+      <article class="problemcard ${idx === 0 ? 'featured' : ''}" data-domain="${prob.category || 'water'}" data-support="funding,equipment,field,mentorship" data-district="${prob.district}" data-title="${prob.title}">
+        <span class="tag ${prob.category || 'water'}">${(prob.category || 'COMMUNITY').toUpperCase()}</span>
+        <h3>${prob.title}</h3>
+        <p>${prob.district} • ${prob.submitterType || 'Citizen'} Challenge</p>
+        <div class="fund">
+          <b>${prob.csrFunding || '₹3,50,000'}</b>
+          <small data-i18n="ind_req_total">total requirement</small>
+        </div>
+        <ul>
+          <li>Hardware / Materials funding</li>
+          <li>Engineering lab collaboration</li>
+          <li>Grassroots field testing</li>
+          <li>Deployment verification</li>
+        </ul>
+        <button class="primary full" onclick="openPledgeModal('${prob.id}', this)" data-i18n="btn_i_can_help" ${isPledged ? 'disabled style="background:#16a34a;"' : ''}>
+          ${isPledged ? 'Pledged by Your Company ✓' : 'I can help'}
+        </button>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderCitizenHistory() {
+  const card = document.getElementById('citizenHistoryCard');
+  const list = document.getElementById('citizenHistoryList');
+  const pill = document.getElementById('citizenHistoryCountPill');
+  if (!card || !list) return;
+
+  const problems = getRegisteredProblems();
+  card.style.display = 'block';
+  if (pill) pill.textContent = `${problems.length} registered`;
+
+  list.innerHTML = problems.map(prob => {
+    let statusClass = 'triage';
+    if (prob.status && prob.status.toLowerCase().includes('dispatched')) statusClass = 'dispatched';
+    if (prob.status && prob.status.toLowerCase().includes('claimed')) statusClass = 'claimed';
+
+    return `
+      <div class="citizen-history-item">
+        <div class="history-item-top">
+          <div class="history-item-title-row">
+            <span class="history-ticket-id">#${prob.id}</span>
+            <span class="tag ${prob.category || 'water'}" style="font-size:10px; padding:2px 8px;">${(prob.category || 'CIVIC').toUpperCase()}</span>
+            <strong style="font-size:13.5px; color:var(--ink);">${prob.title}</strong>
+          </div>
+          <span class="history-status-tag ${statusClass}">● ${prob.status || 'Under Triage'}</span>
+        </div>
+        <p class="history-item-statement">"${prob.statement}"</p>
+        <div class="history-item-footer">
+          <span>📍 <strong>${prob.district}</strong> • 🗓️ ${prob.date || 'Recent'}</span>
+          <span>🏛️ Routed: <strong>${prob.suggestedDept || 'State Council'}</strong></span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function syncProblemAcrossPortals(problem) {
+  renderAdminTriageQueue();
+  renderUniversityChallenges();
+  renderIndustryProjects();
+  renderCitizenHistory();
+}
+
+// --------------------------------------------------------------------------
+// ENHANCED CITIZEN SUBMISSION HANDLER
+// --------------------------------------------------------------------------
+async function submitProblem() {
   const p = document.getElementById('problem')?.value.trim();
   if (!p) {
     toast('toast_problem_empty');
@@ -1494,11 +2084,55 @@ function submitProblem() {
     openLoginView();
     return;
   }
-  toast('toast_problem_submitted_linked');
+
+  const submitBtn = document.querySelector('.card.submission button.primary.full');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Categorizing & Dispatching…';
+  }
+
+  const locEl = document.getElementById('location');
+  const location = locEl ? locEl.value.trim() : '';
+  const submitterRadio = document.querySelector('input[name="submitterType"]:checked');
+  const submitterType = submitterRadio?.value === 'community' ? 'Community / Group' : (submitterRadio?.value === 'pri' ? 'Panchayati Raj' : 'Citizen');
+
+  let cat = currentAiCategorization;
+  if (!cat) {
+    cat = await requestAiCategorization(p, location);
+  }
+
+  const newTicketId = `AAPV-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+  const registeredItem = {
+    id: newTicketId,
+    title: cat.summary || (p.length > 60 ? p.substring(0, 57) + '…' : p),
+    statement: p,
+    district: location || 'Giridih • District',
+    category: cat.category || 'water',
+    categoryLabel: cat.categoryLabel || 'Water & Sanitation',
+    urgency: cat.urgency || 'High',
+    urgencyScore: cat.urgencyScore || 0.88,
+    suggestedDept: cat.suggestedDept || 'District Jal Swachhata Dept (DWSD)',
+    matchedFaculty: cat.matchedFaculty || 'Environmental Eng. • Chemistry • Biotech',
+    matchScore: cat.matchScore || 92,
+    csrFunding: cat.csrFunding || '₹3,50,000',
+    status: 'Under Triage',
+    submitterType: submitterType,
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+    user: user.name || 'Citizen'
+  };
+
+  saveRegisteredProblem(registeredItem);
+
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit problem →';
+  }
+
+  toast(`Problem registered! Ticket #${newTicketId} categorized as ${registeredItem.categoryLabel} and routed to ${registeredItem.suggestedDept}.`);
+
   setTimeout(() => {
     const probEl = document.getElementById('problem');
     if (probEl) probEl.value = '';
-    const locEl = document.getElementById('location');
     if (locEl) locEl.value = '';
     const mediaEl = document.getElementById('media');
     if (mediaEl) mediaEl.value = '';
@@ -1507,6 +2141,12 @@ function submitProblem() {
     const citizenRadio = document.querySelector('input[name="submitterType"][value="citizen"]');
     if (citizenRadio) citizenRadio.checked = true;
     toggleCommunityInput();
+
+    const catCard = document.getElementById('aiCategorizationCard');
+    if (catCard) catCard.style.display = 'none';
+    currentAiCategorization = null;
+
+    renderCitizenHistory();
   }, 900);
 }
 
@@ -2622,11 +3262,17 @@ function submitTriageAction(event) {
   const dept = document.getElementById('triageDeptSelect')?.value || 'Departmental Officer';
   const priority = document.getElementById('triagePrioritySelect')?.value || 'High';
   
+  updateProblemStatus(currentTriageTicket, `Dispatched to ${dept}`);
+
   const cardEl = document.getElementById(`triageCard-${currentTriageTicket}`);
   if (cardEl) {
     cardEl.style.transition = 'all 0.3s ease';
-    cardEl.style.opacity = '0.4';
-    cardEl.style.pointerEvents = 'none';
+    cardEl.style.opacity = '0.6';
+    const statusDiv = cardEl.querySelector('small')?.nextElementSibling;
+    if (statusDiv) {
+      statusDiv.textContent = `Status: Dispatched to ${dept}`;
+      statusDiv.style.color = '#059669';
+    }
     const btn = cardEl.querySelector('button');
     if (btn) {
       btn.textContent = 'Dispatched ✓';
@@ -2800,6 +3446,7 @@ function claimCurrentChallenge() {
     btn.disabled = true;
     btn.style.background = '#16a34a';
   }
+  updateProblemStatus(activeChallengeKey, 'Claimed by University Lab');
   closeChallengeModal();
   toast(currentLang === 'hi' ? `चुनौती "${challenge.title}" को आपकी लैब द्वारा स्वीकार कर लिया गया है!` : (currentLang === 'sat' ? `ᱮᱴᱠᱮᱴᱚᱬᱮ ᱞᱮᱵᱽ ᱦᱟᱛᱟᱣ ᱠᱮᱫᱟᱭ!` : `Challenge "${challenge.title}" claimed for your University Lab! ✓`));
 }
@@ -3564,7 +4211,131 @@ function narrateProjectCard(id, btn) {
 // ==========================================================================
 let chatRecognition = null;
 
-function sendChatMessage(textOverride = null) {
+async function queryAiAssistant(query, lang = currentLang) {
+  const config = window.AAPV_CONFIG || {};
+  const problems = getRegisteredProblems();
+  const isStaticHost = window.location.hostname.includes('github.io') || window.location.protocol === 'file:';
+
+  // 1. Try Backend /api/chat if not on purely static hosting
+  if (!isStaticHost) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 3500);
+      const res = await fetch((config.BACKEND_API_URL || '/api') + '/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: query, language: lang }),
+        signal: controller.signal
+      });
+      clearTimeout(timeout);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.response?.text) {
+          return {
+            text: data.response.text,
+            speechText: data.response.text.replace(/<[^>]*>?/gm, ' ')
+          };
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 2. Knowledge-base search over live registered citizen problems
+  const q = query.toLowerCase();
+  for (const prob of problems) {
+    const idMatches = q.includes(prob.id.toLowerCase()) || q.includes(prob.id.split('-').pop());
+    const domainMatch = prob.category && q.includes(prob.category);
+    const distMatch = prob.district && q.includes(prob.district.toLowerCase().split(' ')[0]);
+
+    if (idMatches || (domainMatch && distMatch)) {
+      if (lang === 'hi') {
+        return {
+          text: `<p><strong>शिकायत #${prob.id} (${prob.district}):</strong></p>
+                 <p><strong>समस्या:</strong> ${prob.title}</p>
+                 <p>क्षेत्र: <strong>${prob.categoryLabel}</strong> • प्राथमिकता: <strong>${prob.urgency} (${Math.round((prob.urgencyScore || 0.85) * 100)}%)</strong></p>
+                 <p>प्रेषण विभाग: <strong>${prob.suggestedDept}</strong> • वर्तमान स्थिति: <strong>${prob.status}</strong></p>
+                 <p><em>नागरिक विवरण:</em> "${prob.statement}"</p>`,
+          speechText: `शिकायत ${prob.id} का क्षेत्र ${prob.categoryLabel} है, प्राथमिकता ${prob.urgency} है, और वर्तमान स्थिति ${prob.status} है।`
+        };
+      } else if (lang === 'sat') {
+        return {
+          text: `<p><strong>ᱮᱴᱠᱮᱴᱚᱬᱮ #${prob.id} (${prob.district}):</strong></p>
+                 <p><strong>ᱠᱟᱛᱷᱟ:</strong> ${prob.title}</p>
+                 <p>ᱦᱟᱹᱴᱤᱧ: <strong>${prob.categoryLabel}</strong> • ᱞᱟᱹᱠᱛᱤ: <strong>${prob.urgency}</strong></p>
+                 <p>ᱵᱤᱵᱷᱟᱜᱽ: <strong>${prob.suggestedDept}</strong> • ᱦᱟᱞᱚᱛ: <strong>${prob.status}</strong></p>`,
+          speechText: `ᱮᱴᱠᱮᱴᱚᱬᱮ ${prob.id} ᱨᱮᱭᱟᱜ ᱦᱟᱞᱚᱛ ${prob.status} ᱢᱮᱱᱟᱜ-ᱟ᱾`
+        };
+      } else {
+        return {
+          text: `<p><strong>Grievance #${prob.id} (${prob.district}):</strong></p>
+                 <p><strong>Title:</strong> ${prob.title}</p>
+                 <p>Category: <strong>${prob.categoryLabel}</strong> • Priority: <strong>${prob.urgency} (${Math.round((prob.urgencyScore || 0.85) * 100)}%)</strong></p>
+                 <p>Routing: <strong>${prob.suggestedDept}</strong> • Status: <strong>${prob.status}</strong></p>
+                 <p><em>Citizen Statement:</em> "${prob.statement}"</p>`,
+          speechText: `Grievance ${prob.id} in ${prob.district} is categorized under ${prob.categoryLabel} with ${prob.urgency} priority, currently ${prob.status}.`
+        };
+      }
+    }
+  }
+
+  // 3. Direct in-browser AI query (Works on GitHub Pages & Static Hosts)
+  const apiKey = config.AI_API_KEY;
+  if (apiKey && !apiKey.includes('REPLACE')) {
+    const knowledgeContext = `
+AapV Live Platform State (Jharkhand Civic & University Innovation Network):
+- Total Citizen Submissions: 2,481
+- Active University Prototypes: 428
+- Completed & Verified Solutions: 126
+- Active Districts: 24 (Ranchi, Dhanbad, Khunti, Dumka, Hazaribagh, East Singhbhum, Bokaro, Giridih, Deoghar, Ramgarh, etc.)
+- Active Seed Problems:
+${problems.slice(0, 6).map(p => `• Ticket #${p.id}: "${p.title}" in ${p.district} (${p.categoryLabel}, Status: ${p.status}, Routed: ${p.suggestedDept})`).join('\n')}
+
+Role: You are AapV AI Sahayak, the 24/7 Progress & Civic Assistant for Jharkhand. Answer questions accurately based on the above AapV data. Never mention third-party AI brands or internal providers.
+Language Instructions:
+If asked in Hindi, respond in fluent Hindi.
+If asked in Santhali or Ol Chiki, respond in Santhali.
+If English, respond in English.
+Keep responses concise (2 to 4 sentences) with key information wrapped in <strong> tags. Format with HTML paragraphs (<p>).`;
+
+    const modelsToTry = [config.AI_MODEL || 'gemini-3.6-flash', 'gemini-flash-latest', 'gemini-3.5-flash'];
+    for (const model of modelsToTry) {
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 7500);
+        const endpoint = `${config.AI_ENDPOINT || 'https://generativelanguage.googleapis.com/v1beta/models'}/${model}:generateContent?key=${apiKey}`;
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: `${knowledgeContext}\n\nCitizen/User Question: "${query}"` }] }]
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeout);
+        if (res.ok) {
+          const data = await res.json();
+          const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (reply) {
+            let formattedHtml = reply
+              .split('\n\n')
+              .filter(p => p.trim())
+              .map(p => `<p>${p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`)
+              .join('');
+            return {
+              text: formattedHtml || `<p>${reply}</p>`,
+              speechText: reply.replace(/<[^>]*>?/gm, ' ')
+            };
+          }
+        }
+      } catch (e) {}
+    }
+  }
+
+  // 4. Fallback to existing pseudo data engine
+  return generateAIResponse(query);
+}
+
+async function sendChatMessage(textOverride = null) {
   const inputEl = document.getElementById('chatInput');
   const query = (textOverride !== null ? textOverride : (inputEl ? inputEl.value : '')).trim();
   if (!query) return;
@@ -3588,12 +4359,10 @@ function sendChatMessage(textOverride = null) {
     messagesContainer.appendChild(typingEl);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    setTimeout(() => {
-      const el = document.getElementById(typingId);
-      if (el) el.remove();
-      const response = generateAIResponse(query);
-      appendChatMessage('bot', response.text, response.speechText);
-    }, 650);
+    const response = await queryAiAssistant(query, currentLang);
+    const el = document.getElementById(typingId);
+    if (el) el.remove();
+    appendChatMessage('bot', response.text, response.speechText);
   }
 }
 
@@ -4194,7 +4963,7 @@ function jumpToFullChatbot() {
   }
 }
 
-function sendFloatingChatMessage(textOverride = null) {
+async function sendFloatingChatMessage(textOverride = null) {
   const inputEl = document.getElementById('floatingChatInput');
   const query = (textOverride !== null ? textOverride : (inputEl ? inputEl.value : '')).trim();
   if (!query) return;
@@ -4218,12 +4987,10 @@ function sendFloatingChatMessage(textOverride = null) {
     messagesContainer.appendChild(typingEl);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    setTimeout(() => {
-      const el = document.getElementById(typingId);
-      if (el) el.remove();
-      const response = generateAIResponse(query);
-      appendFloatingChatMessage('bot', response.text, response.speechText);
-    }, 600);
+    const response = await queryAiAssistant(query, currentLang);
+    const el = document.getElementById(typingId);
+    if (el) el.remove();
+    appendFloatingChatMessage('bot', response.text, response.speechText);
   }
 }
 
@@ -4292,6 +5059,46 @@ function initApp() {
     voiceBtn.addEventListener('click', handleGrievanceVoiceInput);
   }
 
+  // Initialize dynamic multi-portal grievance renderers
+  renderCitizenHistory();
+  renderAdminTriageQueue();
+  renderUniversityChallenges();
+  renderIndustryProjects();
+
+  // Attach real-time debounced problem categorization on problem textarea
+  const problemInput = document.getElementById('problem');
+  if (problemInput) {
+    problemInput.addEventListener('input', () => {
+      clearTimeout(aiCatDebounceTimer);
+      aiCatDebounceTimer = setTimeout(triggerLiveProblemCategorization, 600);
+    });
+  }
+
+  // Cross-component sync listener
+  window.addEventListener('aapv:problemRegistered', () => {
+    renderAdminTriageQueue();
+    renderUniversityChallenges();
+    renderIndustryProjects();
+    renderCitizenHistory();
+  });
+
+  // Universal Floating AI Assistant document listeners (across all pages)
+  document.addEventListener('click', (e) => {
+    const container = document.getElementById('floatingAiContainer');
+    const widget = document.getElementById('floatingAiWidget');
+    if (widget && widget.classList.contains('active')) {
+      if (container && !container.contains(e.target)) {
+        closeFloatingAiAssistant();
+      }
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeFloatingAiAssistant();
+    }
+  });
+
   // If on tracking page, initialize projects & chatbot
   if (document.getElementById('projectsGrid')) {
     renderProjects();
@@ -4320,23 +5127,6 @@ function initApp() {
         }
       });
     }
-
-    // Floating AI Assistant document listeners
-    document.addEventListener('click', (e) => {
-      const container = document.getElementById('floatingAiContainer');
-      const widget = document.getElementById('floatingAiWidget');
-      if (widget && widget.classList.contains('active')) {
-        if (container && !container.contains(e.target)) {
-          closeFloatingAiAssistant();
-        }
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeFloatingAiAssistant();
-      }
-    });
   }
 }
 

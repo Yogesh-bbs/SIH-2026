@@ -220,6 +220,33 @@
         <button class="voice" id="voiceBtn" type="button" data-i18n="btn_voice" onclick="handleGrievanceVoiceInput()">🎙 AI Voice-to-Text</button>
         <span id="voiceStatus" data-i18n="voice_status_ready">Speak (Hindi, Santhali, English)</span>
       </div>
+
+      <!-- Real-Time Automated AI Categorization Card -->
+      <div id="aiCategorizationCard" class="ai-cat-card" style="display:none;">
+        <div class="ai-cat-header">
+          <span class="ai-cat-title">⚡ AI Triage & Categorization</span>
+          <span id="aiCatStatusBadge" class="ai-cat-badge ready">Categorized ✓</span>
+        </div>
+        <div class="ai-cat-body">
+          <div class="ai-cat-row">
+            <div class="ai-cat-col">
+              <span class="ai-cat-label" data-i18n="cat_lbl_domain">Assigned Domain</span>
+              <strong id="aiCatDomain" class="ai-cat-value">—</strong>
+            </div>
+            <div class="ai-cat-col">
+              <span class="ai-cat-label" data-i18n="cat_lbl_urgency">Severity Level</span>
+              <strong id="aiCatUrgency" class="ai-cat-value">—</strong>
+            </div>
+          </div>
+          <div class="ai-cat-row" style="margin-top:6px;">
+            <div class="ai-cat-col" style="grid-column: 1 / -1;">
+              <span class="ai-cat-label" data-i18n="cat_lbl_dept">Suggested Department Routing</span>
+              <span id="aiCatDept" class="ai-cat-dept">—</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <label data-i18n="label_location">Add location here</label>
       <div class="location">
         <input id="location" data-i18n-placeholder="placeholder_location" placeholder="Village / town / district">
@@ -228,6 +255,17 @@
       <label><span data-i18n="label_media">Add evidence</span> <span class="muted" data-i18n="optional">(optional)</span></label>
       <input type="file" id="media" accept="image/*,video/*" multiple>
       <button class="primary full" type="button" onclick="submitProblem()" data-i18n="btn_submit">Submit problem →</button>
+    </div>
+
+    <!-- Citizen Recent Submissions & Live Cross-Portal Status -->
+    <div id="citizenHistoryCard" class="citizen-history-card" style="margin-top: 20px; display: none;">
+      <div class="panelhead" style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 15px; margin: 0; color: var(--ink);" data-i18n="citizen_history_title">📋 My Registered Grievances & Live Routing</h3>
+        <span class="pill" id="citizenHistoryCountPill">0 registered</span>
+      </div>
+      <div id="citizenHistoryList" class="citizen-history-list">
+        <!-- Dynamically rendered registered problems -->
+      </div>
     </div>
   </section>
 </main>
@@ -568,6 +606,81 @@
       <div class="team-member-name">Yogesh</div>
     </div>
   </div>
+</div>
+
+<!-- Floating "Ask AI Assistant" Widget & Trigger Button -->
+<div class="floating-ai-container" id="floatingAiContainer">
+  <!-- Floating Chat Window / Widget -->
+  <div class="floating-ai-widget" id="floatingAiWidget" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="floatingAiTitle">
+    <div class="floating-ai-header">
+      <div class="floating-ai-header-left">
+        <div class="floating-ai-avatar">🤖</div>
+        <div class="floating-ai-titles">
+          <h4 id="floatingAiTitle" data-i18n="chatbot_header_title">AapV AI Sahayak • 24/7 Progress Insights</h4>
+          <span class="floating-ai-status">
+            <span class="floating-status-dot"></span>
+            <span data-i18n="chatbot_status">Active 24/7 • Multilingual</span>
+          </span>
+        </div>
+      </div>
+      <div class="floating-ai-header-actions">
+        <button type="button" class="floating-ai-close-btn" onclick="closeFloatingAiAssistant()" title="Close assistant" aria-label="Close assistant" data-i18n-title="floating_close_btn">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <div class="floating-ai-body">
+      <div class="floating-chat-messages" id="floatingChatMessages">
+        <div class="chat-msg bot">
+          <div class="chatbot-msg-avatar">🤖</div>
+          <div class="msg-bubble">
+            <p data-i18n="chatbot_welcome">
+              Namaste! I am your 24/7 AI Progress Assistant. Ask me anything about the progress of your grievance, ongoing university projects, or completed solutions in your area.
+            </p>
+            <div>
+              <button type="button" class="msg-listen-btn" onclick="narrateText(this.parentElement.previousElementSibling.innerText, this.parentElement.parentElement)" data-i18n="voice_narrate_btn">
+                🔊 Listen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="floating-chips-row">
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('What is the status of water projects in Dumka?')" data-i18n="chatbot_chip_water">
+          💧 Water in Dumka
+        </button>
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('Show all completed projects in Jharkhand')" data-i18n="chatbot_chip_completed">
+          ✅ Completed projects
+        </button>
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('What are ongoing university projects?')" data-i18n="chatbot_chip_ongoing">
+          ⚙️ Ongoing projects
+        </button>
+        <button type="button" class="floating-chip" onclick="sendFloatingChatMessage('Check status of AAPV-2026-0842')" data-i18n="chatbot_chip_id">
+          🔍 Status #0842
+        </button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="floating-input-bar">
+        <input type="text" id="floatingChatInput" placeholder="Ask about progress, grievances… (or mic)" data-i18n-placeholder="chatbot_placeholder" onkeydown="if(event.key==='Enter') sendFloatingChatMessage()">
+        <button type="button" class="floating-mic-btn" id="floatingMicBtn" onclick="handleFloatingChatbotSpeechInput()" title="Speak your question">
+          🎙
+        </button>
+        <button type="button" class="floating-send-btn" onclick="sendFloatingChatMessage()" aria-label="Send question">
+          <span>➤</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Trigger Button -->
+  <button type="button" class="floating-ai-trigger-btn" id="floatingAiBtn" onclick="toggleFloatingAiAssistant()" aria-label="Ask AI Assistant" aria-expanded="false">
+    <span class="floating-ai-btn-icon">🤖</span>
+    <span class="floating-ai-btn-text" data-i18n="floating_ask_ai">Ask AI Assistant</span>
+  </button>
 </div>
 
 <div id="toast" class="toast"></div>

@@ -7,5 +7,11 @@ window.AAPV_CONFIG = {
   SARVAM_ENDPOINT: "https://api.sarvam.ai/speech-to-text",
   SARVAM_MODEL: "saaras:v3",
   SARVAM_MODE: "transcribe",
-  SARVAM_LANGUAGE_CODE: "sat-IN"
+  SARVAM_LANGUAGE_CODE: "sat-IN",
+
+  // Automated Problem Categorization & 24/7 AI Sahayak Engine
+  AI_API_KEY: "AQ.Ab8RN6K8ik7Rm3yoG4FyfpoTCWcWdV2S6mqRcVz1HBXq86iCYQ",
+  AI_MODEL: "gemini-3.6-flash",
+  AI_ENDPOINT: "https://generativelanguage.googleapis.com/v1beta/models",
+  BACKEND_API_URL: "/api"
 };
